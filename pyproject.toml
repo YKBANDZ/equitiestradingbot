@@ -1,0 +1,65 @@
+[tool.poetry]
+name = "equitiestradingbot"
+version = "1.0.0"
+description = "Algorithmic market trader based on strategies"
+authors = ["YK-Bandz"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/YKBANDZ/equitiestradingbot"
+packages = [
+    { include = "equitiestradingbot" }
+    ]
+
+
+[tool.poetry.dependencies]
+python = "^3.13"
+alpha-vantage = "^2.3.1"
+govuk-bank-holidays = "^0.13.0"
+holidays = "^0.16.0"
+numpy = "^1.24.0"
+pandas = "^2.1.0"
+pytz = "^2023.3"
+requests = "^2.31.0"
+scipy = "^1.11.3"
+yfinance = "^0.2.30"
+
+[tool.poetry.group.development.dependencies]
+sphinx = "^7.2.5"
+sphinx-rtd-theme = "^1.2.2"
+requests-mock = "^1.11.0"
+pytest = "^7.4.2"
+black = {version = "^23.9b0", allow-prereleases = true}
+flake8 = "^6.1.0"
+isort = "^5.12.0"
+mypy = "^1.5.1"
+
+[tool.poetry.scripts]
+equitiestradingbot = 'equitiestradingbot:main'
+
+[tool.black]
+line-length = 88
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+multi_line_output=3
+include_trailing_comma="True"
+force_grid_wrap=0
+use_parentheses="True"
+line_length=88
+
+[build-system]
+requires = ["poetry>=1.4"]
+build-backend = "poetry.core.masonry.api"
