@@ -31,4 +31,23 @@ class MarketProvider:
     market_list_iter: Iterator[Market]
     node_stack: Deque[str]
 
+    def __init__(self, config: Configuration, broker: Broker) -> None:
+        self.config = config
+        self.broker = broker
+        self._initialise()
+
+    def next(self) -> Market:
+        """
+        Return the next market from the configured source
+        """
+        source = self.config.get_active_market_source()
+        if source == MarketSource.LIST.value:
+            return self._next_from_epic_list()
+        elif source == MarketSource.WATCHLIST.value:
+            return self._next_from_market_list()
+        elif source == MarketSource.API.value:
+            return self._next_from_api()
+        else:
+            raise RuntimeError("ERROR: invalid market_source configuration")
+
     
