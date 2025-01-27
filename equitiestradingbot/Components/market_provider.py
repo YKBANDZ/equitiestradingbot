@@ -4,9 +4,9 @@ from enum import Enum
 from pathlib import Path
 from typing import Deque, Iterator, List
 
-from ..Interfaces import Market
+from ..interfaces import Market
 from . import Configuration
-from .Broker import Broker
+from .Broker import broker 
 
 
 class MarketSource(Enum):
@@ -25,13 +25,13 @@ class MarketProvider:
     """
 
     config: Configuration
-    broker: Broker
+    broker: broker 
     epic_list: List[str] = []
     epic_list_iter: Iterator[str]
     market_list_iter: Iterator[Market]
     node_stack: Deque[str]
 
-    def __init__(self, config: Configuration, broker: Broker) -> None:
+    def __init__(self, config: Configuration, broker: broker) -> None:
         self.config = config
         self.broker = broker
         self._initialise()
@@ -97,4 +97,4 @@ class MarketProvider:
             #Initialise API members 
             self.node_stack = deque()
             source = self.config.get_active_market_source()
-            if source == MarketSource
+            if source == MarketSource:

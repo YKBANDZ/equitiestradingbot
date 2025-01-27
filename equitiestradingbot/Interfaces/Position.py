@@ -1,6 +1,6 @@
 from typing import Any
 
-from ..Components import TradeDirection
+from ..components import TradeDirection
 
 class Position: 
     deal_id: str

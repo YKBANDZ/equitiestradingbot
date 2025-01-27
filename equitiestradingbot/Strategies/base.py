@@ -3,10 +3,10 @@ from abc import ABC, abstractmethod
 from datetime import datetime
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from ..Components import Configuration
-from ..Components.utils import TradeDirection
-from ..Components.Broker import broker
-from ..Interfaces import Market, Position
+from ..components import Configuration
+from ..components.utils import TradeDirection
+from ..components.Broker import broker
+from ..interfaces import Market, Position
 
 DataPoints = Any
 BacktestResult = Dict[str, Union[float, List[Tuple[str, TradeDirection, float]]]]

@@ -2,8 +2,8 @@ import logging
 from datetime import datetime
 from typing import Optional
 
-from ..Interfaces import Market
-from ..Strategies import BacktestResult, StrategyImp1
+from ..interfaces import Market
+from ..strategies import BacktestResult, StrategyImp1
 from .Broker import Broker
 
 
