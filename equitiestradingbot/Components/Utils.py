@@ -10,7 +10,7 @@ class TradeDirection(Enum):
     Enumeration that reps the trade direction in the market: NONE means no action to take
     """
 
-    NONE: "NONE"
+    NONE: "None"
     BUY = "BUY"
     SELL = "SELL"
 

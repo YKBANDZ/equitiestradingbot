@@ -2,93 +2,94 @@ from typing import Any, Dict, List, Optional
 
 from ...interfaces import Market, MarketHistory, MarketMACD, Position
 from ..utils import Interval, TradeDirection
-from . import AccountInterface, BrokerFactory, StocksInterface
+from ..broker.abstract_interfaces import AccountInterface, StocksInterface
+from ..broker.factories import BrokerFactory
 
 class Broker:
     """
     This class provides a template interface for all broker related 
-    actions/takes wrapping the actua; implementation class internally
+    actions/takes wrapping the actual implementation class internally
     """
     factory: BrokerFactory
     stocks_ifc: StocksInterface
     account_ifc: AccountInterface
 
-def __init__(self, factory: BrokerFactory) -> None:
-    self.factory = factory
-    self.stocks_ifc = self.factory.make_stock_interface_from_config()
-    self.account_ifc = self.factory.make_account_interface_from_config()
+    def __init__(self, factory: BrokerFactory) -> None:
+        self.factory = factory
+        self.stocks_ifc = self.factory.make_stock_interface_from_config()
+        self.account_ifc = self.factory.make_account_interface_from_config()
 
-def get_open_positions(self) -> List[Position]:
-    """
-    Return the current open postions
-    """
-    return self.account_ifc.get_open_positions()
+    def get_open_positions(self) -> List[Position]:
+        """
+        Return the current open postions
+        """
+        return self.account_ifc.get_open_positions()
 
-def get_markets_from_watchlist(self, watchlist_name: str) -> List[Market]:
-    """
-    Return a name list of the markets in the required watchlist
-    """
-    return self.account_ifc.get_market_from_watchlist(watchlist_name)
+    def get_markets_from_watchlist(self, watchlist_name: str) -> List[Market]:
+        """
+        Return a name list of the markets in the required watchlist
+        """
+        return self.account_ifc.get_market_from_watchlist(watchlist_name)
 
-def navigate_market_node(self, node_id: str) -> Dict[str, Any]:
-    """
-    Return the account nodes of the requested node
-    """
-    return self.account_ifc.navigate_market_node(node_id)
+    def navigate_market_node(self, node_id: str) -> Dict[str, Any]:
+        """
+        Return the account nodes of the requested node
+        """
+        return self.account_ifc.navigate_market_node(node_id)
 
-def get_account_used_perc(self) -> Optional[float]:
-    """
-    Returns the account used value in percentage
-    """
-    return self.account_ifc.get_account_used_perc()
+    def get_account_used_perc(self) -> Optional[float]:
+        """
+        Returns the account used value in percentage
+        """
+        return self.account_ifc.get_account_used_perc()
 
-def close_all_positions(self) -> bool:
-    """
-    Attempt to close all the current open positions
-    """
-    return self.account_ifc.close_all_positions()
+    def close_all_positions(self) -> bool:
+        """
+        Attempt to close all the current open positions
+        """
+        return self.account_ifc.close_all_positions()
 
-def close_position(self, position: Position) -> bool:
-    """
-    Attempt to close the requested open position
-    """
-    return self.account_ifc.close_positions(position)
+    def close_position(self, position: Position) -> bool:
+        """
+        Attempt to close the requested open position
+        """
+        return self.account_ifc.close_positions(position)
 
-def trade(
-        self, market_id: str, trade_direction: TradeDirection, limit: float, stop: float
-):
-    """
-    Request a trade of the given market
-    """
-    return self.account_ifc.trade(market_id, trade_direction, limit, stop)
+    def trade(
+            self, market_id: str, trade_direction: TradeDirection, limit: float, stop: float
+        ):
+        """
+        Request a trade of the given market
+        """
+        return self.account_ifc.trade(market_id, trade_direction, limit, stop)
 
-def get_market_info(self, market_id: str) -> Market:
-    """
-    Return the last available snapshot of requested market
-    """
-    return self.account_ifc.get_market_info(market_id)
+    def get_market_info(self, market_id: str) -> Market:
+        """
+        Return the last available snapshot of requested market
+        """
+        return self.account_ifc.get_market_info(market_id)
 
-def search_market(self, search: str) -> List[Market]:
-    """
-    Search for a market with search string
-    """
-    return self.account_ifc.search_market(search)
+    def search_market(self, search: str) -> List[Market]:
+        """
+        Search for a market with search string
+        """
+        return self.account_ifc.search_market(search)
 
-def get_macd(
+    def get_macd(
         self, market: Market, interval: Interval, datapoints_range: int
-) -> MarketMACD:
-    """Return a pandas dataframe containing MACD techical
-    indicator for the reqested market with requested interval
-    """
-    return self.stocks_ifc.get_macd(market,interval, datapoints_range)
+    ) -> MarketMACD:
+        """Return a pandas dataframe containing MACD techical
+        indicator for the reqested market with requested interval
+        """
+        return self.stocks_ifc.get_macd(market,interval, datapoints_range)
 
-def get_prices(
+    def get_prices(
         self, market: Market, interval: Interval, data_range: int
-) -> MarketHistory:
-    """Returns past prices for a given market
+    ) -> MarketHistory:
+        """Returns past prices for a given market
             - market: Market to query prices
             - interval: resolution of the time series: mins, hrs
             - data_range: amount of datapoints to fetch
             - Returns the MarketHistory instance
-    """
-    return self.stocks_ifc.get_prices(market,interval, data_range)
+        """
+        return self.stocks_ifc.get_prices(market,interval, data_range)

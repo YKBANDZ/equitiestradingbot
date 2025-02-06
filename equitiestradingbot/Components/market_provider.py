@@ -5,8 +5,8 @@ from pathlib import Path
 from typing import Deque, Iterator, List
 
 from ..interfaces import Market
-from . import Configuration
-from .Broker import broker 
+from configuration import Configuration
+from .broker.broker import Broker
 
 
 class MarketSource(Enum):
@@ -25,13 +25,13 @@ class MarketProvider:
     """
 
     config: Configuration
-    broker: broker 
+    broker: Broker 
     epic_list: List[str] = []
     epic_list_iter: Iterator[str]
     market_list_iter: Iterator[Market]
     node_stack: Deque[str]
 
-    def __init__(self, config: Configuration, broker: broker) -> None:
+    def __init__(self, config: Configuration, broker: Broker) -> None:
         self.config = config
         self.broker = broker
         self._initialise()

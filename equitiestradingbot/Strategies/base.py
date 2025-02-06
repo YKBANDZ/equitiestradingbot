@@ -3,9 +3,9 @@ from abc import ABC, abstractmethod
 from datetime import datetime
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from ..components import Configuration
+from components.configuration import Configuration
 from ..components.utils import TradeDirection
-from ..components.Broker import broker
+from ..components.broker import Broker 
 from ..interfaces import Market, Position
 
 DataPoints = Any
@@ -18,4 +18,4 @@ class Strategy(ABC):
     """
 
     positions: Optional[List[Position]] = None
-    broker: broker
+    broker: Broker

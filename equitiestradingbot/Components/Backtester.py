@@ -4,7 +4,7 @@ from typing import Optional
 
 from ..interfaces import Market
 from ..strategies import BacktestResult, StrategyImp1
-from .Broker import Broker
+from components.broker import Broker 
 
 
 class Backtester: 
