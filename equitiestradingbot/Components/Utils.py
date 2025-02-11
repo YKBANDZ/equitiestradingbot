@@ -5,19 +5,23 @@ from typing import Any, Dict, List, Tuple, Union
 
 import pandas
 
+
 class TradeDirection(Enum):
     """
-    Enumeration that reps the trade direction in the market: NONE means no action to take
+    Enumeration that reps the trade direction in the market: 
+    NONE means no action to take
     """
 
     NONE: "None"
     BUY = "BUY"
     SELL = "SELL"
 
+
 class Interval(Enum):
     """
     Time intervals for price and technical indicator requests
     """
+    
     MINUTE_1 = "MINUTE_1"
     MINUTE_2 = "MINUTE_2"
     MINUTE_3 = "MINUTE_3"
@@ -38,13 +42,17 @@ class MarketClosedException(Exception):
 
     pass
 
+
+
 class NotSafeToTradeException(Exception):
     """Error to notify that its not safe to trade"""
     
     pass
 
+
 #Mutex used for thread synchronisation
 lock: threading.Lock = threading.Lock()
+
 
 def synchronised(lock: threading.Lock) -> Any:
     """Thread synchronisation decorator"""
@@ -64,11 +72,24 @@ class SynchSingleton(type):
 
     _instances: Dict[Any, Any] = {}
 
-    def __call__(cls,*args: Any, **kwargs: Any) -> Any:
+    @synchronised(lock)
+    def __call__(cls, *args: Any, **kwargs: Any) -> Any:
         if cls not in cls._instances:
             cls._instances[cls] = super().__call__(*args, **kwargs)
         return cls._instances[cls]
     
+
+
+class Singleton(type):
+    """Metaclass to implement the Singlton desing pattern"""
+
+    _instances: Dict[Any, Any] = {}
+
+    def __call__(cls, *args: Any, **kwargs: Any) -> Any:
+        if cls not in cls._instances:
+            cls._instances[cls] = super().__call__(*args, **kwargs)
+        return cls._instances[cls]
+
     
 class Utils:
     """
@@ -113,7 +134,7 @@ class Utils:
         return "%02d:%02d:%02d" % (hours, mins, secs)
     
     @staticmethod
-    def macd_ddf_from_list(price_list: List[float]) -> pandas.DataFrame:
+    def macd_df_from_list(price_list: List[float]) -> pandas.DataFrame:
         """Return a MACD pandas dataframe with columns "MACD", "Signal" and "Hist" """
         px = pandas.DataFrame({"close": price_list})
         px["26_ema"] = pandas.DataFrame.ewm(px["close"], span=26).mean()

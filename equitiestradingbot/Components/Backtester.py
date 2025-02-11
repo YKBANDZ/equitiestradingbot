@@ -3,8 +3,9 @@ from datetime import datetime
 from typing import Optional
 
 from ..interfaces import Market
-from ..strategies import BacktestResult, StrategyImp1
-from components.broker import Broker 
+from ..strategies.base import BacktestResult
+from ..strategies.factories import StrategyImp1 
+from .broker.broker import Broker
 
 
 class Backtester: 

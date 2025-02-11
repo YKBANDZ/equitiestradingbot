@@ -8,7 +8,8 @@ class MarketHistory:
     DATE_COLUMN: str = "date"
     HIGH_COLUMN: str = "high"
     LOW_COLUMN: str = "low"
-    CLOSE_COLUMN: str = "volume"
+    CLOSE_COLUMN: str = "close"
+    VOLUE_COLUMN: str = "volume"
 
     market: Market
     dataframe: pandas.DataFrame
@@ -29,7 +30,7 @@ class MarketHistory:
                 self.HIGH_COLUMN,
                 self.LOW_COLUMN,
                 self.CLOSE_COLUMN,
-                self.VOLUME_COLUMN,
+                self.VOLUE_COLUMN,
                 
 
             ]
@@ -39,4 +40,4 @@ class MarketHistory:
         self.dataframe[self.HIGH_COLUMN] = high
         self.dataframe[self.LOW_COLUMN] = low
         self.dataframe[self.CLOSE_COLUMN] = close
-        self.dataframe[self.VOLUME_COLUMN] = volume 
+        self.dataframe[self.VOLUE_COLUMN] = volume 
