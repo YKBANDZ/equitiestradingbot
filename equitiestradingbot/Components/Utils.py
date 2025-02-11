@@ -101,7 +101,7 @@ class Utils:
 
     @staticmethod
     def midpoint(p1: Union[int, float], p2: Union[int, float]) -> Union[int, float]:
-        """Retunrn to midpoint"""
+        """Return to midpoint"""
         return (p1 + p2) / 2
     
     @staticmethod

@@ -40,4 +40,4 @@ class MarketHistory:
         self.dataframe[self.HIGH_COLUMN] = high
         self.dataframe[self.LOW_COLUMN] = low
         self.dataframe[self.CLOSE_COLUMN] = close
-        self.dataframe[self.VOLUE_COLUMN] = volume 
+        self.dataframe[self.VOLUE_COLUMN] = volume

@@ -1,6 +1,6 @@
 class Market:
     """
-    Represent a tradable market with a lastest proce info
+    Represent a tradable market with a latest price info
     """
 
 epic: str = "unknown"
