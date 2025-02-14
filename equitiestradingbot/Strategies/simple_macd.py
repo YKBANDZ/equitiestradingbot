@@ -130,7 +130,7 @@ class SimpleMACD(Strategy):
         """Backtest the strategy"""
         # TODO
         raise NotImplementedError("Work in progress")
-        #Generic initislisations
+        #Generic initialisations
         trades = []
         # - Get price data for market
         prices = self.broker.get_prices(market, Interval.DAY, None)
