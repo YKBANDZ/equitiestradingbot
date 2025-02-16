@@ -12,7 +12,7 @@ AccountBalances = Tuple[Optional[float], Optional[float]]
 # TODO ABC cant be used anymore as base class if we define the metaclass - Abstractinterface
 class AbstractInterface(metaclass = SynchSingleton): 
     def __init__(self, config: Configuration) -> None:
-        self.config = config
+        self._config = config
         self._last_call_ts = dt.datatime.now()
         self.initialise()
 

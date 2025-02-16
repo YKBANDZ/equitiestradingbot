@@ -5,7 +5,7 @@ from pathlib import Path
 from typing import Deque, Iterator, List
 
 from ..interfaces import Market
-from configuration import Configuration
+from .configuration import Configuration
 from .broker.broker import Broker
 
 

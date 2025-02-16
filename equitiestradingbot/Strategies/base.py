@@ -3,8 +3,7 @@ from abc import ABC, abstractmethod
 from datetime import datetime
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from components.configuration import Configuration
-from ..components.utils import TradeDirection
+from ..components import Configuration, TradeDirection
 from ..components.broker.broker import Broker
 from ..interfaces import Market, Position
 
