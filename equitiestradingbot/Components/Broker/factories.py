@@ -17,7 +17,7 @@ BrokerInterfaces = Union[AccountInterfaceImp1, StocksInterfaceImp1]
 
 class InterfaceNames(Enum):
     IG_INDEX = "ig_interface"
-    ALPHA_INDEX = "alpha_vantage"
+    ALPHA_VANTAGE = "alpha_vantage"
     YAHOO_FINANCE = "yfinance"
 
 

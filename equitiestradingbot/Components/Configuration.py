@@ -108,13 +108,13 @@ class Configuration:
     def get_active_stocks_interface(self) -> Property:
         return self._find_property(["stocks_interface", "active"])
     
-    def stocks_interface_value(self) -> Property:
+    def get_stocks_interface_values(self) -> Property:
         return self._find_property(["stock_interface", "values"])
     
     def get_ig_order_type(self) -> Property:
         return self._find_property(["stocks_interface", "ig_interface", "order_type"])
     
-    def get_ig_order_type(self) -> Property:
+    def get_ig_order_size(self) -> Property:
         return self._find_property(["market_interface", "ig_interface", "order_size"])
     
     def get_ig_order_expiry(self) -> Property:

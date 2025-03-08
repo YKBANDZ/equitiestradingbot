@@ -21,12 +21,12 @@ debug = false
 active = "watchlist"
 values = ['list", "api", "watchlist"]
 [market_source.epic_id_list]
-filepath = "{home}/Documents/equitiestradingbot/data/epic_ids.txt
+filepath = "{home}/Documents/equitiestradingbot/data/epic_ids.txt"
 [market_source.watchlist]
 name = "equitybot'
 
 [stocks_interface]
-active = "yfinance"
+active = "ig_interface"
 values = ["yfinance", "alpha_vantage", "ig_interface"]
 [stocks_interface.ig_interface]
 order_type = "MARKET"
