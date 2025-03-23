@@ -28,6 +28,7 @@ class TimeProvider:
         """
         Return True if the market is open, false otherwise
                 - **timezone**: string representing the timezone
+                - **market**: string representing the market (default is UK)
         """
         tz = pytz.timezone(timezone)
         now_time = datetime.now(tz=tz).strftime("%H:%M")
