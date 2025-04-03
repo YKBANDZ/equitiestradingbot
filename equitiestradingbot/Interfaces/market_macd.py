@@ -8,8 +8,8 @@ from . import Market
 class MarketMACD:
     DATE_COLUMN: str = "Date"
     MACD_COLUMN: str = "MACD"
-    SIGNAL_COLUMN: str = "Signal"
-    HIST_COLUMN: str = "Hist"
+    SIGNAL_COLUMN: str = "MACD_Signal"
+    HIST_COLUMN: str = "MACD_Hist"
 
     market: Market
     dataframe: pandas.DataFrame
