@@ -2,54 +2,54 @@
 max_account_usable = 50
 time_zone = "America/New_York"
 
-#Path to the credentials file
+# Path to the credentials file
 credentials_filepath = "{home}/Documents/equitiestradingbot/config/credentials/live_credentials.json"
 
 # Seconds to wait for between each spin of the bot across all markets
 spin_interval = 3600
 
-#Enable paper trading
-paper_trading = false
+# Enable paper trading
+paper_trading = true
 
 [logging]
 enable = true
 log_filepath = "{home}/Documents/equitiestradingbot/log/trading_bot_{timestamp}.log"
-debug = false 
+debug = true
 
-#this is the stocks which will be traded
 [market_source]
-active = "watchlist"
-values = ['list", "api", "watchlist"]
+active = "list"
+values = ["list", "api", "watchlist"]
 [market_source.epic_id_list]
-filepath = "{home}/Documents/equitiestradingbot/data/epic_ids.txt
-[market_source.watchlist]
-name = "equitybot'
+filepath = "{home}/Documents/equitiestradingbot/data/epic_ids.txt"
 
 [stocks_interface]
-active = "yfinance"
+active = "alpha_vantage"
 values = ["yfinance", "alpha_vantage", "ig_interface"]
+
+[stocks_interface.yfinance]
+api_timeout = 0.5
+
+[stocks_interface.alpha_vantage]
+api_timeout = 12
+
 [stocks_interface.ig_interface]
 order_type = "MARKET"
 order_size = 1
 order_expiry = "DFB"
-order_currency = "GBP" #look to see if you can put in an exchange rate config
+order_currency = "USD"
 order_force_open = true
 use_g_stop = false
-use_demo_account = true 
+use_demo_account = true
 controlled_risk = false
 api_timeout = 3
-[stocks_interface.alpha_vantage]
-api_timeout = 12
-[stocks_interface.yfinance]
-api_timeout = 0.5
 
-account_interface
-active = "ig_interface"
-values = ["ig_interface"]
+[account_interface]
+active = "alpha_vantage"
+values = ["yfinance", "alpha_vantage", "ig_interface"]
 
 [strategies]
 active = "simple_macd"
-values = ["simple_macd, "weighted_avg_peak", "simple_boll_bands"]
+values = ["simple_macd", "weighted_avg_peak", "simple_boll_bands"]
 [strategies.simple_macd]
 max_spread_perc = 5
 limit_perc = 10

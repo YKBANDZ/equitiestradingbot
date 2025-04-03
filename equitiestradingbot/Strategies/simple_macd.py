@@ -1,6 +1,7 @@
 import datetime
 import logging
 from typing import Tuple
+import traceback
 
 import numpy as np
 import pandas
@@ -8,7 +9,7 @@ import pandas
 from ..components.configuration import Configuration
 from ..components.utils import Interval, TradeDirection, Utils
 from ..components.broker.broker import Broker
-from ..interfaces import Market, MarketMACD
+from ..interfaces import Market, MarketMACD, MarketHistory
 from .base import BacktestResult, Strategy, TradeSignal
 
 
@@ -81,12 +82,12 @@ class SimpleMACD(Strategy):
         return tradeDirection, limit, stop
     
     def calculate_stop_limit(
-            self,
-            tradeDirection: TradeDirection,
-            current_offer: float,
-            current_bid: float,
-            limit_perc: float,
-            stop_perc: float,
+        self,
+        tradeDirection: TradeDirection,
+        current_offer: float,
+        current_bid: float,
+        limit_perc: float,
+        stop_perc: float,
     ) -> Tuple[float, float]:
         """
         Calculate the stop and the limit levels from the given percentages
@@ -113,14 +114,15 @@ class SimpleMACD(Strategy):
         dataframe.loc[:, "signals"] = dataframe["positions"].diff()
         return dataframe
     
-    def get_trade_direction_from_signal(
+    def get_trade_direction_from_signals(
         self, dataframe: pandas.DataFrame
     ) -> TradeDirection:
         tradeDirection = TradeDirection.NONE
-        if len(dataframe["signals"]) > 0:
-            if dataframe["signals"].iloc[1] < 0:
+        if len(dataframe["signals"]) > 1:  # Make sure we have at least 2 signals
+            last_signal = dataframe["signals"].iloc[-1]  # Get the most recent signal
+            if last_signal < 0:
                 tradeDirection = TradeDirection.BUY
-            elif dataframe["signals"].iloc[1] > 0:
+            elif last_signal > 0:
                 tradeDirection = TradeDirection.SELL
         return tradeDirection
     
@@ -128,55 +130,65 @@ class SimpleMACD(Strategy):
         self, market: Market, start_date: datetime.datetime, end_date: datetime.datetime
     ) -> BacktestResult:
         """Backtest the strategy"""
+        logging.info(f"Starting backtest for {market.id} from {start_date} to {end_date}")
         # TODO
-        raise NotImplementedError("Work in progress")
-        #Generic initialisations
+        # Generic initialisations
         trades = []
         # - Get price data for market
         prices = self.broker.get_prices(market, Interval.DAY, None)
-        # - Get macd data from market
-        data - self.fetch_datapoints(market)
-        # - Simulate time passing by starting with N rows (from the bottom)
-        # and addign the next row (on the top) one by one, calling the strategy with
-        # the intermediate data asnd recording its output
+        # - Get macd data from broker
+        data = self.fetch_datapoints(market)
+        # Simulate time passing by starting with N rows (from the bottom)
+        # and adding the next row (on the top) one by one, calling the strategy with
+        # the intermediate data and recording its output
         datapoint_used = 26
         while len(data.dataframe) > datapoint_used:
             current_data = data.dataframe.tail(datapoint_used).copy()
             datapoint_used += 1
             # Get trade date
-            trade_dt = current_date.index.values[0].astype("MB[ms]").astypes("0")
+            trade_dt = current_data.index.values[0].astype("M8[ms]").astype("0")
             if start_date <= trade_dt <= end_date:
                 trade, limit, stop = self.find_trade_signal(market, current_data)
                 if trade is not TradeDirection.NONE:
                     try:
                         price = prices.loc[trade_dt.strftime("%Y-%m-%d"), "4. close"]
-                        trade.append(
-                            # [trade_dt.strftime("%Y-%m-%d"), trade, float(price)]
+                        trades.append(
                             (trade_dt.strftime("%Y-%m-%d"), trade, float(price))
                         )
                     except Exception as e:
                         logging.debug(e)
                         continue
         if len(trades) < 2:
-            raise Exception("Not enough trades for the given date range")
-        # Iterate through trades and asssess profit loss
+            raise Exception("Not enough trades for the given data range")
+        # Iterate through trades and assess profit loss
         balance = 1000
-        previous: trade[0]
+        previous = trades[0]
         for trade in trades[1:]:
-            if previous[1] is trades[1]:
+            if previous[1] is trade[1]:
                 raise Exception("Error: sequencial trades with same direction")
             diff = trade[2] - previous[2]
             pl = 0
             if previous[1] is TradeDirection.BUY and trade[1] is TradeDirection.SELL:
-                pl += diff if diff >= 0 else -diff
-                # TODO consider stop and limit levels
-            if previous[1] is TradeDirection.SELL and trade[1] is TradeDirection.BUY:
-                pl += diff if diff < 0 else -diff
-                #TODO consider stop and limit levels
-                balance += p1
-                previous = trade
-            return {"balance": balance, "trades" : trades}
-
+                # Check if the trade ht the stop or the limit level
+                if trade[2] <= previous[3]: #Hit the stop loss
+                    pl = previous[3] - previous[2]
+                elif trade[2] >= previous[4]: #Hit the limit level
+                    pl = previous[4] - previous[2]
+                else:
+                    pl = diff
+            elif previous[1] is TradeDirection.SELL and TradeDirection.BUY:
+                # Check if the trade hit the stop or limit level
+                if trade[2] >= previous[3]: # Hit the stop loss
+                    pl = previous[2] - previous[3]
+                elif trade[2] <= previous[4]: # Hit the limit level
+                    pl = previous[2] - previous[4]
+                else:
+                    pl = diff
+            balance += pl
+            previous = trade
+        return {"balance": balance, "trades": trades}
+       
+        
 
         
     

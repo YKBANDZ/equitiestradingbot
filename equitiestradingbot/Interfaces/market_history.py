@@ -9,7 +9,7 @@ class MarketHistory:
     HIGH_COLUMN: str = "high"
     LOW_COLUMN: str = "low"
     CLOSE_COLUMN: str = "close"
-    VOLUE_COLUMN: str = "volume"
+    VOLUME_COLUMN: str = "volume"
 
     market: Market
     dataframe: pandas.DataFrame
@@ -25,19 +25,12 @@ class MarketHistory:
     ) -> None:
         self.market = market
         self.dataframe = pandas.DataFrame(
-            columns=[
-                self.DATE_COLUMN,
-                self.HIGH_COLUMN,
-                self.LOW_COLUMN,
-                self.CLOSE_COLUMN,
-                self.VOLUE_COLUMN,
-                
-
-            ]
+            {
+                self.DATE_COLUMN: date,
+                self.HIGH_COLUMN: high,
+                self.LOW_COLUMN: low,
+                self.CLOSE_COLUMN: close,
+                self.VOLUME_COLUMN: volume,
+            }
         )
-        # TODO if date is None or empty use index
-        self.dataframe[self.DATE_COLUMN] = date
-        self.dataframe[self.HIGH_COLUMN] = high
-        self.dataframe[self.LOW_COLUMN] = low
-        self.dataframe[self.CLOSE_COLUMN] = close
-        self.dataframe[self.VOLUE_COLUMN] = volume
+        self.dataframe.set_index(self.DATE_COLUMN, inplace=True)

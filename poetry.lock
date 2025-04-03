@@ -430,6 +430,29 @@ files = [
 ]
 
 [[package]]
+name = "exchange-calendars"
+version = "4.10"
+description = "Calendars for securities exchanges"
+optional = false
+python-versions = "~=3.10"
+groups = ["main"]
+files = [
+    {file = "exchange_calendars-4.10-py3-none-any.whl", hash = "sha256:f2fbc3696b334db7bb5cc786dc77ae4d48b00dccfbb55fcb2ca3ea2a88b8886e"},
+    {file = "exchange_calendars-4.10.tar.gz", hash = "sha256:3f25007e934c7e8c6f0fd43f4fd7959e64505f8aa6b1eb4d6c5da71ab8af054b"},
+]
+
+[package.dependencies]
+korean_lunar_calendar = "*"
+numpy = "*"
+pandas = "*"
+pyluach = "*"
+toolz = "*"
+tzdata = "*"
+
+[package.extras]
+dev = ["flake8", "hypothesis", "pip-tools", "pytest", "pytest-benchmark", "pytest-xdist"]
+
+[[package]]
 name = "flake8"
 version = "6.1.0"
 description = "the modular source code checker: pep8 pyflakes and co"
@@ -1313,6 +1336,27 @@ test = ["hypothesis (>=6.46.1)", "pytest (>=7.3.2)", "pytest-xdist (>=2.2.0)"]
 xml = ["lxml (>=4.9.2)"]
 
 [[package]]
+name = "pandas-market-calendars"
+version = "4.6.1"
+description = "Market and exchange trading calendars for pandas"
+optional = false
+python-versions = ">=3.9"
+groups = ["main"]
+files = [
+    {file = "pandas_market_calendars-4.6.1-py3-none-any.whl", hash = "sha256:e3603bea8f1dce556fb21027a3ab73056296a145c5c440be1f5494e6fb34a4f1"},
+    {file = "pandas_market_calendars-4.6.1.tar.gz", hash = "sha256:cc17e3ccb07548603cf8dbd7050c83f8d6ee9ddf3987a05e1dceab53793a0da8"},
+]
+
+[package.dependencies]
+exchange-calendars = ">=3.3"
+pandas = ">=1.1"
+python-dateutil = "*"
+pytz = "*"
+
+[package.extras]
+dev = ["black", "build", "pre-commit", "pytest"]
+
+[[package]]
 name = "pathspec"
 version = "0.12.1"
 description = "Utility library for gitignore style pattern matching of file paths."
@@ -1498,6 +1542,22 @@ files = [
 
 [package.extras]
 windows-terminal = ["colorama (>=0.4.6)"]
+
+[[package]]
+name = "pyluach"
+version = "2.2.0"
+description = "A Python package for dealing with Hebrew (Jewish) calendar dates."
+optional = false
+python-versions = ">=3.7"
+groups = ["main"]
+files = [
+    {file = "pyluach-2.2.0-py3-none-any.whl", hash = "sha256:d1eb49d6292087e9290f4661ae01b60c8c933704ec8c9cef82673b349ff96adf"},
+    {file = "pyluach-2.2.0.tar.gz", hash = "sha256:9063a25387cd7624276fd0656508bada08aa8a6f22e8db352844cd858e69012b"},
+]
+
+[package.extras]
+doc = ["sphinx (>=6.1.3,<6.2.0)", "sphinx_rtd_theme (>=1.2.0,<1.3.0)"]
+test = ["beautifulsoup4", "flake8", "pytest", "pytest-cov"]
 
 [[package]]
 name = "pymeeus"
@@ -1875,6 +1935,18 @@ files = [
 ]
 
 [[package]]
+name = "toolz"
+version = "1.0.0"
+description = "List processing tools and functional utilities"
+optional = false
+python-versions = ">=3.8"
+groups = ["main"]
+files = [
+    {file = "toolz-1.0.0-py3-none-any.whl", hash = "sha256:292c8f1c4e7516bf9086f8850935c799a874039c8bcf959d47b600e4c44a6236"},
+    {file = "toolz-1.0.0.tar.gz", hash = "sha256:2c86e3d9a04798ac556793bced838816296a2f085017664e4995cb40a1047a02"},
+]
+
+[[package]]
 name = "typing-extensions"
 version = "4.12.2"
 description = "Backported and Experimental Type Hints for Python 3.8+"
@@ -2057,4 +2129,4 @@ repair = ["scipy (>=1.6.3)"]
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.13"
-content-hash = "b74d309d9c02888442ad0cd44a42eff0566aa2e01461d816b244f90a7951011b"
+content-hash = "040c5521b48b7fa10acdfaa1d214064f47a568f57c72c8b33bbedca837e1cafb"

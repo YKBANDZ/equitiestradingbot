@@ -173,7 +173,7 @@ class TradingBot:
         
     def close_open_positions(self) -> None:
         """
-        Closes all the positions in the accoutn
+        Closes all the positions in the account
         """
         logging.info("Closing all the open positions...")
         if self.broker.close_all_positions():

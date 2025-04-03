@@ -21,7 +21,7 @@ class IG_API_URL(Enum):
     SESSION = "session"
     ACCOUNTS = "accounts"
     POSITIONS = "positions"
-    POSITIONS_OTC = "postions/otc"
+    POSITIONS_OTC = "positions/otc"
     MARKET = "markets"
     PRICES = "prices"
     CONFIRMS = "confirms"
@@ -31,14 +31,14 @@ class IG_API_URL(Enum):
 
 class IGInterface(AccountInterface, StocksInterface):
     """
-    IG interface class provides funtion to use the IG REST API
+    IG interface class provides function to use the IG REST API
     """
     
     api_base_url: str
     authenticated_headers: Dict[str, str]
 
     def initialise(self) -> None:
-        logging.info("initialising IGInterface...")
+        logging.info("Initialising IGInterface...")
         demoPrefix = (
             IG_API_URL.DEMO_PREFIX.value
             if self._config.get_ig_use_demo_account()
@@ -57,12 +57,12 @@ class IGInterface(AccountInterface, StocksInterface):
         Authenticate the IGInterface instance with the configured credentials
         """
         data = {
-            "indentifier": self._config.get_credentials()["username"],
-            "password": self._config.get_credentials()["passsword"],
+            "identifier": self._config.get_credentials()["username"],
+            "password": self._config.get_credentials()["password"],
         }
         headers = {
             "Content-Type": "application/json; charset=utf-8",
-            "Accept": "application/json; chaset=utf-8",
+            "Accept": "application/json; charset=utf-8",
             "X-IG-API-KEY": self._config.get_credentials()["api_key"],
             "Version": "2",
         }
@@ -70,7 +70,7 @@ class IGInterface(AccountInterface, StocksInterface):
         url = "{}/{}".format(self.api_base_url, IG_API_URL.SESSION.value)
         response = requests.post(url, data=json.dumps(data), headers=headers)
 
-        if response.status_code !=200:
+        if response.status_code != 200:
             logging.debug(
                 "Authentication returned code: {}".format(response.status_code)
             )
@@ -80,33 +80,34 @@ class IGInterface(AccountInterface, StocksInterface):
         try:
             CST_token = headers_json["CST"]
             x_sec_token = headers_json["X-SECURITY-TOKEN"]
-        except Exception:
+        except Exception as e:
+            logging.error(f"Failed to get authentication tokens: {str(e)}")
             return False
         
         self.authenticated_headers = {
             "Content-Type": "application/json; charset=utf-8",
             "Accept": "application/json; charset=utf-8",
-            "X-IG_API-KEY": self._config.get_credentials()["api_key"],
+            "X-IG-API-KEY": self._config.get_credentials()["api_key"],
             "CST": CST_token,
-            "X_SECURITY-TOKEN": x_sec_token,
+            "X-SECURITY-TOKEN": x_sec_token,
         }
 
-        self.set_default_account(self._config.get_credentials()["account_id"])
-        return True
+        return self.set_default_account(self._config.get_credentials()["account_id"])
     
-    def set_default_account(self, account_id) -> bool:
+    def set_default_account(self, account_id: str) -> bool:
         """
         Set the IG account to use
-            -**accountId**: String representing the account id in use
+            -**account_id**: String representing the account id in use
             - returns **false** if an error occurs otherwise True
         """
         url = "{}/{}".format(self.api_base_url, IG_API_URL.SESSION.value)
-        data = {"accountId": account_id, "defaultAccount": "True"}
+        data = {"accountId": account_id, "defaultAccount": True}  # Changed "True" string to True boolean
         response = requests.put(
             url, data=json.dumps(data), headers=self.authenticated_headers
         )
 
-        if response.status_code !=200:
+        if response.status_code != 200:
+            logging.error(f"Failed to set default account: {response.status_code}")
             return False
         
         logging.info("Default IG account set")
@@ -133,45 +134,53 @@ class IGInterface(AccountInterface, StocksInterface):
         return None, None
     
     def get_open_positions(self) -> List[Position]:
-        """Returns the account open position in a json object
+        """Returns the account open positions
         
-            - Returns the json object returned by the IG API
-            """
+            - Returns a list of Position objects
+        """
         url = "{}/{}".format(self.api_base_url, IG_API_URL.POSITIONS.value)
         data = self._http_get(url)
+        if not data or "positions" not in data:
+            logging.error("Failed to get positions data")
+            return []
+            
         positions = []
         for d in data["positions"]:
-            positions.append(
-                Position(
-                    deal_id=d["position"]["dealId"],
-                    size = d["position"]["size"],
-                    create_date = d["position"]["createDateUTC"],
-                    direction = TradeDirection[d["poisiton"]["direction"]],
-                    level = d["position"]["level"],
-                    limit = d["position"]["limitLevel"],
-                    stop = d["position"]["stopLevel"],
-                    currency=d["position"]["currency"],
-                    epic=d["position"]["epic"],
-                    market_id=None,
+            try:
+                position_data = d.get("position", {})
+                positions.append(
+                    Position(
+                        deal_id=position_data.get("dealId"),
+                        size=position_data.get("size"),
+                        create_date=position_data.get("createDateUTC"),
+                        direction=TradeDirection[position_data.get("direction", "NONE")],
+                        level=position_data.get("level"),
+                        limit=position_data.get("limitLevel"),
+                        stop=position_data.get("stopLevel"),
+                        currency=position_data.get("currency"),
+                        epic=position_data.get("epic"),
+                        market_id=None,
+                    )
                 )
-            )
+            except (KeyError, ValueError) as e:
+                logging.error(f"Error processing position data: {str(e)}")
+                continue
         return positions
     
     def get_position_map(self) -> Dict[str, int]:
         """
-        Returns a *dict* containing the account open positions
+        Returns a dict containing the account open positions
         in the form {string: int} where the string is defined as 
         'marketId-tradeDirection' and the int is the trade size
-            - Returns **None** if an error occurs otherwise a dict(string:int)
-            """
-        positionMap: Dict[str, int] = {}
+            - Returns empty dict if an error occurs otherwise a dict(string:int)
+        """
+        position_map: Dict[str, int] = {}
         for item in self.get_open_positions():
-            key = item.epic + "-" + item.direction.name
-            if key is positionMap:
-                positionMap[key] = item.size + positionMap[key]
-            else:
-                positionMap[key] = item.size
-        return positionMap
+            if not item.epic or not item.direction:
+                continue
+            key = f"{item.epic}-{item.direction.name}"
+            position_map[key] = item.size + position_map.get(key, 0)
+        return position_map
     
     def get_market_info(self, epic_id: str) -> Market:
         """
@@ -322,12 +331,17 @@ class IGInterface(AccountInterface, StocksInterface):
         """
         Close the given market position
             
-            - **position**: position json object obtained from IG API
-            - Retunes **false** if an error occurs otherwise True
+            - **position**: Position object to close
+            - Returns **false** if an error occurs otherwise True
         """
+        if not position or not position.deal_id:
+            logging.error("Invalid position provided")
+            return False
+            
         if self._config.is_paper_trading_enabled():
             logging.info("Paper trade: close {} position".format(position.epic))
             return True
+            
         # To close we need the opposite direction
         direction = TradeDirection.NONE
         if position.direction is TradeDirection.BUY:
@@ -340,28 +354,40 @@ class IGInterface(AccountInterface, StocksInterface):
     
         url = "{}/{}".format(self.api_base_url, IG_API_URL.POSITIONS_OTC.value)
         data = {
-            "dealIG": position.deal_id,
+            "dealId": position.deal_id,
             "epic": None,
             "expiry": None,
             "direction": direction.name,
-            "size": "1",
+            "size": str(position.size),  # Use actual position size
             "level": None,
             "orderType": "MARKET",
             "timeInForce": None,
             "quoteId": None,
         }
+        
         del_headers = dict(self.authenticated_headers)
         del_headers["_method"] = "DELETE"
-        r = requests.post(url, data=json.dumps(data), headers=del_headers)
-        if r.status_code != 200:
-            return False
-        d = json.loads(r.text)
-        deal_ref = d["dealReference"]
-        if self.confirm_order(deal_ref):
-            logging.info("Position for {} closed".format(position.epic))
-            return True
-        else:
-            logging.error("Could not close position for {}".format(position.epic))
+        
+        try:
+            r = requests.post(url, data=json.dumps(data), headers=del_headers)
+            if r.status_code != 200:
+                logging.error(f"Failed to close position: {r.status_code}")
+                return False
+                
+            d = json.loads(r.text)
+            deal_ref = d.get("dealReference")
+            if not deal_ref:
+                logging.error("No deal reference received")
+                return False
+                
+            if self.confirm_order(deal_ref):
+                logging.info("Position for {} closed".format(position.epic))
+                return True
+            else:
+                logging.error("Could not confirm order closure")
+                return False
+        except Exception as e:
+            logging.error(f"Error closing position: {str(e)}")
             return False
     
 

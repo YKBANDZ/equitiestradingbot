@@ -1,6 +1,6 @@
 import pytest
 import toml
-from common.MockRequests import(
+from .common.MockRequests import(
     av_request_macd_ext,
     av_request_prices,
     ig_request_account_details,

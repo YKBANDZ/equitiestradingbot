@@ -2,7 +2,7 @@ from pathlib import Path
 from datetime import datetime as dt
 
 import pytest
-from common.MockRequests import ( 
+from .common.MockRequests import ( 
     av_request_macd_ext,
     av_request_prices,
     ig_request_account_details,

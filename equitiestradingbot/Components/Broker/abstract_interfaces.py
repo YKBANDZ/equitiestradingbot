@@ -13,10 +13,10 @@ AccountBalances = Tuple[Optional[float], Optional[float]]
 class AbstractInterface(metaclass = SynchSingleton): 
     def __init__(self, config: Configuration) -> None:
         self._config = config
-        self._last_call_ts = dt.datatime.now()
+        self._last_call_ts = dt.datetime.now()
         self.initialise()
 
-    def _wait_begfore_call(self, timeout: float) -> None:
+    def _wait_before_call(self, timeout: float) -> None:
         """
         Wait between API calls to not overload the server
         """

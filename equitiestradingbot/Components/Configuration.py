@@ -87,8 +87,8 @@ class Configuration:
     def is_logging_enabled(self) -> Property: 
         return self._find_property(["logging", "enable"])
     
-    def get_log_filepalth(self) -> Property:
-        return self._find_property(["logigng", "log_filepath"])
+    def get_log_filepath(self) -> Property:
+        return self._find_property(["logging", "log_filepath"])
     
     def is_logging_debug_enabled(self) -> Property:
         return self._find_property(["logging", "debug"])
@@ -109,20 +109,20 @@ class Configuration:
         return self._find_property(["stocks_interface", "active"])
     
     def get_stocks_interface_values(self) -> Property:
-        return self._find_property(["stock_interface", "values"])
+        return self._find_property(["stocks_interface", "values"])
     
     def get_ig_order_type(self) -> Property:
         return self._find_property(["stocks_interface", "ig_interface", "order_type"])
     
     def get_ig_order_size(self) -> Property:
-        return self._find_property(["market_interface", "ig_interface", "order_size"])
+        return self._find_property(["stocks_interface", "ig_interface", "order_size"])
     
     def get_ig_order_expiry(self) -> Property:
         return self._find_property(["stocks_interface", "ig_interface", "order_expiry"])
     
     def get_ig_order_currency(self) -> Property:
         return self._find_property(
-            ["stocks_interface", "ig_interface", "oder_force_open"]
+            ["stocks_interface", "ig_interface", "order_currency"]
         )
     
     def get_ig_order_force_open(self) -> Property:

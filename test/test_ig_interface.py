@@ -1,6 +1,6 @@
 import pytest
 import toml
-from common.MockRequests import (
+from .common.MockRequests import (
     ig_request_account_details,
     ig_request_confirm_trade,
     ig_request_login,

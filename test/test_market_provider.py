@@ -1,7 +1,7 @@
 from pathlib import Path
 
 import pytest
-from common.MockRequests import (
+from .common.MockRequests import (
     ig_request_login,
     ig_request_market_info,
     ig_request_search_market,

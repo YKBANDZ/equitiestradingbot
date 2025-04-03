@@ -1,5 +1,6 @@
 import logging
 from enum import Enum
+from typing import List
 
 import yfinance as yf
 
@@ -125,6 +126,26 @@ class YFinanceInterface(StocksInterface):
             return "10y"
         else:
             return "max"
+    
+    def search_market(self, search: str) -> List[Market]:
+        """Search for a market by its symbol"""
+        try:
+            ticker = yf.Ticker(search)
+            info = ticker.info
+            market = Market()
+            market.epic = search
+            market.id = search
+            market.name = info.get('longName', search)
+            market.bid = info.get('bid', 0.0)
+            market.offer = info.get('ask', 0.0)
+            market.high = info.get('dayHigh', 0.0)
+            market.low = info.get('dayLow', 0.0)
+            market.stop_distance_min = 0.01  # 1% minimum stop distance
+            market.expiry = "DFB"
+            return [market]
+        except Exception as e:
+            logging.error(f"Error searching for market {search}: {str(e)}")
+            return []
     
 
         

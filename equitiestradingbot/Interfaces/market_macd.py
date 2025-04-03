@@ -8,13 +8,13 @@ from . import Market
 class MarketMACD:
     DATE_COLUMN: str = "Date"
     MACD_COLUMN: str = "MACD"
-    SIGNAL_COLUMN: str = "MACD_Signal"
-    HIST_COLUMN: str = "MACD_Hist"
+    SIGNAL_COLUMN: str = "Signal"
+    HIST_COLUMN: str = "Hist"
 
     market: Market
     dataframe: pandas.DataFrame
 
-    def __intit__(
+    def __init__(
             self,
             market: Market,
             date: List[str],
@@ -24,16 +24,11 @@ class MarketMACD:
     ) -> None:
         self.market = market
         self.dataframe = pandas.DataFrame(
-            columns=[
-            self.DATE_COLUMN,
-            self.MACD_COLUMN,
-            self.SIGNAL_COLUMN,
-            self.HIST_COLUMN,
-            ]
-
+            {
+                self.DATE_COLUMN: date,
+                self.MACD_COLUMN: macd,
+                self.SIGNAL_COLUMN: signal,
+                self.HIST_COLUMN: hist,
+            }
         )
-        # TODO if date is None or empty use index
-        self.dataframe[self.DATE_COLUMN] = date
-        self.dataframe[self.MACD_COLUMN] = macd
-        self.dataframe[self.SIGNAL_COLUMN] = signal
-        self.dataframe[self.HIST_COLUMN] = hist
+        self.dataframe.set_index(self.DATE_COLUMN, inplace=True)

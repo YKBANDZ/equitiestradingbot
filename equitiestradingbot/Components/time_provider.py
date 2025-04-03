@@ -4,7 +4,8 @@ from datetime import datetime
 from enum import Enum
 
 import pytz
-from govuk_bank_holidays.bank_holidays import BankHolidays
+import pandas_market_calendars as mcal
+import pandas as pd
 
 from .utils import Utils
 
@@ -17,54 +18,67 @@ class TimeAmount(Enum):
 
 
 class TimeProvider:
-    """Class that handles functions dependents on actually time
+    """Class that handles functions dependent on actual time
     such as wait, sleep or compute date/time operations
     """
 
     def __init__(self) -> None:
         logging.debug("TimeProvider __init__")
+        # Initialize NYSE calendar
+        self.nyse = mcal.get_calendar('NYSE')
 
     def is_market_open(self, timezone: str) -> bool:
         """
-        Return True if the market is open, false otherwise
-                - **timezone**: string representing the timezone
-                - **market**: string representing the market (default is UK)
+        Return True if the US market is open, false otherwise
+        - **timezone**: string representing the timezone
         """
         tz = pytz.timezone(timezone)
-        now_time = datetime.now(tz=tz).strftime("%H:%M")
-        return BankHolidays().is_work_day(datetime.now(tz=tz)) and Utils.is_between(
-            str(now_time), ("07:55", "16:35")
-        )
+        now = datetime.now(tz=tz)
+        
+        # Check if today is a trading day
+        schedule = self.nyse.schedule(start_date=now.date(), end_date=now.date())
+        if schedule.empty:
+            return False
+            
+        # Get market hours for today
+        market_open = schedule.iloc[0]['market_open'].tz_convert(tz)
+        market_close = schedule.iloc[0]['market_close'].tz_convert(tz)
+        
+        # Check if current time is within market hours
+        return market_open <= now <= market_close
     
     def get_seconds_to_market_opening(self, from_time: datetime) -> float:
         """Return the amount of seconds from now to the next market opening,
-        taking into accoiunt UK bank holidays and weekends"""
-        today_opening = datetime(
-            year=from_time.year,
-            month=from_time.month,
-            day=from_time.day,
-            hour=8,
-            minute=0,
-            second=0,
-            microsecond=0,
+        taking into account US market holidays"""
+        
+        # Get the calendar for next 5 days
+        schedule = self.nyse.schedule(
+            start_date=from_time.date(),
+            end_date=(from_time + pd.Timedelta(days=5)).date()
         )
-
-        if from_time < today_opening and BankHolidays().is_work_day(from_time.date()):
-            nextMarketOpening = today_opening
-        else: 
-            # Get next working day
-            nextWorkDate = BankHolidays().get_next_work_day(date=from_time.date())
-            nextMarketOpening = datetime(
-                year=nextWorkDate.year,
-                month=nextWorkDate.month,
-                day=nextWorkDate.day,
-                hour=8,
-                minute=0,
-                second=0,
-                microsecond=0,
-            )
-        # Calculate the delta from from_time to the next market opening
-        return (nextMarketOpening - from_time).total_seconds()
+        
+        if schedule.empty:
+            # If no trading days in next 5 days, use a default of next Monday
+            return (from_time + pd.Timedelta(days=7)).replace(
+                hour=9, minute=30, second=0, microsecond=0
+            ).timestamp() - from_time.timestamp()
+            
+        # Get next market opening time
+        next_open = schedule.iloc[0]['market_open']
+        if from_time.timestamp() > next_open.timestamp():
+            # If we're past today's opening, get next day's opening
+            if len(schedule) > 1:
+                next_open = schedule.iloc[1]['market_open']
+            else:
+                # Get schedule for further dates if needed
+                future_schedule = self.nyse.schedule(
+                    start_date=(from_time + pd.Timedelta(days=5)).date(),
+                    end_date=(from_time + pd.Timedelta(days=10)).date()
+                )
+                if not future_schedule.empty:
+                    next_open = future_schedule.iloc[0]['market_open']
+                
+        return next_open.timestamp() - from_time.timestamp()
     
     def wait_for(self, time_amount_type: TimeAmount, amount: float = -1.0) -> None:
         """Wait for the specified amount of time.
