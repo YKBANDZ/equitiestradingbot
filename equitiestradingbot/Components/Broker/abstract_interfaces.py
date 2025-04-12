@@ -100,4 +100,9 @@ class StocksInterface(AbstractInterface):
     ) -> MarketMACD:
         pass 
 
+    @abstractmethod
+    def search_market(self, search_string: str) -> List[Market]:
+        """Search for a market by its symbol"""
+        pass
+
 

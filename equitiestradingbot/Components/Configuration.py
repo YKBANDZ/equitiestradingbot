@@ -144,7 +144,7 @@ class Configuration:
         ) 
     
     def get_ig_api_timeout(self) -> Property:
-        return self._find_property(["stocks_timeout", "ig_interface", "api_timeout"])
+        return self._find_property(["stocks_interface", "ig_interface", "api_timeout"])
     
     def is_paper_trading_enabled(self) -> Property:
         return self._find_property(["paper_trading"])

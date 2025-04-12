@@ -19,7 +19,7 @@ class AVInterval(Enum):
     """
 
     MIN_1 = "1min"
-    MIN_5 = "5min"
+    MIN_5 = "5min"     
     MIN_15 = "15min"
     MIN_30 = "30min"
     MIN_60 = "60min"
@@ -95,45 +95,43 @@ class AVInterface(StocksInterface):
             data = self.monthly(market.id)
         else:
             raise ValueError("Unsupported Interval.{}".format(interval.name))
-            
-        if data is None or data.empty:
-            logging.error(f"No price data returned for market {market.id}")
+        if data is None:
+            logging.error(f"Unable to fetch price data for market {market.id}")
             return None
-            
-        try:
-            history = MarketHistory(
-                market,
-                data.index,
-                data["2. high"].values,
-                data["3. low"].values,
-                data["4. close"].values,
-                data["5. volume"].values,
-            )
-            return history
-        except Exception as e:
-            logging.error(f"Error creating MarketHistory for {market.id}: {str(e)}")
-            logging.debug(traceback.format_exc())
-            return None
-        
-
+        history = MarketHistory(
+            market,
+            data.index,
+            data["2. high"].values,
+            data["3. low"].values,
+            data["4. close"].values,
+            data["5. volume"].values,
+        )
+        return history
+    
     def daily(self, marketId: str) -> pandas.DataFrame:
         """
-        Calls AlphaVantage API and return the Daily time series for thr given market
-            - **marketId**: string respresenting an AlphaVantage compatible market id
+        Calls AlphaVantage API and return the Daily time series for the given market
+            
+            -**marketId**: string representing and AlphaVantage compatibile market id
             - Returns **None** if an error occurs otherwise the pandas dataframe
         """
         self._wait_before_call(self._config.get_alphavantage_api_timeout())
         market = self._format_market_id(marketId)
         try:
-            data, meta_data = self.TS.get_daily(symbol = market, outputsize = "full")
+            data, meta_data = self.TS.get_daily(symbol=market, outputsize="full")
+            if data is None:
+                logging.error(f"AlphaVantage returned no data for {market}")
+                return None
+            if data.empty:
+                logging.error(f"AlphaVAntage returned empty Dataframe for {market}")
+                return None
+            logging.debug(f"Successfully fetched daily data for {market}")
             return data
         except Exception as e:
-            print(e)
-            logging.error("AlphaVantage wrong api call for {}".format(market))
-            logging.error(e)
-            logging.debug(traceback.format_exc())
-            logging.debug(sys.exc_info()[0])
+            logging.error("AlphaVantage API error for {market}: {str(e)}")
+            logging.debug(f"Full error details: {traceback.format_exc()}")
         return None
+        
     
     def intraday(self, marketId: str, interval: AVInterval) -> pandas.DataFrame:
         """
@@ -208,9 +206,47 @@ class AVInterface(StocksInterface):
                 symbol=market, outputsize="full"
             )
             return data
-        except Exception:
-            logging.error("AlphaVantage wrong apu call for {}".format(market))
+        except Exception as e:
+            logging.error("AlphaVantage wrong api call for {}".format(market))
+            logging.debug(e)
+            logging.debug(traceback.format_exc())
+            logging.debug(sys.exc_info()[0])
         return None
+
+    def search_market(self, search_string: str) -> List[Market]:
+        """
+        Search for a market by its symbol using Alpha Vantage
+        - **search_string**: string representing the market symbol to search for
+        - Returns a list containing a single Market object if found
+        """
+        self._wait_before_call(self._config.get_alphavantage_api_timeout())
+        market = self._format_market_id(search_string)
+        try:
+            # Get quote data to verify market exists and get current price
+            data, meta_data = self.TS.get_quote_endpoint(symbol=market)
+            if data is None or data.empty:
+                logging.error(f"No market found for symbol: {market}")
+                return []
+            
+        
+            
+            # Create Market object with current quote data
+            market_obj = Market()
+            market_obj.id = market    # Use symbol as id
+            market_obj.name = market
+            market_obj.epic = market  # Use symbol as epic too
+            market_obj.bid = float(data['05. price'].iloc[0])
+            market_obj.offer = float(data['05. price'].iloc[0])  # Use same price for offer
+            market_obj.high = float(data['03. high'].iloc[0])
+            market_obj.low = float(data['04. low'].iloc[0])
+            market_obj.stop_distance_min = 0.02
+
+            return [market_obj]
+        except Exception as e:
+            logging.error(f"Error fetching market data: {e}")
+            return[]
+
+           
 
     
     # Technical indicators
@@ -286,39 +322,3 @@ class AVInterface(StocksInterface):
         if "_UK" in marketId:
             return "{}:{}".format("LON", marketId.split("_")[0])
         return marketId
-
-    def search_market(self, search: str) -> List[Market]:
-        """Search for a market by its symbol"""
-        try:
-            # Get daily data to check if the symbol exists and get current price
-            data, meta_data = self.TS.get_daily(symbol=self._format_market_id(search), outputsize="compact")
-            
-            if data is None or data.empty:
-                logging.error(f"No data returned for symbol {search}")
-                return []
-            
-            # Get the most recent data point
-            if len(data.index) == 0:
-                logging.error(f"No data points available for symbol {search}")
-                return []
-                
-            latest_data = data.iloc[0]
-            
-            # Create market object with the data
-            market = Market()
-            market.epic = search
-            market.id = search
-            market.name = meta_data.get('2. Symbol', search)
-            market.bid = float(latest_data['4. close'])  # Use close price for bid
-            market.offer = float(latest_data['4. close'])  # Use close price for offer since AV doesn't provide bid/ask
-            market.high = float(latest_data['2. high'])
-            market.low = float(latest_data['3. low'])
-            market.stop_distance_min = 0.01  # 1% minimum stop distance
-            market.expiry = "DFB"
-            
-            return [market]
-                
-        except Exception as e:
-            logging.error(f"Error searching for market {search}: {str(e)}")
-            logging.debug(traceback.format_exc())
-            return []

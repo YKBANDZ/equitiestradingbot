@@ -16,7 +16,7 @@ class IG_API_URL(Enum):
     IG REST API urls
     """
 
-    BASE_URI = "https://@api.ig.com/gateway/deal"
+    BASE_URI = "https://api.ig.com/gateway/deal"
     DEMO_PREFIX = "demo-"
     SESSION = "session"
     ACCOUNTS = "accounts"
@@ -44,7 +44,7 @@ class IGInterface(AccountInterface, StocksInterface):
             if self._config.get_ig_use_demo_account()
             else ""
         )
-        self.api_base_url = IG_API_URL.BASE_URI.value.replace("@", demoPrefix)
+        self.api_base_url = IG_API_URL.BASE_URI.value.replace("api", f"{demoPrefix}api")
         self.authenticated_headers = {}
         if self._config.is_paper_trading_enabled():
             logging.info("Paper Trading is active")
@@ -106,7 +106,11 @@ class IGInterface(AccountInterface, StocksInterface):
             url, data=json.dumps(data), headers=self.authenticated_headers
         )
 
-        if response.status_code != 200:
+        if response.status_code == 412:
+            # 412 means account is already default, which is fine
+            logging.info("Account is already set as default")
+            return True
+        elif response.status_code != 200:
             logging.error(f"Failed to set default account: {response.status_code}")
             return False
         
@@ -473,7 +477,13 @@ class IGInterface(AccountInterface, StocksInterface):
         Return None if an error is received from the API
         """
         self._wait_before_call(self._config.get_ig_api_timeout())
-        response = requests.get(url, headers=self.authenticated_headers)
+
+        # Add version header for market navigation
+        headers = self.authenticated_headers.copy()
+        if IG_API_URL.MARKET_NAV.value in url:
+            headers["Version"] = "1"
+
+        response = requests.get(url, headers= headers)
         if response.status_code != 200:
             logging.error("HTTP request returned {}".format(response.status_code))
             raise RuntimeError("HTTP request returned {}".format(response.status_code))

@@ -3,27 +3,27 @@ max_account_usable = 50
 time_zone = "America/New_York"
 
 # Path to the credentials file
-credentials_filepath = "{home}/Documents/equitiestradingbot/config/credentials/live_credentials.json"
+credentials_filepath = "/Users/e1/Documents/equitiestradingbot/config/credentials/live_credentials.json"
 
 # Seconds to wait for between each spin of the bot across all markets
-spin_interval = 3600
+spin_interval = 180
 
 # Enable paper trading
 paper_trading = true
 
 [logging]
 enable = true
-log_filepath = "{home}/Documents/equitiestradingbot/log/trading_bot_{timestamp}.log"
+log_filepath = "/Users/e1/Documents/equitiestradingbot/log/trading_bot_{timestamp}.log"
 debug = true
 
 [market_source]
 active = "list"
 values = ["list", "api", "watchlist"]
 [market_source.epic_id_list]
-filepath = "{home}/Documents/equitiestradingbot/data/epic_ids.txt"
+filepath = "/Users/e1/Documents/equitiestradingbot/data/epics_ids.txt"
 
 [stocks_interface]
-active = "alpha_vantage"
+active = "ig_interface"
 values = ["yfinance", "alpha_vantage", "ig_interface"]
 
 [stocks_interface.yfinance]
@@ -44,7 +44,7 @@ controlled_risk = false
 api_timeout = 3
 
 [account_interface]
-active = "alpha_vantage"
+active = "ig_interface"
 values = ["yfinance", "alpha_vantage", "ig_interface"]
 
 [strategies]

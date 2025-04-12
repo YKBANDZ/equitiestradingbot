@@ -53,6 +53,9 @@ class TradingBot:
         # The Factory is used to create the services frm the configuration file
         self.broker = Broker(BrokerFactory(self.config))
 
+        # Logging statement
+        logging.info(f"Using stock interface: {type(self.broker.stocks_ifc).__name__}")
+
         # Create strategy from the factory class
         self.strategy = StrategyFactory(
             self.config, self.broker
@@ -74,7 +77,7 @@ class TradingBot:
             logging.DEBUG if self.config.is_logging_debug_enabled() else logging.INFO
         )
         if self.config.is_logging_enabled():
-            log_filename = self.config.get_log_filepalth()
+            log_filename = self.config.get_log_filepath()
             Path(log_filename).parent.mkdir(parents=True, exist_ok=True)
             logging.basicConfig(
                 level = debugLevel,
@@ -200,7 +203,8 @@ class TradingBot:
                 "Stop trading because {}% of account is used".format(str(percent_used))
             )
             raise NotSafeToTradeException()
-        if not self.time_provider.is_market_open(self.config.get_time_zone()):
+        # Skip market hours check when in paper trading mode
+        if not self.config.is_paper_trading_enabled() and not self.time_provider.is_market_open(self.config.get_time_zone()):
             raise MarketClosedException()
         
     
