@@ -44,7 +44,18 @@ class SimpleMACD(Strategy):
         """
         Fetch historic MACD data
         """
-        return self.broker.get_macd(market, Interval.DAY, 30)
+        logging.info(f"Fetching MACD data for {market.id}")
+        try:
+            macd_data = self.broker.get_macd(market, Interval.DAY, 30)
+            if macd_data is None or macd_data.dataframe is None or macd_data.dataframe.empty:
+                logging.warning(f"Retrieved empty MACD data for {market.id}")
+            else:
+                logging.info(f"Successfully retrieved MACD data for {market.id} with {len(macd_data.dataframe)} datapoints")
+            return macd_data
+        except Exception as e:
+            logging.error(f"Error fetching MACD data for {market.id}: {str(e)}")
+            logging.error(traceback.format_exc())
+            return MarketMACD(market, [], [], [], [])
     
     def find_trade_signal(self, market: Market, datapoints: MarketMACD) -> TradeSignal:
         """
@@ -56,29 +67,63 @@ class SimpleMACD(Strategy):
         """
         limit_perc = self.limit_p
         stop_perc = max(market.stop_distance_min, self.stop_p)
+        
+        logging.info(f"Analyzing market: {market.id} ({market.name})")
+        logging.info(f"Current bid: {market.bid}, offer: {market.offer}, spread: {market.offer - market.bid}")
+        logging.info(f"Stop distance min: {market.stop_distance_min}, using stop_perc: {stop_perc}")
 
         # Spread constraint
         if market.bid - market.offer > self.max_spread_perc:
+            logging.info(f"Market {market.id} exceeded max spread: {market.bid - market.offer} > {self.max_spread_perc}")
             return TradeDirection.NONE, None, None
         
         #Find where macd and signal cross each other
         macd = datapoints
+        
+        # Check if we have MACD data
+        if macd.dataframe is None or macd.dataframe.empty:
+            logging.warning(f"No MACD data available for {market.id}")
+            return TradeDirection.NONE, None, None
+            
+        # Log MACD data points
+        if not macd.dataframe.empty:
+            last_row = macd.dataframe.iloc[-1]
+            prev_row = macd.dataframe.iloc[-2] if len(macd.dataframe) > 1 else None
+            
+            logging.info(f"Latest MACD value: {last_row.get(MarketMACD.MACD_COLUMN)}, Signal: {last_row.get(MarketMACD.SIGNAL_COLUMN)}")
+            logging.info(f"Latest MACD histogram: {last_row.get(MarketMACD.HIST_COLUMN)}")
+            
+            if prev_row is not None:
+                logging.info(f"Previous MACD value: {prev_row.get(MarketMACD.MACD_COLUMN)}, Signal: {prev_row.get(MarketMACD.SIGNAL_COLUMN)}")
+                logging.info(f"Previous MACD histogram: {prev_row.get(MarketMACD.HIST_COLUMN)}")
+        
         px = self.generate_signals_from_dataframe(macd.dataframe)
+        
+        # Log the generated signals
+        if not px.empty:
+            logging.info(f"Generated positions: {px['positions'].tail(3).values}")
+            logging.info(f"Generated signals: {px['signals'].tail(3).values}")
 
         # Identify the trade direction looking at the last signal
         tradeDirection = self.get_trade_direction_from_signals(px)
-        # Log only tradable epics
-        if tradeDirection is not TradeDirection.NONE:
-            logging.info(
-                "SimpleMACD says: {} {}".format(tradeDirection.name, market.id)
-            )
-        else:
+        
+        # Log the trade decision
+        if tradeDirection is TradeDirection.NONE:
+            logging.info(f"No trade signal found for {market.id}")
             return TradeDirection.NONE, None, None
+        
+        # Log only tradable epics
+        logging.info(
+            "SimpleMACD says: {} {}".format(tradeDirection.name, market.id)
+        )
         
         # calclulate stop and limit distances
         limit, stop = self.calculate_stop_limit(
             tradeDirection, market.offer, market.bid, limit_perc, stop_perc
         )
+        
+        logging.info(f"Trade signal for {market.id}: Direction={tradeDirection.name}, Limit={limit}, Stop={stop}")
+        
         return tradeDirection, limit, stop
     
     def calculate_stop_limit(

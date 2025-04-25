@@ -1,5 +1,3 @@
-
-
 import logging
 import math
 from datetime import datetime
@@ -59,17 +57,24 @@ class WeightedAvgPeak(Strategy):
         # limit_perc = self.limit_p
         # stop_perc = max(market.stop_distance_min, self.stop_p)
 
+        logging.debug(f"Analyzing market: {market.id} ({market.name}) with weighted_avg_peak strategy")
+        logging.debug(f"Current bid: {market.bid}, offer: {market.offer}, spread: {market.offer - market.bid}")
+
         # Spread constraint
         if market.bid - market.offer > self.max_spread:
+            logging.debug(f"Market {market.id} exceeded max spread: {market.bid - market.offer} > {self.max_spread}")
             return TradeDirection.NONE, None, None
         
         # Compute mid price
         current_mid = Utils.midpoint(market.bid, market.offer)
+        logging.debug(f"Current mid price: {current_mid}")
 
         high_prices = datapoints.dataframe[MarketHistory.HIGH_COLUMN].values
         low_prices = datapoints.dataframe[MarketHistory.LOW_COLUMN].values
         close_prices = datapoints.dataframe[MarketHistory.CLOSE_COLUMN].values
         ltv = datapoints.dataframe[MarketHistory.VOLUE_COLUMN].values
+
+        logging.debug(f"Data points: high prices: {len(high_prices)}, low prices: {len(low_prices)}, close prices: {len(close_prices)}, volumes: {len(ltv)}")
 
         # Check dataset integrity
         array_len_check = []
@@ -92,6 +97,9 @@ class WeightedAvgPeak(Strategy):
             high_prices, ltv
         )
 
+        logging.debug(f"Low weighted avg: {low_weighted_avg}, std dev: {low_weighted_std_dev}")
+        logging.debug(f"High weighted avg: {high_weighted_avg}, std dev: {high_weighted_std_dev}")
+
         # The VWAP can be used similar to moving averages, where prices above
         # the VWAP reflect a bullish sentiment and prices below the VWAP 
         #reflect a bearish sentitment. Traders may initiate short positions as
@@ -100,11 +108,16 @@ class WeightedAvgPeak(Strategy):
 
         tmp_high_weight_var = float(high_weighted_avg + high_weighted_std_dev)
         tmp_low_weight_var = float(low_weighted_avg + low_weighted_std_dev)
+        
+        logging.debug(f"High weight threshold: {tmp_high_weight_var}, Low weight threshold: {tmp_low_weight_var}")
+        
         #e.g
         # series = [0,0,0,2,0,0,0,-2,0,0,0,-2,0,0,0,-2,0]
 
         maxtab_high, _mintab_high = self.peakdet(high_prices, 0.3)
         maxtab_low, mintab_low = self.peakdet(low_prices, 0.3)
+
+        logging.debug(f"Detected peaks: high max points: {len(maxtab_high)}, low min points: {len(mintab_low)}")
 
         #convert to array so can work on min/max
         mintab_low_a = array(mintab_low)[:, 1]
@@ -126,6 +139,8 @@ class WeightedAvgPeak(Strategy):
             maxtab_high_a_hi_slope,
         ) = stats.mstats.theilslopes(maxtab_high_a, xc, 0.99)
 
+        logging.debug(f"Low min tab slope: {mintab_low_a_slope}, High max tab slope: {maxtab_high_a_slope}")
+
         peak_count_high = 0
         peak_count_low = 0
         # how many "peaks" are BELOW threshold
@@ -138,6 +153,8 @@ class WeightedAvgPeak(Strategy):
             if float(a) > float(tmp_high_weight_var):
                 peak_count_high += 1
 
+        logging.debug(f"Peak counts: high: {peak_count_high}, low: {peak_count_low}")
+
         additional_checks_sell = [
             int(peak_count_low) > int(peak_count_high),
             float(mintab_low_a_slope) > float(maxtab_high_a_slope),
@@ -146,6 +163,9 @@ class WeightedAvgPeak(Strategy):
             int(peak_count_high) > int(peak_count_low),
             float(maxtab_high_a_slope) > float(mintab_low_a_slope),
         ]
+
+        logging.debug(f"Additional checks sell: {additional_checks_sell}")
+        logging.debug(f"Additional checks buy: {additional_checks_buy}")
 
         sell_rules = [
             float(current_mid) >= float(numpy.max(maxtab_high_a)),
@@ -156,11 +176,17 @@ class WeightedAvgPeak(Strategy):
             all(additional_checks_buy),
         ]
 
+        logging.debug(f"Sell rules: {sell_rules}, Buy rules: {buy_rules}")
+
         trade_direction = TradeDirection.NONE
         if any(buy_rules):
             trade_direction = TradeDirection.BUY
+            logging.debug(f"BUY signal triggered for {market.id}")
         elif any(sell_rules):
             trade_direction = TradeDirection.SELL
+            logging.debug(f"SELL signal triggered for {market.id}")
+        else:
+            logging.debug(f"No trade signal for {market.id}")
 
         if trade_direction is TradeDirection.NONE:
             return trade_direction, None, None
@@ -168,6 +194,7 @@ class WeightedAvgPeak(Strategy):
         logging.info("Strategy says: {} {}".format(trade_direction.name, market.id))
 
         ATR = self.calculate_stop_loss(close_prices, high_prices, low_prices)
+        logging.debug(f"ATR: {ATR}")
 
         if trade_direction is TradeDirection.BUY:
             pip_limit = int(
@@ -178,6 +205,7 @@ class WeightedAvgPeak(Strategy):
                 trade_direction, ATR, min(low_prices)
             )
             stop_pips = int(abs(float(market.bid)- (ce_stop)))
+            logging.debug(f"BUY - Pip limit: {pip_limit}, CE stop: {ce_stop}, Stop pips: {stop_pips}")
         elif trade_direction is TradeDirection.SELL:
             pip_limit = int(
                 abs(float(min(low_prices))- float(market.bid))
@@ -186,27 +214,36 @@ class WeightedAvgPeak(Strategy):
             ce_stop = self.Chandelier_Exit_formula(
                 trade_direction, ATR, max(high_prices)
             )
+            logging.debug(f"SELL - Pip limit: {pip_limit}, CE stop: {ce_stop}, Stop pips: {stop_pips}")
         stop_pips = int(abs(float(market.bid) - (ce_stop)))
 
         esma_new_margin_req = int(Utils.percentage_of(self.ESMA_new_margin, market.bid))
+        logging.debug(f"ESMA margin req: {esma_new_margin_req}")
 
         if int(esma_new_margin_req) > int(stop_pips):
+            logging.debug(f"Increasing stop pips from {stop_pips} to ESMA margin req {esma_new_margin_req}")
             stop_pips = int(esma_new_margin_req)
         # is there a case for a 20% drop? ... Especially over 18 weeks or
         # so?
         if int(stop_pips) > int(esma_new_margin_req):
+            logging.debug(f"Reducing stop pips from {stop_pips} to ESMA margin req {esma_new_margin_req}")
             stop_pips = int(esma_new_margin_req)
         if int(pip_limit) == 0:
             # not worth the trade
+            logging.debug(f"Rejecting trade for {market.id}: pip limit is 0")
             trade_direction = TradeDirection.NONE
         if int(pip_limit) == 1:
             # not worth the trade
+            logging.debug(f"Rejecting trade for {market.id}: pip limit is 1")
             trade_direction = TradeDirection.NONE
         if int(pip_limit) >= int(self.greed_indicator):
+            logging.debug(f"Reducing pip limit from {pip_limit} to greed indicator {self.greed_indicator - 1}")
             pip_limit = int(self.greed_indicator - 1)
         if int(stop_pips) > int(self.too_high_margin):
             logging.warning("Junk data for {}". format(market.epic))
             return TradeDirection.NONE, None, None
+            
+        logging.debug(f"Final trade details for {market.id}: Direction: {trade_direction.name}, Limit: {pip_limit}, Stop: {stop_pips}")
         return trade_direction, pip_limit, stop_pips
     
     def calculate_stop_loss(

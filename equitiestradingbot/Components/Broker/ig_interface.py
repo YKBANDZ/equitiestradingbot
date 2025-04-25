@@ -193,7 +193,7 @@ class IGInterface(AccountInterface, StocksInterface):
             -**epic_id**: market epic as string
             - Return **None** if an error otherwise the json returned by IG API
             """
-        url = "{}/{}/{}".format(self.api_base_url, IG_API_URL.MARKETS.value, epic_id)
+        url = "{}/{}/{}".format(self.api_base_url, IG_API_URL.MARKET.value, epic_id)
         info = self._http_get(url)
 
         if "markets" in info:
@@ -218,7 +218,7 @@ class IGInterface(AccountInterface, StocksInterface):
         Returns a list of markets that matched the search string
         """
         url = "{}/{}?searchTerm={}".format(
-        self.api_base_url, IG_API_URL.MARKETS.value, search
+        self.api_base_url, IG_API_URL.MARKET.value, search
         )
         data = self._http_get(url)
         markets = []
