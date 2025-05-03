@@ -230,9 +230,8 @@ class IGInterface(AccountInterface, StocksInterface):
     def get_prices(
         self, market: Market, interval: Interval, data_range: int
     ) -> MarketHistory: 
-        logging.debug("TEST LOGGING - This is a debug message")
-        logging.info("TEST LOGGING - This is an info message")
-        logging.warning("TEST LOGGING - This is a warning message")
+        print("DEBUG: get_prices method called")  # Direct print to verify method call
+        logging.critical("CRITICAL: get_prices method called")  # Critical level to ensure visibility
         
         url = "{}/{}/{}/{}/{}".format(
             self.api_base_url,
