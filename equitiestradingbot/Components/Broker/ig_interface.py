@@ -230,6 +230,10 @@ class IGInterface(AccountInterface, StocksInterface):
     def get_prices(
         self, market: Market, interval: Interval, data_range: int
     ) -> MarketHistory: 
+        logging.debug("TEST LOGGING - This is a debug message")
+        logging.info("TEST LOGGING - This is an info message")
+        logging.warning("TEST LOGGING - This is a warning message")
+        
         url = "{}/{}/{}/{}/{}".format(
             self.api_base_url,
             IG_API_URL.PRICES.value,
@@ -237,6 +241,7 @@ class IGInterface(AccountInterface, StocksInterface):
             interval,
             data_range,
         )
+        logging.info(f"Fetching price data from URL: {url}")
         data = self._http_get(url)
         if "allowance" in data: 
             remaining_allowance = data["allowance"]["remainingAllowance"]
@@ -246,16 +251,27 @@ class IGInterface(AccountInterface, StocksInterface):
                     "Remaining API calls left: {}".format(str(remaining_allowance))
                 )
                 logging.warning("The to API Key reset: {}".format(str(reset_time)))
+        
+        logging.info(f"Processing price data for {market.id}")
         dates = []
         highs = []
         lows = []
         closes = []
         volumes = []
+        
+        if "prices" not in data:
+            logging.error(f"No price data found in response for {market.id}")
+            return MarketHistory(market, [], [], [], [])
+            
+        logging.info(f"Found {len(data['prices'])} price points for {market.id}")
+        
         for price in data["prices"]:
             dates.append(price["snapshotTimeUTC"])
             highs.append(price["highPrice"]["bid"])
             closes.append(price["lowPrice"]["bid"])
             volumes.append(float(price["lastTradedVolume"]))
+            
+        logging.info(f"Processed {len(dates)} price points for {market.id}")
         history = MarketHistory(market, dates, highs, lows, closes, volumes)
         return history
     
