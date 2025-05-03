@@ -76,17 +76,31 @@ class TradingBot:
         debugLevel = (
             logging.DEBUG if self.config.is_logging_debug_enabled() else logging.INFO
         )
+        
+        # Create formatter
+        formatter = logging.Formatter("[%(asctime)s] %(levelname)s: %(message)s")
+        
+        # Setup console handler
+        console_handler = logging.StreamHandler()
+        console_handler.setFormatter(formatter)
+        console_handler.setLevel(debugLevel)
+        
+        # Setup root logger
+        logging.root.setLevel(debugLevel)
+        logging.root.addHandler(console_handler)
+        
+        # Add file handler if logging is enabled
         if self.config.is_logging_enabled():
             log_filename = self.config.get_log_filepath()
-            Path(log_filename).parent.mkdir(parents=True, exist_ok=True)
-            logging.basicConfig(
-                level = debugLevel,
-                format ="[%(asctime)s] %(levelname)s: %(message)s",
-            )
-        else:
-            logging.basicConfig(
-                level=debugLevel, format="[%(asctime)s] %(levelname)s: %(message)s"
-            )
+            log_path = Path(log_filename)
+            log_path.parent.mkdir(parents=True, exist_ok=True)
+            
+            file_handler = logging.FileHandler(log_filename)
+            file_handler.setFormatter(formatter)
+            file_handler.setLevel(debugLevel)
+            logging.root.addHandler(file_handler)
+            
+            logging.info(f"Logging to file: {log_filename}")
 
     
     def start(self, single_pass=False) -> None:

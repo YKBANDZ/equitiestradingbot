@@ -5,6 +5,7 @@ from typing import Any, Dict, List, Optional
 
 import pandas
 import requests
+import traceback
 
 from ...interfaces import Market, MarketHistory, MarketMACD, Position
 from ..utils import Interval, TradeDirection, Utils
@@ -501,28 +502,35 @@ class IGInterface(AccountInterface, StocksInterface):
         """
         try:
             # Get price data
+            logging.info(f"Getting price data for {market.id}")
             price_data = self.get_prices(market, interval, data_range)
             if price_data is None or price_data.dataframe is None or price_data.dataframe.empty:
                 logging.error(f"No price data available for {market.id}")
                 return MarketMACD(market, [], [], [], [])
 
             # Calculate MACD
+            logging.info(f"Calculating MACD for {market.id}")
             df = price_data.dataframe.copy()
             
             # Calculate 12-day EMA
             exp1 = df['4. close'].ewm(span=12, adjust=False).mean()
+            logging.debug(f"12-day EMA calculated for {market.id}")
             
             # Calculate 26-day EMA
             exp2 = df['4. close'].ewm(span=26, adjust=False).mean()
+            logging.debug(f"26-day EMA calculated for {market.id}")
             
             # Calculate MACD line
             macd = exp1 - exp2
+            logging.debug(f"MACD line calculated for {market.id}")
             
             # Calculate signal line (9-day EMA of MACD)
             signal = macd.ewm(span=9, adjust=False).mean()
+            logging.debug(f"Signal line calculated for {market.id}")
             
             # Calculate histogram
             hist = macd - signal
+            logging.debug(f"Histogram calculated for {market.id}")
             
             # Create MACD dataframe
             macd_df = pandas.DataFrame({
@@ -531,6 +539,14 @@ class IGInterface(AccountInterface, StocksInterface):
                 MarketMACD.HIST_COLUMN: hist
             }, index=df.index)
             
+            # Log the last few values
+            if not macd_df.empty:
+                last_row = macd_df.iloc[-1]
+                logging.info(f"Latest MACD values for {market.id}:")
+                logging.info(f"  MACD: {last_row[MarketMACD.MACD_COLUMN]:.4f}")
+                logging.info(f"  Signal: {last_row[MarketMACD.SIGNAL_COLUMN]:.4f}")
+                logging.info(f"  Histogram: {last_row[MarketMACD.HIST_COLUMN]:.4f}")
+            
             return MarketMACD(market, macd_df[MarketMACD.MACD_COLUMN].tolist(),
                             macd_df[MarketMACD.SIGNAL_COLUMN].tolist(),
                             macd_df[MarketMACD.HIST_COLUMN].tolist(),
@@ -538,6 +554,7 @@ class IGInterface(AccountInterface, StocksInterface):
                             
         except Exception as e:
             logging.error(f"Error calculating MACD for {market.id}: {str(e)}")
+            logging.error(traceback.format_exc())
             return MarketMACD(market, [], [], [], [])
 
 
