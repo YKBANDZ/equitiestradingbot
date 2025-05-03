@@ -496,24 +496,50 @@ class IGInterface(AccountInterface, StocksInterface):
     def get_macd(
         self, market: Market, interval: Interval, data_range: int
     ) -> MarketMACD:
-        data = self._macd_dataframe(market, interval)
-        # TODO Put a date instead index numbers
-        return MarketMACD(
-            market,
-            data.index,
-            data["MACD"].values,
-            data["Signal"].values,
-            data["Hist"].values,
-        )
+        """
+        Calculate MACD data from price history
+        """
+        try:
+            # Get price data
+            price_data = self.get_prices(market, interval, data_range)
+            if price_data is None or price_data.dataframe is None or price_data.dataframe.empty:
+                logging.error(f"No price data available for {market.id}")
+                return MarketMACD(market, [], [], [], [])
 
-    def _macd_dataframe(self, market: Market, interval: Interval) -> pandas.DataFrame:
-        prices = self.get_prices(market, Interval.DAY, 26)
-        if prices is None:
-            return None
-        return Utils.macd_df_from_list(
-            prices.dataframe[MarketHistory.CLOSE_COLUMN].values
-        )
-    
+            # Calculate MACD
+            df = price_data.dataframe.copy()
+            
+            # Calculate 12-day EMA
+            exp1 = df['4. close'].ewm(span=12, adjust=False).mean()
+            
+            # Calculate 26-day EMA
+            exp2 = df['4. close'].ewm(span=26, adjust=False).mean()
+            
+            # Calculate MACD line
+            macd = exp1 - exp2
+            
+            # Calculate signal line (9-day EMA of MACD)
+            signal = macd.ewm(span=9, adjust=False).mean()
+            
+            # Calculate histogram
+            hist = macd - signal
+            
+            # Create MACD dataframe
+            macd_df = pandas.DataFrame({
+                MarketMACD.MACD_COLUMN: macd,
+                MarketMACD.SIGNAL_COLUMN: signal,
+                MarketMACD.HIST_COLUMN: hist
+            }, index=df.index)
+            
+            return MarketMACD(market, macd_df[MarketMACD.MACD_COLUMN].tolist(),
+                            macd_df[MarketMACD.SIGNAL_COLUMN].tolist(),
+                            macd_df[MarketMACD.HIST_COLUMN].tolist(),
+                            macd_df)
+                            
+        except Exception as e:
+            logging.error(f"Error calculating MACD for {market.id}: {str(e)}")
+            return MarketMACD(market, [], [], [], [])
+
 
 
 

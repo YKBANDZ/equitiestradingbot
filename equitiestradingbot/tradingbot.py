@@ -94,7 +94,7 @@ class TradingBot:
         Starts the Trading bot main loop
         - process open positions
         - process markets from the market source
-        -wait for configured wait time
+        - wait for configured wait time
         - start over
         """
         if single_pass: 
@@ -167,11 +167,13 @@ class TradingBot:
     def process_market(self, market: Market, open_positions: List[Position]) -> None:
         """Spin the strategy on all the markets"""
         if not self.config.is_paper_trading_enabled():
-            self.saftey_checks()
+            self.safety_checks()
         logging.info("Processing {}".format(market.id))
         try:
+            print(f"Running strategy on market {market.id}")
             self.strategy.set_open_positions(open_positions)
             trade, limit, stop = self.strategy.run(market)
+            print(f"Strategy completed for {market.id}. Result: {trade}, {limit}, {stop}")
             logging.info(f"Strategy result for {market.id}: Direction={trade}, Limit={limit}, Stop={stop}")
             self.process_trade(market,trade, limit, stop, open_positions)
         except Exception as e:
