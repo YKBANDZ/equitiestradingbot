@@ -1,0 +1,15 @@
+[2025-05-05 15:19:38,385] INFO: Logging to file: /Users/e1/Documents/equitiestradingbot/log/trading_bot_2025-05-05T15_19_38_385728.log
+[2025-05-05 15:19:38,386] INFO: Initialising IGInterface...
+[2025-05-05 15:19:38,407] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-05 15:19:38,568] DEBUG: https://demo-api.ig.com:443 "POST /gateway/deal/session HTTP/1.1" 200 611
+[2025-05-05 15:19:38,570] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-05 15:19:38,664] DEBUG: https://demo-api.ig.com:443 "PUT /gateway/deal/session HTTP/1.1" 412 56
+[2025-05-05 15:19:38,665] INFO: Account is already set as default
+[2025-05-05 15:19:38,665] INFO: Using stock interface: IGInterface
+[2025-05-05 15:19:38,665] INFO: Simple MACD strategy initialised.
+[2025-05-05 15:19:38,666] INFO: Performing a single iteration of the market source
+[2025-05-05 15:19:41,696] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-05 15:19:41,825] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-05-05 15:19:41,827] INFO: Starting to process market source
+[2025-05-05 15:19:44,849] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-05 15:19:44,937] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.CFPGOLD.CFP.IP HTTP/1.1" 200 1562

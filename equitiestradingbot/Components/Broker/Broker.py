@@ -29,7 +29,7 @@ class Broker:
         """
         Return a name list of the markets in the required watchlist
         """
-        return self.account_ifc.get_market_from_watchlist(watchlist_name)
+        return self.account_ifc.get_markets_from_watchlist(watchlist_name)
 
     def navigate_market_node(self, node_id: str) -> Dict[str, Any]:
         """
@@ -53,7 +53,7 @@ class Broker:
         """
         Attempt to close the requested open position
         """
-        return self.account_ifc.close_positions(position)
+        return self.account_ifc.close_position(position)
 
     def trade(
             self, market_id: str, trade_direction: TradeDirection, limit: float, stop: float
@@ -81,7 +81,7 @@ class Broker:
         """Return a pandas dataframe containing MACD techical
         indicator for the reqested market with requested interval
         """
-        return self.stocks_ifc.get_macd(market,interval, datapoints_range)
+        return self.stocks_ifc.get_macd(market, interval, datapoints_range)
 
     def get_prices(
         self, market: Market, interval: Interval, data_range: int
@@ -92,4 +92,4 @@ class Broker:
             - data_range: amount of datapoints to fetch
             - Returns the MarketHistory instance
         """
-        return self.stocks_ifc.get_prices(market,interval, data_range)
+        return self.stocks_ifc.get_prices(market, interval, data_range)

@@ -1,0 +1,113 @@
+[2025-05-05 23:42:43,033] INFO: Logging to file: /Users/e1/Documents/equitiestradingbot/log/trading_bot_2025-05-05T23_42_43_033390.log
+[2025-05-05 23:42:43,033] INFO: Initialising IGInterface...
+[2025-05-05 23:42:43,038] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-05 23:42:43,199] DEBUG: https://demo-api.ig.com:443 "POST /gateway/deal/session HTTP/1.1" 200 617
+[2025-05-05 23:42:43,201] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-05 23:42:43,292] DEBUG: https://demo-api.ig.com:443 "PUT /gateway/deal/session HTTP/1.1" 412 56
+[2025-05-05 23:42:43,293] INFO: Account is already set as default
+[2025-05-05 23:42:43,293] INFO: Using stock interface: IGInterface
+[2025-05-05 23:42:43,293] INFO: Simple MACD strategy initialised.
+[2025-05-05 23:42:46,325] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-05 23:42:46,414] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 777
+[2025-05-05 23:42:49,446] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-05 23:42:49,664] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/None HTTP/1.1" 400 47
+[2025-05-05 23:42:49,665] ERROR: HTTP request returned 400
+[2025-05-05 23:42:49,665] ERROR: Generic exception caught: HTTP request returned 400
+[2025-05-05 23:42:49,667] ERROR: Traceback (most recent call last):
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/tradingbot.py", line 119, in start
+    self.process_open_positions()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/tradingbot.py", line 162, in process_open_positions
+    market = self.market_provider.get_market_from_epic(epic)
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/components/market_provider.py", line 65, in get_market_from_epic
+    return self._create_market(epic)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/components/market_provider.py", line 217, in _create_market
+    market = self.broker.get_market_info(epic_id)
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/components/broker/broker.py", line 70, in get_market_info
+    return self.account_ifc.get_market_info(market_id)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/components/broker/ig_interface.py", line 198, in get_market_info
+    info = self._http_get(url)
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/components/broker/ig_interface.py", line 509, in _http_get
+    raise RuntimeError("HTTP request returned {}".format(response.status_code))
+RuntimeError: HTTP request returned 400
+
+[2025-05-05 23:42:52,689] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-05 23:42:52,760] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 777
+[2025-05-05 23:42:55,790] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-05 23:42:55,868] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/None HTTP/1.1" 400 47
+[2025-05-05 23:42:55,869] ERROR: HTTP request returned 400
+[2025-05-05 23:42:55,869] ERROR: Generic exception caught: HTTP request returned 400
+[2025-05-05 23:42:55,870] ERROR: Traceback (most recent call last):
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/tradingbot.py", line 119, in start
+    self.process_open_positions()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/tradingbot.py", line 162, in process_open_positions
+    market = self.market_provider.get_market_from_epic(epic)
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/components/market_provider.py", line 65, in get_market_from_epic
+    return self._create_market(epic)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/components/market_provider.py", line 217, in _create_market
+    market = self.broker.get_market_info(epic_id)
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/components/broker/broker.py", line 70, in get_market_info
+    return self.account_ifc.get_market_info(market_id)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/components/broker/ig_interface.py", line 198, in get_market_info
+    info = self._http_get(url)
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/components/broker/ig_interface.py", line 509, in _http_get
+    raise RuntimeError("HTTP request returned {}".format(response.status_code))
+RuntimeError: HTTP request returned 400
+
+[2025-05-05 23:42:58,896] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-05 23:42:59,019] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 777
+[2025-05-05 23:43:02,048] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-05 23:43:02,132] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/None HTTP/1.1" 400 47
+[2025-05-05 23:43:02,133] ERROR: HTTP request returned 400
+[2025-05-05 23:43:02,134] ERROR: Generic exception caught: HTTP request returned 400
+[2025-05-05 23:43:02,135] ERROR: Traceback (most recent call last):
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/tradingbot.py", line 119, in start
+    self.process_open_positions()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/tradingbot.py", line 162, in process_open_positions
+    market = self.market_provider.get_market_from_epic(epic)
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/components/market_provider.py", line 65, in get_market_from_epic
+    return self._create_market(epic)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/components/market_provider.py", line 217, in _create_market
+    market = self.broker.get_market_info(epic_id)
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/components/broker/broker.py", line 70, in get_market_info
+    return self.account_ifc.get_market_info(market_id)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/components/broker/ig_interface.py", line 198, in get_market_info
+    info = self._http_get(url)
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/components/broker/ig_interface.py", line 509, in _http_get
+    raise RuntimeError("HTTP request returned {}".format(response.status_code))
+RuntimeError: HTTP request returned 400
+
+[2025-05-05 23:43:05,213] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-05 23:43:05,317] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 776
+[2025-05-05 23:43:08,353] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-05 23:43:08,454] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/None HTTP/1.1" 400 47
+[2025-05-05 23:43:08,455] ERROR: HTTP request returned 400
+[2025-05-05 23:43:08,455] ERROR: Generic exception caught: HTTP request returned 400
+[2025-05-05 23:43:08,457] ERROR: Traceback (most recent call last):
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/tradingbot.py", line 119, in start
+    self.process_open_positions()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/tradingbot.py", line 162, in process_open_positions
+    market = self.market_provider.get_market_from_epic(epic)
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/components/market_provider.py", line 65, in get_market_from_epic
+    return self._create_market(epic)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/components/market_provider.py", line 217, in _create_market
+    market = self.broker.get_market_info(epic_id)
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/components/broker/broker.py", line 70, in get_market_info
+    return self.account_ifc.get_market_info(market_id)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/components/broker/ig_interface.py", line 198, in get_market_info
+    info = self._http_get(url)
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/components/broker/ig_interface.py", line 509, in _http_get
+    raise RuntimeError("HTTP request returned {}".format(response.status_code))
+RuntimeError: HTTP request returned 400
+

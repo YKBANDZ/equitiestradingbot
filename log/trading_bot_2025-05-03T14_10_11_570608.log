@@ -1,0 +1,17 @@
+[2025-05-03 14:10:11,571] INFO: Logging to file: /Users/e1/Documents/equitiestradingbot/log/trading_bot_2025-05-03T14_10_11_570608.log
+[2025-05-03 14:10:11,571] INFO: Initialising YFinanceInterval...
+[2025-05-03 14:10:11,571] INFO: Initialising IGInterface...
+[2025-05-03 14:10:11,576] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-03 14:10:11,748] DEBUG: https://demo-api.ig.com:443 "POST /gateway/deal/session HTTP/1.1" 200 611
+[2025-05-03 14:10:11,749] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-03 14:10:11,857] DEBUG: https://demo-api.ig.com:443 "PUT /gateway/deal/session HTTP/1.1" 412 56
+[2025-05-03 14:10:11,859] INFO: Account is already set as default
+[2025-05-03 14:10:11,859] INFO: Using stock interface: YFinanceInterface
+[2025-05-03 14:10:11,859] INFO: Simple MACD strategy initialised.
+[2025-05-03 14:10:11,860] INFO: Performing a single iteration of the market source
+[2025-05-03 14:10:14,882] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-03 14:10:14,981] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-05-03 14:10:14,982] INFO: Starting to process market source
+[2025-05-03 14:10:18,008] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-03 14:10:18,100] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/GC=F%20%20 HTTP/1.1" 400 47
+[2025-05-03 14:10:18,101] ERROR: HTTP request returned 400

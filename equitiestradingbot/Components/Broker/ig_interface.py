@@ -139,37 +139,30 @@ class IGInterface(AccountInterface, StocksInterface):
         return None, None
     
     def get_open_positions(self) -> List[Position]:
-        """Returns the account open positions
+        """
+        Returns the account open positions
         
             - Returns a list of Position objects
         """
         url = "{}/{}".format(self.api_base_url, IG_API_URL.POSITIONS.value)
         data = self._http_get(url)
-        if not data or "positions" not in data:
-            logging.error("Failed to get positions data")
-            return []
-            
+        logging.debug("Raw positions response: %s", json.dumps(data, indent=2))
         positions = []
         for d in data["positions"]:
-            try:
-                position_data = d.get("position", {})
-                positions.append(
-                    Position(
-                        deal_id=position_data.get("dealId"),
-                        size=position_data.get("size"),
-                        create_date=position_data.get("createDateUTC"),
-                        direction=TradeDirection[position_data.get("direction", "NONE")],
-                        level=position_data.get("level"),
-                        limit=position_data.get("limitLevel"),
-                        stop=position_data.get("stopLevel"),
-                        currency=position_data.get("currency"),
-                        epic=position_data.get("epic"),
-                        market_id=None,
-                    )
+            positions.append(
+                Position(
+                    deal_id=d["position"]["dealId"],
+                    size=d["position"]["size"],
+                    create_date=d["position"]["createdDateUTC"],
+                    direction=TradeDirection[d["position"]["direction"]],
+                    level=d["position"]["level"],
+                    limit=d["position"]["limitLevel"],
+                    stop=d["position"]["stopLevel"],
+                    currency=d["position"]["currency"],
+                    epic=d["market"]["epic"],
+                    market_id=None,   
                 )
-            except (KeyError, ValueError) as e:
-                logging.error(f"Error processing position data: {str(e)}")
-                continue
+            )
         return positions
     
     def get_position_map(self) -> Dict[str, int]:
@@ -179,13 +172,14 @@ class IGInterface(AccountInterface, StocksInterface):
         'marketId-tradeDirection' and the int is the trade size
             - Returns empty dict if an error occurs otherwise a dict(string:int)
         """
-        position_map: Dict[str, int] = {}
+        positionMap: Dict[str, int] = {}
         for item in self.get_open_positions():
-            if not item.epic or not item.direction:
-                continue
-            key = f"{item.epic}-{item.direction.name}"
-            position_map[key] = item.size + position_map.get(key, 0)
-        return position_map
+            key = item.epic + "-" + item.direction.name
+            if key in positionMap:
+                positionMap[key] = item.size + positionMap[key]
+            else:
+                positionMap[key] = item.size
+        return positionMap
     
     def get_market_info(self, epic_id: str) -> Market:
         """
@@ -209,8 +203,9 @@ class IGInterface(AccountInterface, StocksInterface):
         market.offer = info["snapshot"]["offer"]
         market.high = info["snapshot"]["high"]
         market.low = info["snapshot"]["low"]
-        market.stop_distance_min = info["dealinRules"]["minNoramlStopOrLimitDistance"]["value"]
-
+        market.stop_distance_min = info["dealingRules"]["minNormalStopOrLimitDistance"][
+            "value"
+        ]
         market.expiry = info["instrument"]["expiry"]
         return market
     
@@ -498,8 +493,12 @@ class IGInterface(AccountInterface, StocksInterface):
         headers = self.authenticated_headers.copy()
         if IG_API_URL.MARKET_NAV.value in url:
             headers["Version"] = "1"
+        elif IG_API_URL.MARKET.value in url:
+            headers["Version"] = "2"
+        else:
+            headers["Version"] = "2" # Default to version 2 for other endpoints
 
-        response = requests.get(url, headers= headers)
+        response = requests.get(url, headers=headers)
         if response.status_code != 200:
             logging.error("HTTP request returned {}".format(response.status_code))
             raise RuntimeError("HTTP request returned {}".format(response.status_code))

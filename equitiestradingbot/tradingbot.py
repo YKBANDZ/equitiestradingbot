@@ -158,19 +158,16 @@ class TradingBot:
         if positions is None:
             logging.warning("Unable to fetch open Positions! Will try again...")
             raise RuntimeError("Unable to fetch open positions")
-        for item in positions:
-            if item.epic is None:
-                logging.warning(f"Position with deal_id {item.deal_id} has None epic, skipping")
-                continue
-            market = self.market_provider.get_market_from_epic(item.epic)
+        for epic in [item.epic for item in positions]:
+            market = self.market_provider.get_market_from_epic(epic)
             self.process_market(market, positions)
     
     def process_market_source(self) -> None:
         """
         Process markets from the configured market source
         """
-        logging.info("Starting to process market source")
-        while True: 
+        while True:
+            logging.info("Starting to process market source")
             market = self.market_provider.next()
             positions = self.broker.get_open_positions()
             if positions is None:
