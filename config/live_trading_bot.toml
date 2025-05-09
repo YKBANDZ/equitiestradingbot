@@ -48,7 +48,7 @@ active = "ig_interface"
 values = ["yfinance", "alpha_vantage", "ig_interface"]
 
 [strategies]
-active = "simple_macd"
+active = "simple_boll_bands"
 values = ["simple_macd", "weighted_avg_peak", "simple_boll_bands"]
 [strategies.simple_macd]
 max_spread_perc = 5

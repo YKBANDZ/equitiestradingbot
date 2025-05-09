@@ -1,0 +1,19 @@
+[2025-05-08 18:03:03,304] INFO: Logging to file: /Users/e1/Documents/equitiestradingbot/log/trading_bot_2025-05-08T18_03_03_303977.log
+[2025-05-08 18:03:03,304] INFO: Initialising IGInterface...
+[2025-05-08 18:03:03,310] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-08 18:03:03,606] DEBUG: https://demo-api.ig.com:443 "POST /gateway/deal/session HTTP/1.1" 200 611
+[2025-05-08 18:03:03,607] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-08 18:03:03,678] DEBUG: https://demo-api.ig.com:443 "PUT /gateway/deal/session HTTP/1.1" 412 56
+[2025-05-08 18:03:03,678] INFO: Account is already set as default
+[2025-05-08 18:03:03,678] INFO: Using stock interface: IGInterface
+[2025-05-08 18:03:03,678] INFO: Simple MACD strategy initialised.
+[2025-05-08 18:03:03,679] INFO: Performing a single iteration of the market source
+[2025-05-08 18:03:06,701] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-08 18:03:06,775] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-05-08 18:03:06,776] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-05-08 18:03:06,776] INFO: Starting to process market source
+[2025-05-08 18:03:09,810] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-08 18:03:09,880] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.CFPGOLD.CFP.I HTTP/1.1" 404 68
+[2025-05-08 18:03:09,880] ERROR: HTTP request returned 404

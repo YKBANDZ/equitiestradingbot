@@ -12,7 +12,7 @@ class TradeDirection(Enum):
     NONE means no action to take
     """
 
-    NONE: "None"
+    NONE = "None"
     BUY = "BUY"
     SELL = "SELL"
 
@@ -127,7 +127,7 @@ class Utils:
         return time_range[0] <= time <= time_range[1]
 
     @staticmethod
-    def humanize_time(sec: Union[int, float]) -> str: 
+    def humanize_time(secs: Union[int, float]) -> str: 
         """Convert the given time (in seconds) into a readable format hh:mm:ss"""
         mins, secs = divmod(secs, 60)
         hours, mins = divmod(mins, 60)

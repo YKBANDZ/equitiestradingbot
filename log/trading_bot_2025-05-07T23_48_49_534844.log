@@ -1,0 +1,56 @@
+[2025-05-07 23:48:49,535] INFO: Logging to file: /Users/e1/Documents/equitiestradingbot/log/trading_bot_2025-05-07T23_48_49_534844.log
+[2025-05-07 23:48:49,535] INFO: Initialising IGInterface...
+[2025-05-07 23:48:49,541] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-07 23:48:49,722] DEBUG: https://demo-api.ig.com:443 "POST /gateway/deal/session HTTP/1.1" 200 618
+[2025-05-07 23:48:49,723] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-07 23:48:49,805] DEBUG: https://demo-api.ig.com:443 "PUT /gateway/deal/session HTTP/1.1" 412 56
+[2025-05-07 23:48:49,807] INFO: Account is already set as default
+[2025-05-07 23:48:49,807] INFO: Using stock interface: IGInterface
+[2025-05-07 23:48:49,807] INFO: Simple MACD strategy initialised.
+[2025-05-07 23:48:49,808] INFO: Performing a single iteration of the market source
+[2025-05-07 23:48:52,841] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-07 23:48:52,960] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 679
+[2025-05-07 23:48:52,961] DEBUG: Raw positions response: {
+  "positions": [
+    {
+      "position": {
+        "contractSize": 1.0,
+        "createdDate": "2025/05/06 18:22:20:000",
+        "dealId": "DIAAAATP62AT7AQ",
+        "dealSize": 10.0,
+        "direction": "BUY",
+        "limitLevel": 4216.05,
+        "openLevel": 3416.05,
+        "currency": "GBP",
+        "controlledRisk": false,
+        "stopLevel": 3316.05,
+        "trailingStep": null,
+        "trailingStopDistance": null,
+        "limitedRiskPremium": null
+      },
+      "market": {
+        "instrumentName": "Spot Gold (\u00a31 Contract)",
+        "expiry": "-",
+        "epic": "CS.D.CFPGOLD.CFP.IP",
+        "instrumentType": "CURRENCIES",
+        "lotSize": 1.0,
+        "high": 3374.1,
+        "low": 3363.54,
+        "percentageChange": 0.15,
+        "netChange": 5.1,
+        "bid": 3369.75,
+        "offer": 3370.05,
+        "updateTime": "23:48:52",
+        "delayTime": 0,
+        "streamingPricesAvailable": true,
+        "marketStatus": "TRADEABLE",
+        "scalingFactor": 1
+      }
+    }
+  ]
+}
+[2025-05-07 23:48:56,004] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-07 23:48:56,105] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.CFPGOLD.CFP.IP HTTP/1.1" 200 1561
+[2025-05-07 23:48:59,129] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-07 23:48:59,232] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/accounts HTTP/1.1" 200 557
+[2025-05-07 23:48:59,274] WARNING: Market is closed: stop processing

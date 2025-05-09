@@ -72,7 +72,7 @@ class WeightedAvgPeak(Strategy):
         high_prices = datapoints.dataframe[MarketHistory.HIGH_COLUMN].values
         low_prices = datapoints.dataframe[MarketHistory.LOW_COLUMN].values
         close_prices = datapoints.dataframe[MarketHistory.CLOSE_COLUMN].values
-        ltv = datapoints.dataframe[MarketHistory.VOLUE_COLUMN].values
+        ltv = datapoints.dataframe[MarketHistory.VOLUME_COLUMN].values
 
         logging.debug(f"Data points: high prices: {len(high_prices)}, low prices: {len(low_prices)}, close prices: {len(close_prices)}, volumes: {len(ltv)}")
 

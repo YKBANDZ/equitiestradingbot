@@ -14,7 +14,6 @@
   File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/tradingbot.py", line 119, in start
     self.process_open_positions()
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/tradingbot.py", line 156, in process_open_positions
     positions = self.broker.get_open_positions()
   File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/components/broker/broker.py", line 26, in get_open_positions
     return self.account_ifc.get_open_positions()

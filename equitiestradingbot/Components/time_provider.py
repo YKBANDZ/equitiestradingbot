@@ -26,59 +26,30 @@ class TimeProvider:
         logging.debug("TimeProvider __init__")
         # Initialize NYSE calendar
         self.nyse = mcal.get_calendar('NYSE')
+        self.gold = mcal.get_calendar('CMEGlobex_Gold')
 
-    def is_market_open(self, timezone: str) -> bool:
+    def is_market_open(self, timezone: str, epic: str) -> bool:
         """
-        Return True if the US market is open, false otherwise
+        Return True if the market is open, false otherwise
         - **timezone**: string representing the timezone
+        - **epic**: string representing the epic
         """
-        tz = pytz.timezone(timezone)
-        now = datetime.now(tz=tz)
+        tz = pytz.timezone('America/Chicago') if 'GOLD' in epic else pytz.timezone(timezone)
+        now = datetime.now(tz)
+
+        # Choose calender based on instrument
+        calender = self.gold if 'GOLD' in epic else self.nyse
         
         # Check if today is a trading day
-        schedule = self.nyse.schedule(start_date=now.date(), end_date=now.date())
+        schedule = calender.schedule(start_date=now.date(), end_date=now.date())
         if schedule.empty:
             return False
-            
-        # Get market hours for today
+        
+        #Get market hours for today
         market_open = schedule.iloc[0]['market_open'].tz_convert(tz)
         market_close = schedule.iloc[0]['market_close'].tz_convert(tz)
-        
-        # Check if current time is within market hours
-        return market_open <= now <= market_close
-    
-    def get_seconds_to_market_opening(self, from_time: datetime) -> float:
-        """Return the amount of seconds from now to the next market opening,
-        taking into account US market holidays"""
-        
-        # Get the calendar for next 5 days
-        schedule = self.nyse.schedule(
-            start_date=from_time.date(),
-            end_date=(from_time + pd.Timedelta(days=5)).date()
-        )
-        
-        if schedule.empty:
-            # If no trading days in next 5 days, use a default of next Monday
-            return (from_time + pd.Timedelta(days=7)).replace(
-                hour=9, minute=30, second=0, microsecond=0
-            ).timestamp() - from_time.timestamp()
             
-        # Get next market opening time
-        next_open = schedule.iloc[0]['market_open']
-        if from_time.timestamp() > next_open.timestamp():
-            # If we're past today's opening, get next day's opening
-            if len(schedule) > 1:
-                next_open = schedule.iloc[1]['market_open']
-            else:
-                # Get schedule for further dates if needed
-                future_schedule = self.nyse.schedule(
-                    start_date=(from_time + pd.Timedelta(days=5)).date(),
-                    end_date=(from_time + pd.Timedelta(days=10)).date()
-                )
-                if not future_schedule.empty:
-                    next_open = future_schedule.iloc[0]['market_open']
-                
-        return next_open.timestamp() - from_time.timestamp()
+        return market_open <= now <= market_close
     
     def wait_for(self, time_amount_type: TimeAmount, amount: float = -1.0) -> None:
         """Wait for the specified amount of time.

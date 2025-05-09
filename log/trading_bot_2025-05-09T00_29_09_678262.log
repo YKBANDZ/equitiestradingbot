@@ -1,0 +1,26 @@
+[2025-05-09 00:29:09,678] INFO: Logging to file: /Users/e1/Documents/equitiestradingbot/log/trading_bot_2025-05-09T00_29_09_678262.log
+[2025-05-09 00:29:09,678] INFO: Initialising IGInterface...
+[2025-05-09 00:29:09,686] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-09 00:29:09,861] DEBUG: https://demo-api.ig.com:443 "POST /gateway/deal/session HTTP/1.1" 200 611
+[2025-05-09 00:29:09,863] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-09 00:29:09,947] DEBUG: https://demo-api.ig.com:443 "PUT /gateway/deal/session HTTP/1.1" 412 56
+[2025-05-09 00:29:09,948] INFO: Account is already set as default
+[2025-05-09 00:29:09,948] INFO: Using stock interface: IGInterface
+[2025-05-09 00:29:09,948] INFO: Simple MACD strategy initialised.
+[2025-05-09 00:29:09,949] INFO: Performing a single iteration of the market source
+[2025-05-09 00:29:12,975] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-09 00:29:13,046] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-05-09 00:29:13,047] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-05-09 00:29:13,048] INFO: Starting to process market source
+[2025-05-09 00:29:16,068] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-09 00:29:16,158] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.CFPGOLD.CFP.IP HTTP/1.1" 200 1562
+[2025-05-09 00:29:19,182] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-09 00:29:19,274] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-05-09 00:29:19,274] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-05-09 00:29:22,301] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-09 00:29:22,399] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/accounts HTTP/1.1" 200 550
+[2025-05-09 00:29:22,432] WARNING: Market is closed: stop processing

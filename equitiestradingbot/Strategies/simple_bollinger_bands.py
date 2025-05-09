@@ -26,8 +26,8 @@ class SimpleBollingerBands(Strategy):
 
         raw = config.get_raw_config()
         self.window = raw["strategies"]["simple_boll_bands"]["window"]
-        self.limit_p = raw["strategies"]["simple_boll_band"]["limit_perc"]
-        self.stop_p = raw["strategies"]["simple_boll_band"]["stop_perc"]
+        self.limit_p = raw["strategies"]["simple_boll_bands"]["limit_perc"]
+        self.stop_p = raw["strategies"]["simple_boll_bands"]["stop_perc"]
 
     def initialise(self) -> None: 
         """

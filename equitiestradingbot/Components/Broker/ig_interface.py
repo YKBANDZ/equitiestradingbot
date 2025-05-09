@@ -125,12 +125,12 @@ class IGInterface(AccountInterface, StocksInterface):
             (balance, deposit)
             """
         
-        url = "{}/{}".format(self.api_base_url, IG_API_URL.SESSION.value)
+        url = "{}/{}".format(self.api_base_url, IG_API_URL.ACCOUNTS.value)
         d = self._http_get(url)
         if d is not None: 
             try:
                 for i in d["accounts"]:
-                    if str(i["accountType"]) == "SPREADBET":
+                    if str(i["accountType"]) == "CFD":
                         balance = i["balance"]["balance"]
                         deposit = i["balance"]["deposit"]
                         return balance, deposit
@@ -152,10 +152,10 @@ class IGInterface(AccountInterface, StocksInterface):
             positions.append(
                 Position(
                     deal_id=d["position"]["dealId"],
-                    size=d["position"]["size"],
-                    create_date=d["position"]["createdDateUTC"],
+                    size=d["position"]["dealSize"],
+                    create_date=d["position"]["createdDate"],
                     direction=TradeDirection[d["position"]["direction"]],
-                    level=d["position"]["level"],
+                    level=d["position"]["openLevel"],
                     limit=d["position"]["limitLevel"],
                     stop=d["position"]["stopLevel"],
                     currency=d["position"]["currency"],
@@ -232,11 +232,12 @@ class IGInterface(AccountInterface, StocksInterface):
             self.api_base_url,
             IG_API_URL.PRICES.value,
             market.epic,
-            interval,
+            interval.value,
             data_range,
         )
         logging.info(f"Fetching price data from URL: {url}")
         data = self._http_get(url)
+        logging.debug(f"Raw price data: {json.dumps(data, indent=2)}")  # Add debug logging
         if "allowance" in data: 
             remaining_allowance = data["allowance"]["remainingAllowance"]
             reset_time = Utils.humanize_time(int(data["allowance"]["allowanceExpiry"]))
@@ -252,17 +253,11 @@ class IGInterface(AccountInterface, StocksInterface):
         lows = []
         closes = []
         volumes = []
-        
-        if "prices" not in data:
-            logging.error(f"No price data found in response for {market.id}")
-            return MarketHistory(market, [], [], [], [])
-            
-        logging.info(f"Found {len(data['prices'])} price points for {market.id}")
-        
         for price in data["prices"]:
-            dates.append(price["snapshotTimeUTC"])
+            dates.append(price["snapshotTime"])
             highs.append(price["highPrice"]["bid"])
-            closes.append(price["lowPrice"]["bid"])
+            lows.append(price["lowPrice"]["bid"])
+            closes.append(price["closePrice"]["bid"])
             volumes.append(float(price["lastTradedVolume"]))
             
         logging.info(f"Processed {len(dates)} price points for {market.id}")
@@ -281,7 +276,7 @@ class IGInterface(AccountInterface, StocksInterface):
             - **stop**: stop level
             - Returns **false** if an error occurs otherwise True
         """
-        if self._config.is_paper_paper_trading_enabled():
+        if self._config.is_paper_trading_enabled():
             logging.info(
                 "Paper Trade: {} {} with limit={} and stop={}".format(
                     trade_direction.value, epic_id, limit, stop
@@ -289,12 +284,13 @@ class IGInterface(AccountInterface, StocksInterface):
             )
             return True
         
-        url = "{}/{}".format(self.api_base_url, IG_API_URL.POSITIONS_OTC.value)
+        # Use standard positions endpoint instead of OTC
+        url = "{}/{}".format(self.api_base_url, IG_API_URL.POSITIONS.value)
         data = {
             "direction": trade_direction.value,
             "epic": epic_id,
             "limitLevel": limit,
-            "orderType": self._config.get_in_order_type(),
+            "orderType": self._config.get_ig_order_type(),
             "size": self._config.get_ig_order_size(),
             "expiry": self._config.get_ig_order_expiry(),
             "guaranteedStop": self._config.get_ig_use_g_stop(),
@@ -303,11 +299,15 @@ class IGInterface(AccountInterface, StocksInterface):
             "stopLevel": stop,
         }
 
+        logging.info(f"Attempting to place trade with data: {json.dumps(data, indent=2)}")
+        
         r = requests.post(
-            url, data=json.dumps(data), headers=self.authenicated_headers
+            url, data=json.dumps(data), headers=self.authenticated_headers
         )
 
         if r.status_code != 200:
+            logging.error(f"Trade request failed with status code: {r.status_code}")
+            logging.error(f"Response: {r.text}")
             return False
         
         d = json.loads(r.text)
@@ -349,14 +349,9 @@ class IGInterface(AccountInterface, StocksInterface):
             - **position**: Position object to close
             - Returns **false** if an error occurs otherwise True
         """
-        if not position or not position.deal_id:
-            logging.error("Invalid position provided")
-            return False
-            
         if self._config.is_paper_trading_enabled():
             logging.info("Paper trade: close {} position".format(position.epic))
             return True
-            
         # To close we need the opposite direction
         direction = TradeDirection.NONE
         if position.direction is TradeDirection.BUY:
@@ -367,7 +362,7 @@ class IGInterface(AccountInterface, StocksInterface):
             logging.error("Wrong position direction!")
             return False
     
-        url = "{}/{}".format(self.api_base_url, IG_API_URL.POSITIONS_OTC.value)
+        url = "{}/{}".format(self.api_base_url, IG_API_URL.POSITIONS.value)
         data = {
             "dealId": position.deal_id,
             "epic": None,
@@ -425,7 +420,6 @@ class IGInterface(AccountInterface, StocksInterface):
                             "Error closing position for {}".format(p.market_id)
                         )
                         result = False
-        
             else:
                 logging.error("Unable to retrieve open positons!")
                 result = False
@@ -479,7 +473,7 @@ class IGInterface(AccountInterface, StocksInterface):
                     for m in data["markets"]:
                         markets.append(self.get_market_info(m["epic"]))
                 break
-            return markets
+        return markets
     
     def _http_get(self, url: str) -> Dict[str, Any]:
         """
@@ -488,17 +482,7 @@ class IGInterface(AccountInterface, StocksInterface):
         Return None if an error is received from the API
         """
         self._wait_before_call(self._config.get_ig_api_timeout())
-
-        # Add version header for market navigation
-        headers = self.authenticated_headers.copy()
-        if IG_API_URL.MARKET_NAV.value in url:
-            headers["Version"] = "1"
-        elif IG_API_URL.MARKET.value in url:
-            headers["Version"] = "2"
-        else:
-            headers["Version"] = "2" # Default to version 2 for other endpoints
-
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=self.authenticated_headers)
         if response.status_code != 200:
             logging.error("HTTP request returned {}".format(response.status_code))
             raise RuntimeError("HTTP request returned {}".format(response.status_code))
@@ -511,67 +495,22 @@ class IGInterface(AccountInterface, StocksInterface):
     def get_macd(
         self, market: Market, interval: Interval, data_range: int
     ) -> MarketMACD:
-        """
-        Calculate MACD data from price history
-        """
-        try:
-            # Get price data
-            logging.info(f"Getting price data for {market.id}")
-            price_data = self.get_prices(market, interval, data_range)
-            if price_data is None or price_data.dataframe is None or price_data.dataframe.empty:
-                logging.error(f"No price data available for {market.id}")
-                return MarketMACD(market, [], [], [], [])
-
-            # Calculate MACD
-            logging.info(f"Calculating MACD for {market.id}")
-            df = price_data.dataframe.copy()
-            
-            # Calculate 12-day EMA
-            exp1 = df['4. close'].ewm(span=12, adjust=False).mean()
-            logging.debug(f"12-day EMA calculated for {market.id}")
-            
-            # Calculate 26-day EMA
-            exp2 = df['4. close'].ewm(span=26, adjust=False).mean()
-            logging.debug(f"26-day EMA calculated for {market.id}")
-            
-            # Calculate MACD line
-            macd = exp1 - exp2
-            logging.debug(f"MACD line calculated for {market.id}")
-            
-            # Calculate signal line (9-day EMA of MACD)
-            signal = macd.ewm(span=9, adjust=False).mean()
-            logging.debug(f"Signal line calculated for {market.id}")
-            
-            # Calculate histogram
-            hist = macd - signal
-            logging.debug(f"Histogram calculated for {market.id}")
-            
-            # Create MACD dataframe
-            macd_df = pandas.DataFrame({
-                MarketMACD.MACD_COLUMN: macd,
-                MarketMACD.SIGNAL_COLUMN: signal,
-                MarketMACD.HIST_COLUMN: hist
-            }, index=df.index)
-            
-            # Log the last few values
-            if not macd_df.empty:
-                last_row = macd_df.iloc[-1]
-                logging.info(f"Latest MACD values for {market.id}:")
-                logging.info(f"  MACD: {last_row[MarketMACD.MACD_COLUMN]:.4f}")
-                logging.info(f"  Signal: {last_row[MarketMACD.SIGNAL_COLUMN]:.4f}")
-                logging.info(f"  Histogram: {last_row[MarketMACD.HIST_COLUMN]:.4f}")
-            
-            return MarketMACD(market, macd_df[MarketMACD.MACD_COLUMN].tolist(),
-                            macd_df[MarketMACD.SIGNAL_COLUMN].tolist(),
-                            macd_df[MarketMACD.HIST_COLUMN].tolist(),
-                            macd_df)
-                            
-        except Exception as e:
-            logging.error(f"Error calculating MACD for {market.id}: {str(e)}")
-            logging.error(traceback.format_exc())
-            return MarketMACD(market, [], [], [], [])
-
-
+        data = self._macd_dataframe(market, interval)
+        return MarketMACD(
+            market,
+            data.index,
+            data["MACD"].values,
+            data["Signal"].values,
+            data["Hist"].values,
+        )
+    
+    def _macd_dataframe(self, market: Market, interval: Interval) -> pandas.DataFrame:
+        prices = self.get_prices(market, Interval.DAY, 26)
+        if prices is None:
+            return None
+        return Utils.macd_df_from_list(
+            prices.dataframe[MarketHistory.CLOSE_COLUMN].values
+        )
 
 
     

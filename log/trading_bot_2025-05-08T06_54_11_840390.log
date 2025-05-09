@@ -1,0 +1,151 @@
+[2025-05-08 06:54:11,841] INFO: Logging to file: /Users/e1/Documents/equitiestradingbot/log/trading_bot_2025-05-08T06_54_11_840390.log
+[2025-05-08 06:54:11,841] INFO: Initialising IGInterface...
+[2025-05-08 06:54:11,847] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-08 06:54:12,046] DEBUG: https://demo-api.ig.com:443 "POST /gateway/deal/session HTTP/1.1" 200 619
+[2025-05-08 06:54:12,048] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-08 06:54:12,138] DEBUG: https://demo-api.ig.com:443 "PUT /gateway/deal/session HTTP/1.1" 412 56
+[2025-05-08 06:54:12,139] INFO: Account is already set as default
+[2025-05-08 06:54:12,139] INFO: Using stock interface: IGInterface
+[2025-05-08 06:54:12,139] INFO: Simple MACD strategy initialised.
+[2025-05-08 06:54:15,159] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-08 06:54:15,254] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 682
+[2025-05-08 06:54:15,255] DEBUG: Raw positions response: {
+  "positions": [
+    {
+      "position": {
+        "contractSize": 1.0,
+        "createdDate": "2025/05/06 18:22:20:000",
+        "dealId": "DIAAAATP62AT7AQ",
+        "dealSize": 10.0,
+        "direction": "BUY",
+        "limitLevel": 4216.05,
+        "openLevel": 3416.05,
+        "currency": "GBP",
+        "controlledRisk": false,
+        "stopLevel": 3316.05,
+        "trailingStep": null,
+        "trailingStopDistance": null,
+        "limitedRiskPremium": null
+      },
+      "market": {
+        "instrumentName": "Spot Gold (\u00a31 Contract)",
+        "expiry": "-",
+        "epic": "CS.D.CFPGOLD.CFP.IP",
+        "instrumentType": "CURRENCIES",
+        "lotSize": 1.0,
+        "high": 3415.05,
+        "low": 3360.63,
+        "percentageChange": -0.05,
+        "netChange": -1.8,
+        "bid": 3362.75,
+        "offer": 3363.25,
+        "updateTime": "06:54:15",
+        "delayTime": 0,
+        "streamingPricesAvailable": true,
+        "marketStatus": "TRADEABLE",
+        "scalingFactor": 1
+      }
+    }
+  ]
+}
+[2025-05-08 06:54:18,275] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-08 06:54:18,401] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.CFPGOLD.CFP.IP HTTP/1.1" 200 1563
+[2025-05-08 06:54:21,429] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-08 06:54:21,550] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/accounts HTTP/1.1" 200 558
+[2025-05-08 06:54:21,593] INFO: Processing GC
+[2025-05-08 06:54:21,593] INFO: Strategy run starting for market: GC (Spot Gold (£1 Contract))
+[2025-05-08 06:54:21,593] INFO: Fetching MACD data for GC
+[2025-05-08 06:54:21,593] CRITICAL: CRITICAL: get_prices method called
+[2025-05-08 06:54:21,593] INFO: Fetching price data from URL: https://demo-api.ig.com/gateway/deal/prices/CS.D.CFPGOLD.CFP.IP/Interval.DAY/26
+[2025-05-08 06:54:24,616] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-08 06:54:24,688] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/prices/CS.D.CFPGOLD.CFP.IP/Interval.DAY/26 HTTP/1.1" 400 46
+[2025-05-08 06:54:24,689] ERROR: HTTP request returned 400
+[2025-05-08 06:54:24,689] ERROR: Error fetching MACD data for GC: HTTP request returned 400
+[2025-05-08 06:54:24,692] ERROR: Traceback (most recent call last):
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/strategies/simple_macd.py", line 49, in fetch_datapoints
+    macd_data = self.broker.get_macd(market, Interval.DAY, 30)
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/components/broker/broker.py", line 84, in get_macd
+    return self.stocks_ifc.get_macd(market, interval, datapoints_range)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/components/broker/ig_interface.py", line 498, in get_macd
+    data = self._macd_dataframe(market, interval)
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/components/broker/ig_interface.py", line 508, in _macd_dataframe
+    prices = self.get_prices(market, Interval.DAY, 26)
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/components/broker/ig_interface.py", line 239, in get_prices
+    data = self._http_get(url)
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/components/broker/ig_interface.py", line 488, in _http_get
+    raise RuntimeError("HTTP request returned {}".format(response.status_code))
+RuntimeError: HTTP request returned 400
+
+[2025-05-08 06:54:24,693] INFO: Strategy datapoints fetched for GC, calling find_trade_signal
+[2025-05-08 06:54:24,693] INFO: Analyzing market: GC (Spot Gold (£1 Contract))
+[2025-05-08 06:54:24,693] INFO: Current bid: 3362.58, offer: 3363.08, spread: 0.5
+[2025-05-08 06:54:24,693] INFO: Stop distance min: 1.0, using stop_perc: 5
+[2025-05-08 06:54:24,693] WARNING: No MACD data available for GC
+[2025-05-08 06:54:24,693] ERROR: Strategy exception caught: type object 'TradeDirection' has no attribute 'NONE'
+[2025-05-08 06:54:24,694] DEBUG: Traceback (most recent call last):
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/tradingbot.py", line 186, in process_market
+    trade, limit, stop = self.strategy.run(market)
+                         ~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/strategies/base.py", line 48, in run
+    result = self.find_trade_signal(market, datapoints)
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/strategies/simple_macd.py", line 86, in find_trade_signal
+    return TradeDirection.NONE, None, None
+           ^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'TradeDirection' has no attribute 'NONE'
+
+[2025-05-08 06:54:24,694] INFO: Starting to process market source
+[2025-05-08 06:54:27,709] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-08 06:54:27,788] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.CFPGOLD.CFP.I HTTP/1.1" 404 68
+[2025-05-08 06:54:27,788] ERROR: HTTP request returned 404
+[2025-05-08 06:54:27,788] INFO: Wait for 0.00 hours...
+[2025-05-08 06:54:30,800] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-08 06:54:30,869] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 683
+[2025-05-08 06:54:30,870] DEBUG: Raw positions response: {
+  "positions": [
+    {
+      "position": {
+        "contractSize": 1.0,
+        "createdDate": "2025/05/06 18:22:20:000",
+        "dealId": "DIAAAATP62AT7AQ",
+        "dealSize": 10.0,
+        "direction": "BUY",
+        "limitLevel": 4216.05,
+        "openLevel": 3416.05,
+        "currency": "GBP",
+        "controlledRisk": false,
+        "stopLevel": 3316.05,
+        "trailingStep": null,
+        "trailingStopDistance": null,
+        "limitedRiskPremium": null
+      },
+      "market": {
+        "instrumentName": "Spot Gold (\u00a31 Contract)",
+        "expiry": "-",
+        "epic": "CS.D.CFPGOLD.CFP.IP",
+        "instrumentType": "CURRENCIES",
+        "lotSize": 1.0,
+        "high": 3415.05,
+        "low": 3360.63,
+        "percentageChange": -0.09,
+        "netChange": -2.92,
+        "bid": 3361.63,
+        "offer": 3362.13,
+        "updateTime": "06:54:30",
+        "delayTime": 0,
+        "streamingPricesAvailable": true,
+        "marketStatus": "TRADEABLE",
+        "scalingFactor": 1
+      }
+    }
+  ]
+}
+[2025-05-08 06:54:33,891] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-08 06:54:33,970] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.CFPGOLD.CFP.IP HTTP/1.1" 200 1562
+[2025-05-08 06:54:36,998] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-08 06:54:37,111] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/accounts HTTP/1.1" 200 558
+[2025-05-08 06:54:37,122] INFO: Processing GC
+[2025-05-08 06:54:37,123] INFO: Strategy run starting for market: GC (Spot Gold (£1 Contract))
+[2025-05-08 06:54:37,123] INFO: Fetching MACD data for GC
+[2025-05-08 06:54:37,123] CRITICAL: CRITICAL: get_prices method called
+[2025-05-08 06:54:37,123] INFO: Fetching price data from URL: https://demo-api.ig.com/gateway/deal/prices/CS.D.CFPGOLD.CFP.IP/Interval.DAY/26

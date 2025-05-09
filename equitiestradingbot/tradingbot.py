@@ -222,8 +222,12 @@ class TradingBot:
             )
             raise NotSafeToTradeException()
         # Skip market hours check when in paper trading mode
-        if not self.config.is_paper_trading_enabled() and not self.time_provider.is_market_open(self.config.get_time_zone()):
-            raise MarketClosedException()
+        if not self.config.is_paper_trading_enabled():
+            # Get epic from epics_ids.txt
+            with open(self.config.get_epic_ids_filepath(), 'r') as f:
+                epic = f.readline().strip()
+            if not self.time_provider.is_market_open(self.config.get_time_zone(), epic):
+                raise MarketClosedException()
         
     
     def process_trade(

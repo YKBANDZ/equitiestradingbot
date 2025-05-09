@@ -136,7 +136,7 @@ class MarketProvider:
                 filecontents = f.readlines()
                 for line in filecontents:
                     # remove linebreak which is in the last character of the string
-                    current_epic_id = line[: -1]
+                    current_epic_id = line.strip()
                     epic_ids.append(current_epic_id)
         except IOError:
             # Create the file empty

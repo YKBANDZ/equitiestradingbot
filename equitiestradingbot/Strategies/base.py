@@ -37,18 +37,12 @@ class Strategy(ABC):
         """
         Run the strategy against the specified market
         """
-        logging.info(f"Strategy run starting for market: {market.id} ({market.name if hasattr(market, 'name') else 'unnamed'})")
         datapoints = self.fetch_datapoints(market)
-        
+        logging.debug("Strategy datapoints: {}".format(datapoints))
         if datapoints is None:
-            logging.info(f"Unable to fetch market datapoints for {market.id}")
+            logging.debug("Unable to fetch market datapoints")
             return TradeDirection.NONE, None, None
-            
-        logging.info(f"Strategy datapoints fetched for {market.id}, calling find_trade_signal")
-        result = self.find_trade_signal(market, datapoints)
-        logging.info(f"Strategy find_trade_signal completed for {market.id}. Result: {result}")
-        
-        return result
+        return self.find_trade_signal(market, datapoints)
     
     ##############################################################
     # OVERRIDE THESE FUNCTIONS IN STRATEGY IMPLEMENTATION
