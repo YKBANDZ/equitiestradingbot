@@ -1,0 +1,84 @@
+[2025-05-28 09:38:31,888] INFO: Initialising IGInterface...
+[2025-05-28 09:38:31,888] INFO: Attempting authentication to URL: https://demo-api.ig.com/gateway/deal/session
+[2025-05-28 09:38:31,889] INFO: Using API Key: 43c58bfd6f5ead3ac4d803d18f883db5857c9631
+[2025-05-28 09:38:31,889] INFO: Using Account ID: Z5YISO
+[2025-05-28 09:38:31,893] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-28 09:38:32,044] DEBUG: https://demo-api.ig.com:443 "POST /gateway/deal/session HTTP/1.1" 200 623
+[2025-05-28 09:38:32,044] INFO: Successfully obtained authentication tokens
+[2025-05-28 09:38:32,045] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-28 09:38:32,126] DEBUG: https://demo-api.ig.com:443 "PUT /gateway/deal/session HTTP/1.1" 412 56
+[2025-05-28 09:38:32,127] INFO: Account is already set as default
+[2025-05-28 09:38:32,127] INFO: Using stock interface: IGInterface
+[2025-05-28 09:38:32,128] INFO: Advanced Momentum Strategy initialised
+[2025-05-28 09:38:32,128] INFO: Advanced Momentum Strategy created
+[2025-05-28 09:38:32,128] INFO: Closing all the open positions...
+[2025-05-28 09:38:35,149] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-28 09:38:35,225] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 668
+[2025-05-28 09:38:35,226] DEBUG: Raw positions response: {
+  "positions": [
+    {
+      "position": {
+        "contractSize": 1.0,
+        "createdDate": "2025/05/27 16:18:33:000",
+        "dealId": "DIAAAATXLSCUJAM",
+        "dealSize": 10.0,
+        "direction": "BUY",
+        "limitLevel": 3319.155,
+        "openLevel": 3296.03,
+        "currency": "GBP",
+        "controlledRisk": false,
+        "stopLevel": 3286.5,
+        "trailingStep": null,
+        "trailingStopDistance": null,
+        "limitedRiskPremium": null
+      },
+      "market": {
+        "instrumentName": "Spot Gold",
+        "expiry": "DFB",
+        "epic": "CS.D.USCGC.TODAY.IP",
+        "instrumentType": "CURRENCIES",
+        "lotSize": 1.0,
+        "high": 3324.02,
+        "low": 3291.5,
+        "percentageChange": 0.48,
+        "netChange": 15.79,
+        "bid": 3316.59,
+        "offer": 3316.89,
+        "updateTime": "09:38:35",
+        "delayTime": 0,
+        "streamingPricesAvailable": true,
+        "marketStatus": "TRADEABLE",
+        "scalingFactor": 1
+      }
+    }
+  ]
+}
+[2025-05-28 09:38:35,227] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-28 09:38:35,342] DEBUG: https://demo-api.ig.com:443 "POST /gateway/deal/positions/otc HTTP/1.1" 200 35
+[2025-05-28 09:38:38,369] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-05-28 09:38:38,451] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/confirms/ELCMDQ9KA5UTYPT HTTP/1.1" 200 438
+[2025-05-28 09:38:38,452] INFO: Order confirmation response: {
+  "date": "2025-05-28T08:38:35.366",
+  "status": null,
+  "reason": "POSITION_NOT_AVAILABLE_TO_CLOSE",
+  "dealStatus": "REJECTED",
+  "epic": "CS.D.USCGC.TODAY.IP",
+  "expiry": null,
+  "dealReference": "ELCMDQ9KA5UTYPT",
+  "dealId": "DIAAAATXRHGBSAJ",
+  "affectedDeals": [],
+  "level": null,
+  "size": null,
+  "direction": "SELL",
+  "stopLevel": null,
+  "limitLevel": null,
+  "stopDistance": null,
+  "limitDistance": null,
+  "guaranteedStop": false,
+  "trailingStop": false,
+  "profit": null,
+  "profitCurrency": null
+}
+[2025-05-28 09:38:38,452] ERROR: Order confirmation failed. Reason: POSITION_NOT_AVAILABLE_TO_CLOSE
+[2025-05-28 09:38:38,452] ERROR: Could not confirm order closure for CS.D.USCGC.TODAY.IP
+[2025-05-28 09:38:38,452] ERROR: Impossible to close all open positions, retry.

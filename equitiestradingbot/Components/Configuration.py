@@ -77,8 +77,15 @@ class Configuration:
     def get_credentials_filepath(self) -> Property:
         return self._find_property(["credentials_filepath"])
     
+    def get_telegram_credentials_filepath(self) -> Property:
+        return self._find_property(["telegram_credentials_filepath"])
+    
     def get_credentials(self) -> CredentialsDict:
         with Path(self.get_credentials_filepath()).open(mode="r") as f:
+            return json.load(f)
+        
+    def get_telegram_credentials(self) -> CredentialsDict:
+        with Path(self.get_telegram_credentials_filepath()).open(mode="r") as f:
             return json.load(f)
         
     def get_spin_interval(self) -> Property:
@@ -166,6 +173,12 @@ class Configuration:
     
     def get_strategies_values(self) -> Property:
         return self._find_property(["strategies", "values"])
+    
+    def get_telegram_signal_window(self) -> Property:
+        return self._find_property(["telegram", "signal_window_hours"])
+
+    def get_telegram_signal_history_filepath(self) -> Property:
+        return self._find_property(["telegram", "signal_history_filepath"])
     
 
 

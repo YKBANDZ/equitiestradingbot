@@ -5,15 +5,19 @@ from ..components.configuration import Configuration
 from ..components.broker.broker import Broker
 from .simple_bollinger_bands import SimpleBollingerBands
 from .simple_macd import SimpleMACD
-from.weighted_avg_peak import WeightedAvgPeak
+from .weighted_avg_peak import WeightedAvgPeak
+from .smart_sentiment_strategy import SmartSentimentStrategy
+from .advanced_momentum_strategy import AdvancedMomentumStrategy
 
-StrategyImp1 = Union[SimpleMACD, WeightedAvgPeak, SimpleBollingerBands]
+StrategyImp1 = Union[SimpleMACD, WeightedAvgPeak, SimpleBollingerBands, SmartSentimentStrategy, AdvancedMomentumStrategy]
 
 
 class StrategyNames(Enum):
     SIMPLE_MACD = "simple_macd"
     WEIGHTED_AVG_PEAK = "weighted_avg_peak"
     SIMPLE_BOLL_BANDS = "simple_boll_bands"
+    SMART_SENTIMENT = "smart_sentiment"
+    ADVANCED_MOMENTUM = "advanced_momentum"
 
 
 class StrategyFactory:
@@ -50,6 +54,10 @@ class StrategyFactory:
             return WeightedAvgPeak(self.config, self.broker)
         elif strategy_name == StrategyNames.SIMPLE_BOLL_BANDS.value:
             return SimpleBollingerBands(self.config, self.broker)
+        elif strategy_name == StrategyNames.SMART_SENTIMENT.value:
+            return SmartSentimentStrategy(self.config, self.broker)
+        elif strategy_name == StrategyNames.ADVANCED_MOMENTUM.value:
+            return AdvancedMomentumStrategy(self.config, self.broker)
         else: 
             raise ValueError("Strategy {} does not exist".format(strategy_name))
     

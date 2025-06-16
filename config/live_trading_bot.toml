@@ -1,15 +1,18 @@
 # Percentage of account value to use
 max_account_usable = 50
-time_zone = "America/New_York"
+time_zone = "Europe/London"
+paper_trading = false
+spin_interval = 1800
 
 # Path to the credentials file
 credentials_filepath = "/Users/e1/Documents/equitiestradingbot/config/credentials/live_credentials.json"
 
-# Seconds to wait for between each spin of the bot across all markets
-spin_interval = 2
+# Path to Telegram credentials file
+telegram_credentials_filepath = "/Users/e1/Documents/equitiestradingbot/config/credentials/telegrambot_credentials.json"
 
-# Enable paper trading
-paper_trading = false
+[telegram]
+signal_window_hours = 1.0
+signal_history_filepath = "/Users/e1/Documents/equitiestradingbot/config/telegram/signal_history.json"
 
 [logging]
 enable = true
@@ -19,6 +22,8 @@ debug = true
 [market_source]
 active = "list"
 values = ["list", "api", "watchlist"]
+
+# Path to the epic IDs file
 [market_source.epic_id_list]
 filepath = "/Users/e1/Documents/equitiestradingbot/data/epics_ids.txt"
 
@@ -26,17 +31,20 @@ filepath = "/Users/e1/Documents/equitiestradingbot/data/epics_ids.txt"
 active = "ig_interface"
 values = ["yfinance", "alpha_vantage", "ig_interface"]
 
+# YFinance API settings
 [stocks_interface.yfinance]
 api_timeout = 0.5
 
+# Alpha Vantage API settings
 [stocks_interface.alpha_vantage]
 api_timeout = 12
 
+# IG Interface settings
 [stocks_interface.ig_interface]
 order_type = "MARKET"
-order_size = 1
+order_size = 10
 order_expiry = "DFB"
-order_currency = "USD"
+order_currency = "GBP"
 order_force_open = true
 use_g_stop = false
 use_demo_account = true
@@ -48,17 +56,70 @@ active = "ig_interface"
 values = ["yfinance", "alpha_vantage", "ig_interface"]
 
 [strategies]
-active = "simple_boll_bands"
-values = ["simple_macd", "weighted_avg_peak", "simple_boll_bands"]
+active = "advanced_momentum"
+values = ["simple_macd", "weighted_avg_peak", "simple_boll_bands", "smart_sentiment", "advanced_momentum"]
+
+# Simple MACD strategy settings
 [strategies.simple_macd]
 max_spread_perc = 5
 limit_perc = 10
 stop_perc = 5
+
+# Weighted Average Peak strategy settings
 [strategies.weighted_avg_peak]
 max_spread = 3
 limit_perc = 10
 stop_perc = 5
+
+# Simple Bollinger Bands strategy settings
 [strategies.simple_boll_bands]
 window = 60
 limit_perc = 10
 stop_perc = 5
+
+# Smart Sentiment strategy settings
+[strategies.smart_sentiment]
+window = 30
+limit_perc = 1.2
+stop_perc = 0.8
+
+# Advanced Momentum strategy settings
+[strategies.advanced_momentum]
+# Entry Signal Parameters
+fast_length = 12
+slow_length = 26
+signal_smoothing = 9
+
+# Exit Strategy Parameters
+atr_length = 14
+base_risk_multiplier = 1.5
+risk_reward_ratio = 2.5
+force_exit_squeeze = true
+
+# Trend Filter Parameters
+use_long_trend = true
+use_short_trend = true
+ma_length = 100
+
+# RSI Parameters
+rsi_length = 14
+rsi_long_boundary = 50
+rsi_short_boundary = 50
+
+# ADX Parameters
+use_adx_limiter = true
+adx_length = 5
+di_length = 5
+adx_high_boundary = 50
+adx_low_boundary = 20
+
+# Volume Filter Parameters
+use_volume_filter = false
+volume_ma_length = 10
+
+# Squeeze Parameters
+bb_length = 20
+bb_mult_factor = 1.0
+kc_length = 20
+kc_mult_factor = 1.5
+use_true_range = true

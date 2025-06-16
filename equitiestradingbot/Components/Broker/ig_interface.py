@@ -5,7 +5,6 @@ from typing import Any, Dict, List, Optional
 
 import pandas
 import requests
-import traceback
 
 from ...interfaces import Market, MarketHistory, MarketMACD, Position
 from ..utils import Interval, TradeDirection, Utils
@@ -17,7 +16,7 @@ class IG_API_URL(Enum):
     IG REST API urls
     """
 
-    BASE_URI = "https://api.ig.com/gateway/deal"
+    BASE_URI = "https://@api.ig.com/gateway/deal"
     DEMO_PREFIX = "demo-"
     SESSION = "session"
     ACCOUNTS = "accounts"
@@ -37,6 +36,7 @@ class IGInterface(AccountInterface, StocksInterface):
     
     api_base_url: str
     authenticated_headers: Dict[str, str]
+    _has_logged_raw_data: bool = False  # Class variable to track if we've logged raw data
 
     def initialise(self) -> None:
         logging.info("Initialising IGInterface...")
@@ -45,7 +45,7 @@ class IGInterface(AccountInterface, StocksInterface):
             if self._config.get_ig_use_demo_account()
             else ""
         )
-        self.api_base_url = IG_API_URL.BASE_URI.value.replace("api", f"{demoPrefix}api")
+        self.api_base_url = IG_API_URL.BASE_URI.value.replace("@", demoPrefix)
         self.authenticated_headers = {}
         if self._config.is_paper_trading_enabled():
             logging.info("Paper Trading is active")
@@ -67,22 +67,28 @@ class IGInterface(AccountInterface, StocksInterface):
             "X-IG-API-KEY": self._config.get_credentials()["api_key"],
             "Version": "2",
         }
-
         url = "{}/{}".format(self.api_base_url, IG_API_URL.SESSION.value)
+        logging.info(f"Attempting authentication to URL: {url}")
+        logging.info(f"Using API Key: {self._config.get_credentials()['api_key']}")
+        logging.info(f"Using Account ID: {self._config.get_credentials()['account_id']}")
+        
         response = requests.post(url, data=json.dumps(data), headers=headers)
 
         if response.status_code != 200:
-            logging.debug(
-                "Authentication returned code: {}".format(response.status_code)
+            logging.error(
+                "Authentication failed with code: {}".format(response.status_code)
             )
+            logging.error(f"Response content: {response.text}")
             return False
         
         headers_json = dict(response.headers)
         try:
             CST_token = headers_json["CST"]
             x_sec_token = headers_json["X-SECURITY-TOKEN"]
+            logging.info("Successfully obtained authentication tokens")
         except Exception as e:
             logging.error(f"Failed to get authentication tokens: {str(e)}")
+            logging.error(f"Response headers: {headers_json}")
             return False
         
         self.authenticated_headers = {
@@ -93,7 +99,8 @@ class IGInterface(AccountInterface, StocksInterface):
             "X-SECURITY-TOKEN": x_sec_token,
         }
 
-        return self.set_default_account(self._config.get_credentials()["account_id"])
+        self.set_default_account(self._config.get_credentials()["account_id"])
+        return True
     
     def set_default_account(self, account_id: str) -> bool:
         """
@@ -237,7 +244,14 @@ class IGInterface(AccountInterface, StocksInterface):
         )
         logging.info(f"Fetching price data from URL: {url}")
         data = self._http_get(url)
-        logging.debug(f"Raw price data: {json.dumps(data, indent=2)}")  # Add debug logging
+        
+        # Only log raw price data on first run
+        if not self._has_logged_raw_data:
+            logging.debug(f"Raw price data: {json.dumps(data, indent=2)}")
+            self._has_logged_raw_data = True
+        else:
+            logging.debug("Raw price data received (not logged to avoid repetition)")
+            
         if "allowance" in data: 
             remaining_allowance = data["allowance"]["remainingAllowance"]
             reset_time = Utils.humanize_time(int(data["allowance"]["allowanceExpiry"]))
@@ -259,7 +273,6 @@ class IGInterface(AccountInterface, StocksInterface):
             lows.append(price["lowPrice"]["bid"])
             closes.append(price["closePrice"]["bid"])
             volumes.append(float(price["lastTradedVolume"]))
-            
         logging.info(f"Processed {len(dates)} price points for {market.id}")
         history = MarketHistory(market, dates, highs, lows, closes, volumes)
         return history
@@ -285,18 +298,18 @@ class IGInterface(AccountInterface, StocksInterface):
             return True
         
         # Use standard positions endpoint instead of OTC
-        url = "{}/{}".format(self.api_base_url, IG_API_URL.POSITIONS.value)
+        url = "{}/{}".format(self.api_base_url, IG_API_URL.POSITIONS_OTC.value)
         data = {
             "direction": trade_direction.value,
             "epic": epic_id,
             "limitLevel": limit,
             "orderType": self._config.get_ig_order_type(),
             "size": self._config.get_ig_order_size(),
+            "stopLevel": stop,
+            "forceOpen": self._config.get_ig_order_force_open(),
             "expiry": self._config.get_ig_order_expiry(),
             "guaranteedStop": self._config.get_ig_use_g_stop(),
             "currencyCode": self._config.get_ig_order_currency(),
-            "forceOpen": self._config.get_ig_order_force_open(),
-            "stopLevel": stop,
         }
 
         logging.info(f"Attempting to place trade with data: {json.dumps(data, indent=2)}")
@@ -335,11 +348,14 @@ class IGInterface(AccountInterface, StocksInterface):
         url = "{}/{}/{}".format(self.api_base_url, IG_API_URL.CONFIRMS.value, dealRef)
         d = self._http_get(url)
 
+        logging.info(f"Order confirmation response: {json.dumps(d, indent=2)}")
+
         if d is not None:
-            if d["reason"] !="SUCCESS":
-                return False
-            else:
+            if d["reason"] == "SUCCESS":
                 return True
+            else:
+                logging.error(f"Order confirmation failed. Reason: {d['reason']}")
+                return False
         return False
 
     def close_position(self, position: Position) -> bool:
@@ -362,7 +378,7 @@ class IGInterface(AccountInterface, StocksInterface):
             logging.error("Wrong position direction!")
             return False
     
-        url = "{}/{}".format(self.api_base_url, IG_API_URL.POSITIONS.value)
+        url = "{}/{}".format(self.api_base_url, IG_API_URL.POSITIONS_OTC.value)
         data = {
             "dealId": position.deal_id,
             "epic": None,
@@ -377,30 +393,18 @@ class IGInterface(AccountInterface, StocksInterface):
         
         del_headers = dict(self.authenticated_headers)
         del_headers["_method"] = "DELETE"
-        
-        try:
-            r = requests.post(url, data=json.dumps(data), headers=del_headers)
-            if r.status_code != 200:
-                logging.error(f"Failed to close position: {r.status_code}")
-                return False
-                
-            d = json.loads(r.text)
-            deal_ref = d.get("dealReference")
-            if not deal_ref:
-                logging.error("No deal reference received")
-                return False
-                
-            if self.confirm_order(deal_ref):
-                logging.info("Position for {} closed".format(position.epic))
-                return True
-            else:
-                logging.error("Could not confirm order closure")
-                return False
-        except Exception as e:
-            logging.error(f"Error closing position: {str(e)}")
+        r = requests.post(url, data=json.dumps(data), headers=del_headers)
+        if r.status_code != 200:
+            return False
+        d = json.loads(r.text)
+        deal_ref = d["dealReference"]
+        if self.confirm_order(deal_ref):
+            logging.info("Position for {} closed".format(position.epic))
+            return True
+        else:
+            logging.error("Could not confirm order closure for {}".format(position.epic))
             return False
     
-
     def close_all_positions(self) -> bool:
         """
         Try to close all the account open position.
@@ -483,6 +487,14 @@ class IGInterface(AccountInterface, StocksInterface):
         """
         self._wait_before_call(self._config.get_ig_api_timeout())
         response = requests.get(url, headers=self.authenticated_headers)
+        if response.status_code == 401:
+            logging.info("Session expired, re-authenticating...")
+            if self.authenticate():
+                # Retry the request with new authentication
+                response = requests.get(url, headers=self.authenticated_headers)
+            else:
+                raise RuntimeError("Failed to re-authenticate")
+        
         if response.status_code != 200:
             logging.error("HTTP request returned {}".format(response.status_code))
             raise RuntimeError("HTTP request returned {}".format(response.status_code))

@@ -76,33 +76,19 @@ class TradingBot:
         debugLevel = (
             logging.DEBUG if self.config.is_logging_debug_enabled() else logging.INFO
         )
-        
-        # Create formatter
-        formatter = logging.Formatter("[%(asctime)s] %(levelname)s: %(message)s")
-        
-        # Setup console handler
-        console_handler = logging.StreamHandler()
-        console_handler.setFormatter(formatter)
-        console_handler.setLevel(debugLevel)
-        
-        # Setup root logger
-        logging.root.setLevel(debugLevel)
-        logging.root.addHandler(console_handler)
-        
-        # Add file handler if logging is enabled
         if self.config.is_logging_enabled():
             log_filename = self.config.get_log_filepath()
-            log_path = Path(log_filename)
-            log_path.parent.mkdir(parents=True, exist_ok=True)
+            Path(log_filename).parent.mkdir(parents=True, exist_ok=True)
+            logging.basicConfig(
+                filename=log_filename,
+                level=debugLevel,
+                format="[%(asctime)s] %(levelname)s: %(message)s"
+            )
+        else:
+            logging.basicConfig(
+                level=debugLevel, format="[%(asctime)s] %(levelname)s: %(message)s"
+            )
             
-            file_handler = logging.FileHandler(log_filename)
-            file_handler.setFormatter(formatter)
-            file_handler.setLevel(debugLevel)
-            logging.root.addHandler(file_handler)
-            
-            logging.info(f"Logging to file: {log_filename}")
-
-    
     def start(self, single_pass=False) -> None:
         """
         Starts the Trading bot main loop
@@ -166,14 +152,28 @@ class TradingBot:
         """
         Process markets from the configured market source
         """
-        while True:
-            logging.info("Starting to process market source")
-            market = self.market_provider.next()
+        logging.info("Starting to process market source")
+        try:
+            # First check if we have any open positions
             positions = self.broker.get_open_positions()
             if positions is None:
                 logging.warning("Unable to fetch open positions! Will try again...")
                 raise RuntimeError("Unable to fetch open positions")
-            self.process_market(market, positions)
+            
+            # If we have any open positions, don't look for new trades
+            if len(positions) > 0:
+                logging.info("Open positions exist. Skipping new trade search.")
+                return
+            
+            # Only look for new trades if we have no open positions
+            while True:
+                market = self.market_provider.next()
+                self.process_market(market, positions)
+        except StopIteration:
+            logging.info("Finished processing all markets in the source")
+            # Reset the market provider to ensure fresh data on next iteration
+            self.market_provider.reset()
+            return
     
     def process_market(self, market: Market, open_positions: List[Position]) -> None:
         """Spin the strategy on all the markets"""
@@ -184,8 +184,6 @@ class TradingBot:
             print(f"Running strategy on market {market.id}")
             self.strategy.set_open_positions(open_positions)
             trade, limit, stop = self.strategy.run(market)
-            print(f"Strategy completed for {market.id}. Result: {trade}, {limit}, {stop}")
-            logging.info(f"Strategy result for {market.id}: Direction={trade}, Limit={limit}, Stop={stop}")
             self.process_trade(market,trade, limit, stop, open_positions)
         except Exception as e:
             logging.error("Strategy exception caught: {}".format(e))
@@ -256,7 +254,7 @@ class TradingBot:
             elif item.epic == market.epic and direction is not item.direction:
                 self.broker.close_position(item)
                 return
-            self.broker.trade(market.epic, direction, limit, stop)
+        self.broker.trade(market.epic, direction, limit, stop)
 
     def backtest(
             self,

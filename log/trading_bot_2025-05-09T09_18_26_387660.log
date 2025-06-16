@@ -1,8 +1,0 @@
-[2025-05-09 09:18:26,388] INFO: Logging to file: /Users/e1/Documents/equitiestradingbot/log/trading_bot_2025-05-09T09_18_26_387660.log
-[2025-05-09 09:18:26,388] INFO: Initialising IGInterface...
-[2025-05-09 09:18:26,395] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
-[2025-05-09 09:18:26,563] DEBUG: https://demo-api.ig.com:443 "POST /gateway/deal/session HTTP/1.1" 200 611
-[2025-05-09 09:18:26,565] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
-[2025-05-09 09:18:26,638] DEBUG: https://demo-api.ig.com:443 "PUT /gateway/deal/session HTTP/1.1" 412 56
-[2025-05-09 09:18:26,639] INFO: Account is already set as default
-[2025-05-09 09:18:26,639] INFO: Using stock interface: IGInterface
