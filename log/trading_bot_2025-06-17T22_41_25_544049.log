@@ -1,0 +1,85 @@
+[2025-06-17 22:41:25,544] INFO: Initialising IGInterface...
+[2025-06-17 22:41:25,545] INFO: Attempting authentication to URL: https://demo-api.ig.com/gateway/deal/session
+[2025-06-17 22:41:25,545] INFO: Using API Key: 43c58bfd6f5ead3ac4d803d18f883db5857c9631
+[2025-06-17 22:41:25,545] INFO: Using Account ID: Z5YISO
+[2025-06-17 22:41:25,551] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-06-17 22:41:25,829] DEBUG: https://demo-api.ig.com:443 "POST /gateway/deal/session HTTP/1.1" 200 619
+[2025-06-17 22:41:25,830] INFO: Successfully obtained authentication tokens
+[2025-06-17 22:41:25,832] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-06-17 22:41:25,931] DEBUG: https://demo-api.ig.com:443 "PUT /gateway/deal/session HTTP/1.1" 412 56
+[2025-06-17 22:41:25,931] INFO: Account is already set as default
+[2025-06-17 22:41:25,931] INFO: Using stock interface: IGInterface
+[2025-06-17 22:41:25,931] INFO: Advanced Momentum Strategy initialised
+[2025-06-17 22:41:25,934] INFO: Advanced Momentum Strategy created
+[2025-06-17 22:41:28,953] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-06-17 22:41:29,088] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-06-17 22:41:29,089] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-06-17 22:41:29,089] INFO: Starting to process market source
+[2025-06-17 22:41:32,113] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-06-17 22:41:32,193] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-06-17 22:41:32,195] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-06-17 22:41:35,215] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-06-17 22:41:35,311] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.USCGC.TODAY.IP HTTP/1.1" 200 2019
+[2025-06-17 22:41:38,339] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-06-17 22:41:38,437] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/accounts HTTP/1.1" 200 552
+[2025-06-17 22:41:38,478] WARNING: Market is closed: stop processing
+[2025-06-17 22:41:38,478] INFO: Current UK time: 2025-06-17 22:41:38.478175+01:00
+[2025-06-17 22:41:38,478] INFO: Next market open: 2025-06-18 23:00:00+01:00
+[2025-06-17 22:41:38,478] INFO: Seconds until market open: 87501.521825
+[2025-06-17 22:41:41,500] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-06-17 22:41:41,606] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-06-17 22:41:41,608] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-06-17 22:41:41,608] INFO: Starting to process market source
+[2025-06-17 22:41:44,634] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-06-17 22:41:44,711] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-06-17 22:41:44,713] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-06-17 22:41:47,746] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-06-17 22:41:47,822] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/ HTTP/1.1" 500 77
+[2025-06-17 22:41:47,823] ERROR: HTTP request returned 500
+[2025-06-17 22:41:47,823] INFO: Finished processing all markets in the source
+[2025-06-17 22:41:47,823] INFO: Resetting MarketProvider
+[2025-06-17 22:41:47,824] INFO: Wait for 0.50 hours...
+[2025-06-17 23:12:08,883] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-06-17 23:12:09,026] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-06-17 23:12:09,028] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-06-17 23:12:09,028] INFO: Starting to process market source
+[2025-06-17 23:12:12,070] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-06-17 23:12:12,198] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-06-17 23:12:12,199] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-06-17 23:12:15,253] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-06-17 23:12:15,354] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.USCGC.TODAY.IP HTTP/1.1" 200 2026
+[2025-06-17 23:12:18,399] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-06-17 23:12:18,546] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/accounts HTTP/1.1" 200 552
+[2025-06-17 23:12:18,608] WARNING: Market is closed: stop processing
+[2025-06-17 23:12:18,608] INFO: Current UK time: 2025-06-17 23:12:18.608436+01:00
+[2025-06-17 23:12:18,608] INFO: Next market open: 2025-06-18 23:00:00+01:00
+[2025-06-17 23:12:18,608] INFO: Seconds until market open: 85661.391564
+[2025-06-17 23:12:21,632] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-06-17 23:12:21,723] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-06-17 23:12:21,725] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-06-17 23:12:21,725] INFO: Starting to process market source
+[2025-06-17 23:12:24,769] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-06-17 23:12:24,849] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-06-17 23:12:24,851] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-06-17 23:12:27,905] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-06-17 23:12:28,012] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/ HTTP/1.1" 500 77
+[2025-06-17 23:12:28,013] ERROR: HTTP request returned 500
+[2025-06-17 23:12:28,013] INFO: Finished processing all markets in the source
+[2025-06-17 23:12:28,013] INFO: Resetting MarketProvider
+[2025-06-17 23:12:28,014] INFO: Wait for 0.50 hours...

@@ -101,6 +101,7 @@ class AVInterface(StocksInterface):
         history = MarketHistory(
             market,
             data.index,
+            data["1. open"].values,
             data["2. high"].values,
             data["3. low"].values,
             data["4. close"].values,

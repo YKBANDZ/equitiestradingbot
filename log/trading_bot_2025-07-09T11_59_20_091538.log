@@ -1,0 +1,60 @@
+[2025-07-09 11:59:20,092] INFO: Initialising IGInterface...
+[2025-07-09 11:59:20,092] INFO: Attempting authentication to URL: https://demo-api.ig.com/gateway/deal/session
+[2025-07-09 11:59:20,092] INFO: Using API Key: 43c58bfd6f5ead3ac4d803d18f883db5857c9631
+[2025-07-09 11:59:20,092] INFO: Using Account ID: Z5YISO
+[2025-07-09 11:59:20,098] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-09 11:59:20,316] DEBUG: https://demo-api.ig.com:443 "POST /gateway/deal/session HTTP/1.1" 200 619
+[2025-07-09 11:59:20,317] INFO: Successfully obtained authentication tokens
+[2025-07-09 11:59:20,317] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-09 11:59:20,407] DEBUG: https://demo-api.ig.com:443 "PUT /gateway/deal/session HTTP/1.1" 412 56
+[2025-07-09 11:59:20,409] INFO: Account is already set as default
+[2025-07-09 11:59:20,409] INFO: Using stock interface: IGInterface
+[2025-07-09 11:59:20,409] INFO: Intraday Gold Strategy configuration loaded successfully
+[2025-07-09 11:59:20,409] INFO: Intraday Gold Strategy initialised
+[2025-07-09 11:59:20,412] INFO: Intraday Gold Strategy configuration loaded successfully
+[2025-07-09 11:59:23,443] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-09 11:59:23,519] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-09 11:59:23,520] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-09 11:59:23,520] INFO: Starting to process market source
+[2025-07-09 11:59:26,539] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-09 11:59:26,616] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-09 11:59:26,618] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-09 11:59:29,642] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-09 11:59:29,728] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.USCGC.TODAY.IP HTTP/1.1" 200 2030
+[2025-07-09 11:59:32,751] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-09 11:59:32,897] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/accounts HTTP/1.1" 200 552
+[2025-07-09 11:59:32,901] INFO: Processing GC
+[2025-07-09 11:59:32,901] CRITICAL: CRITICAL: get_prices method called
+[2025-07-09 11:59:32,901] INFO: Fetching price data from URL: https://demo-api.ig.com/gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/100
+[2025-07-09 11:59:35,922] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-09 11:59:36,020] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/100 HTTP/1.1" 403 75
+[2025-07-09 11:59:36,022] ERROR: HTTP request returned 403
+[2025-07-09 11:59:36,022] ERROR: Strategy exception caught: HTTP request returned 403
+[2025-07-09 11:59:36,030] DEBUG: Traceback (most recent call last):
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/tradingbot.py", line 186, in process_market
+    trade, limit, stop = self.strategy.run(market)
+                         ~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/strategies/base.py", line 40, in run
+    datapoints = self.fetch_datapoints(market)
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/strategies/intraday_gold_strategy.py", line 71, in fetch_datapoints
+    return self.broker.get_prices(market, Interval.MINUTE_15, 100)  # Get enough data for pattern detection
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/components/broker/broker.py", line 95, in get_prices
+    return self.stocks_ifc.get_prices(market, interval, data_range)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/components/broker/ig_interface.py", line 246, in get_prices
+    data = self._http_get(url)
+  File "/Users/e1/Documents/equitiestradingbot/equitiestradingbot/components/broker/ig_interface.py", line 502, in _http_get
+    raise RuntimeError("HTTP request returned {}".format(response.status_code))
+RuntimeError: HTTP request returned 403
+
+[2025-07-09 11:59:39,050] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-09 11:59:39,144] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/ HTTP/1.1" 500 77
+[2025-07-09 11:59:39,145] ERROR: HTTP request returned 500
+[2025-07-09 11:59:39,145] INFO: Finished processing all markets in the source
+[2025-07-09 11:59:39,145] INFO: Resetting MarketProvider
+[2025-07-09 11:59:39,147] INFO: Wait for 0.08 hours...

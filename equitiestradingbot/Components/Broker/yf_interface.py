@@ -44,6 +44,7 @@ class YFinanceInterface(StocksInterface):
         history = MarketHistory(
             market,
             data.index,
+            data["Open"].values,
             data["High"].values,
             data["Low"].values,
             data["Close"].values,

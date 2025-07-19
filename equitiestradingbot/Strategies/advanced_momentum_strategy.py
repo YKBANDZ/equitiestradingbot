@@ -134,7 +134,6 @@ class AdvancedMomentumStrategy(Strategy):
                 confidence_data = self._calculate_confidence_score(df, TradeDirection.SELL)
                 
                 conditions = [
-                    "Price < 50 EMA & 200 EMA",
                     "MACD below signal line and below zero",
                     f"Confidence Score: {confidence_data['overall_score']}/100 ({confidence_data['confidence_level']})"
                 ]
@@ -305,11 +304,12 @@ class AdvancedMomentumStrategy(Strategy):
         conditions_met = 0
         total_conditions = 0
         
-        # Mandatory EMA trend structure check
-        if not (latest['close'] > latest['ema_50'] and latest['close'] > latest['ema_200']):
+        # EMA trend structure check (now optional like other conditions)
+        if latest['close'] > latest['ema_50'] and latest['close'] > latest['ema_200']:
+            conditions_met += 1
+            logging.info("  - EMA trend structure met")
+        else:
             logging.info("  - EMA trend structure not met")
-            return False
-        logging.info("  - EMA trend structure met")
         
         # Mandatory MACD check with 60% minimum difference
         macd_diff_percent = ((latest['macd'] - latest['signal']) / abs(latest['signal'])) * 100
@@ -319,7 +319,7 @@ class AdvancedMomentumStrategy(Strategy):
         logging.info(f"  - MACD conditions met (above signal line by {macd_diff_percent:.2f}% and above zero)")
         
         # Additional conditions (need 2 more to meet the 4/5 requirement)
-        total_conditions = 3  # RSI, Volume, ADX
+        total_conditions = 4  # EMA, RSI, Volume, ADX
         
         # Check RSI
         if latest['rsi'] > self.rsi_long_boundary:
@@ -345,7 +345,7 @@ class AdvancedMomentumStrategy(Strategy):
                 logging.info("  - Squeeze momentum condition met")
         
         logging.info(f"  - Additional conditions met: {conditions_met}/{total_conditions}")
-        # Need at least 2 more conditions (total of 4 including mandatory EMA and MACD)
+        # Need at least 2 more conditions (total of 4 including mandatory MACD)
         return conditions_met >= 2
 
     def _check_short_conditions(self, df: pd.DataFrame) -> bool:
@@ -355,11 +355,12 @@ class AdvancedMomentumStrategy(Strategy):
         conditions_met = 0
         total_conditions = 0
         
-        # Mandatory EMA trend structure check
-        if not (latest['close'] < latest['ema_50'] and latest['close'] < latest['ema_200']):
+        # EMA trend structure check (now optional like other conditions)
+        if latest['close'] < latest['ema_50'] and latest['close'] < latest['ema_200']:
+            conditions_met += 1
+            logging.info("  - EMA trend structure met (price < 50 EMA < 200 EMA)")
+        else:
             logging.info("  - EMA trend structure not met")
-            return False
-        logging.info("  - EMA trend structure met (price < 50 EMA < 200 EMA)")
         
         # Mandatory MACD check with 60% minimum difference
         macd_diff_percent = ((latest['signal'] - latest['macd']) / abs(latest['signal'])) * 100
@@ -369,7 +370,7 @@ class AdvancedMomentumStrategy(Strategy):
         logging.info(f"  - MACD conditions met (below signal line by {macd_diff_percent:.2f}% and below zero)")
         
         # Additional conditions (need 2 more to meet the 4/5 requirement)
-        total_conditions = 3  # RSI, Volume, ADX
+        total_conditions = 4  # EMA, RSI, Volume, ADX
         
         # Check RSI
         if latest['rsi'] < 40:
@@ -395,7 +396,7 @@ class AdvancedMomentumStrategy(Strategy):
                 logging.info("  - Squeeze momentum condition met")
         
         logging.info(f"  - Additional conditions met: {conditions_met}/{total_conditions}")
-        # Need at least 2 more conditions (total of 4 including mandatory EMA and MACD)
+        # Need at least 2 more conditions (total of 4 including mandatory MACD)
         return conditions_met >= 2
 
     def _check_trend_conditions(self, df: pd.DataFrame) -> bool:

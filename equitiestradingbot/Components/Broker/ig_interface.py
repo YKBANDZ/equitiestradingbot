@@ -263,18 +263,20 @@ class IGInterface(AccountInterface, StocksInterface):
         
         logging.info(f"Processing price data for {market.id}")
         dates = []
+        opens = []
         highs = []
         lows = []
         closes = []
         volumes = []
         for price in data["prices"]:
             dates.append(price["snapshotTime"])
+            opens.append(price["openPrice"]["bid"])
             highs.append(price["highPrice"]["bid"])
             lows.append(price["lowPrice"]["bid"])
             closes.append(price["closePrice"]["bid"])
             volumes.append(float(price["lastTradedVolume"]))
         logging.info(f"Processed {len(dates)} price points for {market.id}")
-        history = MarketHistory(market, dates, highs, lows, closes, volumes)
+        history = MarketHistory(market, dates, opens, highs, lows, closes, volumes)
         return history
     
     def trade(

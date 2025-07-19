@@ -1,0 +1,447 @@
+[2025-07-08 15:28:16,022] INFO: Initialising IGInterface...
+[2025-07-08 15:28:16,023] INFO: Attempting authentication to URL: https://demo-api.ig.com/gateway/deal/session
+[2025-07-08 15:28:16,023] INFO: Using API Key: 43c58bfd6f5ead3ac4d803d18f883db5857c9631
+[2025-07-08 15:28:16,023] INFO: Using Account ID: Z5YISO
+[2025-07-08 15:28:16,056] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-08 15:28:16,252] DEBUG: https://demo-api.ig.com:443 "POST /gateway/deal/session HTTP/1.1" 200 617
+[2025-07-08 15:28:16,255] INFO: Successfully obtained authentication tokens
+[2025-07-08 15:28:16,264] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-08 15:28:16,392] DEBUG: https://demo-api.ig.com:443 "PUT /gateway/deal/session HTTP/1.1" 412 56
+[2025-07-08 15:28:16,393] INFO: Account is already set as default
+[2025-07-08 15:28:16,393] INFO: Using stock interface: IGInterface
+[2025-07-08 15:28:16,393] INFO: Simplicity Strategy initialised
+[2025-07-08 15:28:16,394] INFO: Simplicity Strategy created
+[2025-07-08 15:28:19,437] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-08 15:28:19,517] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-08 15:28:19,522] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-08 15:28:19,523] INFO: Starting to process market source
+[2025-07-08 15:28:22,553] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-08 15:28:22,664] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-08 15:28:22,666] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-08 15:28:25,688] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-08 15:28:25,773] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.USCGC.TODAY.IP HTTP/1.1" 200 2030
+[2025-07-08 15:28:28,794] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-08 15:28:28,943] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/accounts HTTP/1.1" 200 550
+[2025-07-08 15:28:28,946] INFO: Processing GC
+[2025-07-08 15:28:28,947] CRITICAL: CRITICAL: get_prices method called
+[2025-07-08 15:28:28,947] INFO: Fetching price data from URL: https://demo-api.ig.com/gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_30/10
+[2025-07-08 15:28:31,967] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-08 15:28:32,067] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_30/10 HTTP/1.1" 200 3160
+[2025-07-08 15:28:32,069] DEBUG: Raw price data: {
+  "prices": [
+    {
+      "snapshotTime": "2025:07:08-10:30:00",
+      "openPrice": {
+        "bid": 3324.88,
+        "ask": 3325.18,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3321.83,
+        "ask": 3322.33,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3326.03,
+        "ask": 3326.5,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3321.04,
+        "ask": 3321.34,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 1789
+    },
+    {
+      "snapshotTime": "2025:07:08-11:00:00",
+      "openPrice": {
+        "bid": 3322.14,
+        "ask": 3322.44,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3323.18,
+        "ask": 3323.68,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3324.81,
+        "ask": 3325.11,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3320.43,
+        "ask": 3320.73,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 1517
+    },
+    {
+      "snapshotTime": "2025:07:08-11:30:00",
+      "openPrice": {
+        "bid": 3323.47,
+        "ask": 3323.77,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3324.51,
+        "ask": 3324.81,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3326.99,
+        "ask": 3327.29,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3322.53,
+        "ask": 3322.83,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 1384
+    },
+    {
+      "snapshotTime": "2025:07:08-12:00:00",
+      "openPrice": {
+        "bid": 3324.61,
+        "ask": 3324.91,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3324.81,
+        "ask": 3325.11,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3327.47,
+        "ask": 3327.79,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3323.08,
+        "ask": 3323.43,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 1588
+    },
+    {
+      "snapshotTime": "2025:07:08-12:30:00",
+      "openPrice": {
+        "bid": 3324.73,
+        "ask": 3325.03,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3324.95,
+        "ask": 3325.25,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3325.98,
+        "ask": 3326.33,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3319.92,
+        "ask": 3320.22,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 1881
+    },
+    {
+      "snapshotTime": "2025:07:08-13:00:00",
+      "openPrice": {
+        "bid": 3325.0,
+        "ask": 3325.3,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3327.18,
+        "ask": 3327.48,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3329.53,
+        "ask": 3329.88,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3324.65,
+        "ask": 3324.95,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 2402
+    },
+    {
+      "snapshotTime": "2025:07:08-13:30:00",
+      "openPrice": {
+        "bid": 3327.38,
+        "ask": 3327.68,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3328.0,
+        "ask": 3328.5,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3329.75,
+        "ask": 3330.05,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3325.74,
+        "ask": 3326.04,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 1680
+    },
+    {
+      "snapshotTime": "2025:07:08-14:00:00",
+      "openPrice": {
+        "bid": 3328.1,
+        "ask": 3328.6,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3325.48,
+        "ask": 3325.78,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3328.6,
+        "ask": 3329.0,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3318.96,
+        "ask": 3319.26,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 3343
+    },
+    {
+      "snapshotTime": "2025:07:08-14:30:00",
+      "openPrice": {
+        "bid": 3325.49,
+        "ask": 3325.79,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3315.12,
+        "ask": 3315.42,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3326.75,
+        "ask": 3327.05,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3314.53,
+        "ask": 3314.88,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 4558
+    },
+    {
+      "snapshotTime": "2025:07:08-15:00:00",
+      "openPrice": {
+        "bid": 3315.08,
+        "ask": 3315.38,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3303.97,
+        "ask": 3304.27,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3315.83,
+        "ask": 3316.23,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3300.58,
+        "ask": 3301.08,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 5528
+    }
+  ],
+  "instrumentType": "CURRENCIES",
+  "allowance": {
+    "remainingAllowance": 1834,
+    "totalAllowance": 10000,
+    "allowanceExpiry": 239675
+  }
+}
+[2025-07-08 15:28:32,070] INFO: Processing price data for GC
+[2025-07-08 15:28:32,070] INFO: Processed 10 price points for GC
+[2025-07-08 15:28:32,099] CRITICAL: CRITICAL: get_prices method called
+[2025-07-08 15:28:32,099] INFO: Fetching price data from URL: https://demo-api.ig.com/gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_5/20
+[2025-07-08 15:28:35,120] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-08 15:28:35,250] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_5/20 HTTP/1.1" 200 6172
+[2025-07-08 15:28:35,251] DEBUG: Raw price data received (not logged to avoid repetition)
+[2025-07-08 15:28:35,251] INFO: Processing price data for GC
+[2025-07-08 15:28:35,251] INFO: Processed 20 price points for GC
+[2025-07-08 15:28:35,253] DEBUG: Strategy datapoints: <equitiestradingbot.interfaces.market_history.MarketHistory object at 0x10d967250>
+[2025-07-08 15:28:38,288] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-08 15:28:38,372] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/ HTTP/1.1" 500 77
+[2025-07-08 15:28:38,372] ERROR: HTTP request returned 500
+[2025-07-08 15:28:38,372] INFO: Finished processing all markets in the source
+[2025-07-08 15:28:38,372] INFO: Resetting MarketProvider
+[2025-07-08 15:28:38,373] INFO: Wait for 0.08 hours...
+[2025-07-08 15:33:38,396] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-08 15:33:38,500] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-08 15:33:38,502] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-08 15:33:38,502] INFO: Starting to process market source
+[2025-07-08 15:33:41,519] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-08 15:33:41,591] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-08 15:33:41,592] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-08 15:33:44,613] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-08 15:33:44,708] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.USCGC.TODAY.IP HTTP/1.1" 200 2030
+[2025-07-08 15:33:47,731] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-08 15:33:47,881] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/accounts HTTP/1.1" 200 550
+[2025-07-08 15:33:47,888] INFO: Processing GC
+[2025-07-08 15:33:47,889] CRITICAL: CRITICAL: get_prices method called
+[2025-07-08 15:33:47,889] INFO: Fetching price data from URL: https://demo-api.ig.com/gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_30/10
+[2025-07-08 15:33:50,918] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-08 15:33:51,003] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_30/10 HTTP/1.1" 200 3159
+[2025-07-08 15:33:51,005] DEBUG: Raw price data received (not logged to avoid repetition)
+[2025-07-08 15:33:51,005] INFO: Processing price data for GC
+[2025-07-08 15:33:51,005] INFO: Processed 10 price points for GC
+[2025-07-08 15:33:51,027] CRITICAL: CRITICAL: get_prices method called
+[2025-07-08 15:33:51,027] INFO: Fetching price data from URL: https://demo-api.ig.com/gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_5/20
+[2025-07-08 15:33:54,055] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-08 15:33:54,140] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_5/20 HTTP/1.1" 200 6172
+[2025-07-08 15:33:54,142] DEBUG: Raw price data received (not logged to avoid repetition)
+[2025-07-08 15:33:54,142] INFO: Processing price data for GC
+[2025-07-08 15:33:54,143] INFO: Processed 20 price points for GC
+[2025-07-08 15:33:54,145] DEBUG: Strategy datapoints: <equitiestradingbot.interfaces.market_history.MarketHistory object at 0x10d9af230>
+[2025-07-08 15:33:57,168] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-08 15:33:57,240] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/ HTTP/1.1" 500 77
+[2025-07-08 15:33:57,242] ERROR: HTTP request returned 500
+[2025-07-08 15:33:57,242] INFO: Finished processing all markets in the source
+[2025-07-08 15:33:57,242] INFO: Resetting MarketProvider
+[2025-07-08 15:33:57,244] INFO: Wait for 0.08 hours...
+[2025-07-08 15:38:57,338] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-08 15:38:57,507] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-08 15:38:57,510] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-08 15:38:57,510] INFO: Starting to process market source
+[2025-07-08 15:39:00,538] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-08 15:39:00,609] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-08 15:39:00,610] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-08 15:39:03,662] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-08 15:39:03,822] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.USCGC.TODAY.IP HTTP/1.1" 200 2030
+[2025-07-08 15:39:06,874] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-08 15:39:07,040] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/accounts HTTP/1.1" 200 550
+[2025-07-08 15:39:07,047] INFO: Processing GC
+[2025-07-08 15:39:07,049] CRITICAL: CRITICAL: get_prices method called
+[2025-07-08 15:39:07,049] INFO: Fetching price data from URL: https://demo-api.ig.com/gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_30/10
+[2025-07-08 15:39:10,073] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-08 15:39:10,169] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_30/10 HTTP/1.1" 200 3160
+[2025-07-08 15:39:10,173] DEBUG: Raw price data received (not logged to avoid repetition)
+[2025-07-08 15:39:10,174] INFO: Processing price data for GC
+[2025-07-08 15:39:10,174] INFO: Processed 10 price points for GC
+[2025-07-08 15:39:10,201] CRITICAL: CRITICAL: get_prices method called
+[2025-07-08 15:39:10,201] INFO: Fetching price data from URL: https://demo-api.ig.com/gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_5/20
+[2025-07-08 15:39:13,229] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-08 15:39:13,311] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_5/20 HTTP/1.1" 200 6172
+[2025-07-08 15:39:13,312] DEBUG: Raw price data received (not logged to avoid repetition)
+[2025-07-08 15:39:13,312] INFO: Processing price data for GC
+[2025-07-08 15:39:13,312] INFO: Processed 20 price points for GC
+[2025-07-08 15:39:13,314] DEBUG: Strategy datapoints: <equitiestradingbot.interfaces.market_history.MarketHistory object at 0x10da44cb0>
+[2025-07-08 15:39:16,334] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-08 15:39:16,427] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/ HTTP/1.1" 500 77
+[2025-07-08 15:39:16,428] ERROR: HTTP request returned 500
+[2025-07-08 15:39:16,429] INFO: Finished processing all markets in the source
+[2025-07-08 15:39:16,429] INFO: Resetting MarketProvider
+[2025-07-08 15:39:16,431] INFO: Wait for 0.08 hours...
+[2025-07-08 15:44:16,464] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-08 15:44:16,614] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-08 15:44:16,617] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-08 15:44:16,617] INFO: Starting to process market source
+[2025-07-08 15:44:19,656] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-08 15:44:19,728] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-08 15:44:19,730] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-08 15:44:22,749] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-08 15:44:22,839] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.USCGC.TODAY.IP HTTP/1.1" 200 2030
+[2025-07-08 15:44:25,863] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-08 15:44:26,037] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/accounts HTTP/1.1" 200 550
+[2025-07-08 15:44:26,043] INFO: Processing GC
+[2025-07-08 15:44:26,044] CRITICAL: CRITICAL: get_prices method called
+[2025-07-08 15:44:26,044] INFO: Fetching price data from URL: https://demo-api.ig.com/gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_30/10
+[2025-07-08 15:44:29,067] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-08 15:44:29,181] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_30/10 HTTP/1.1" 200 3160
+[2025-07-08 15:44:29,183] DEBUG: Raw price data received (not logged to avoid repetition)
+[2025-07-08 15:44:29,183] INFO: Processing price data for GC
+[2025-07-08 15:44:29,183] INFO: Processed 10 price points for GC
+[2025-07-08 15:44:29,200] CRITICAL: CRITICAL: get_prices method called
+[2025-07-08 15:44:29,200] INFO: Fetching price data from URL: https://demo-api.ig.com/gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_5/20
+[2025-07-08 15:44:32,231] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-08 15:44:32,346] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_5/20 HTTP/1.1" 200 6172
+[2025-07-08 15:44:32,348] DEBUG: Raw price data received (not logged to avoid repetition)
+[2025-07-08 15:44:32,348] INFO: Processing price data for GC
+[2025-07-08 15:44:32,348] INFO: Processed 20 price points for GC
+[2025-07-08 15:44:32,352] DEBUG: Strategy datapoints: <equitiestradingbot.interfaces.market_history.MarketHistory object at 0x10d9c18c0>
+[2025-07-08 15:44:35,382] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-08 15:44:35,462] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/ HTTP/1.1" 500 77
+[2025-07-08 15:44:35,463] ERROR: HTTP request returned 500
+[2025-07-08 15:44:35,463] INFO: Finished processing all markets in the source
+[2025-07-08 15:44:35,463] INFO: Resetting MarketProvider
+[2025-07-08 15:44:35,466] INFO: Wait for 0.08 hours...
+[2025-07-08 15:49:35,491] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-08 15:49:35,677] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-08 15:49:35,679] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-08 15:49:35,680] INFO: Starting to process market source
+[2025-07-08 15:49:38,713] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-08 15:49:38,790] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-08 15:49:38,791] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-08 15:49:41,845] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-08 15:49:41,937] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.USCGC.TODAY.IP HTTP/1.1" 200 2031
+[2025-07-08 15:49:44,972] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-08 15:49:45,117] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/accounts HTTP/1.1" 200 550
+[2025-07-08 15:49:45,120] INFO: Processing GC
+[2025-07-08 15:49:45,121] CRITICAL: CRITICAL: get_prices method called
+[2025-07-08 15:49:45,121] INFO: Fetching price data from URL: https://demo-api.ig.com/gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_30/10
+[2025-07-08 15:49:48,147] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-08 15:49:48,237] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_30/10 HTTP/1.1" 200 3160
+[2025-07-08 15:49:48,239] DEBUG: Raw price data received (not logged to avoid repetition)
+[2025-07-08 15:49:48,239] INFO: Processing price data for GC
+[2025-07-08 15:49:48,239] INFO: Processed 10 price points for GC
+[2025-07-08 15:49:48,258] CRITICAL: CRITICAL: get_prices method called
+[2025-07-08 15:49:48,258] INFO: Fetching price data from URL: https://demo-api.ig.com/gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_5/20
+[2025-07-08 15:49:51,275] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-08 15:49:51,358] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_5/20 HTTP/1.1" 200 6172
+[2025-07-08 15:49:51,360] DEBUG: Raw price data received (not logged to avoid repetition)
+[2025-07-08 15:49:51,360] INFO: Processing price data for GC
+[2025-07-08 15:49:51,360] INFO: Processed 20 price points for GC
+[2025-07-08 15:49:51,362] DEBUG: Strategy datapoints: <equitiestradingbot.interfaces.market_history.MarketHistory object at 0x10d987450>
+[2025-07-08 15:49:54,384] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-08 15:49:54,470] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/ HTTP/1.1" 500 77
+[2025-07-08 15:49:54,471] ERROR: HTTP request returned 500
+[2025-07-08 15:49:54,472] INFO: Finished processing all markets in the source
+[2025-07-08 15:49:54,472] INFO: Resetting MarketProvider
+[2025-07-08 15:49:54,473] INFO: Wait for 0.08 hours...

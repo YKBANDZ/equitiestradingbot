@@ -6,6 +6,7 @@ from . import Market
 
 class MarketHistory:
     DATE_COLUMN: str = "date"
+    OPEN_COLUMN: str = "open"
     HIGH_COLUMN: str = "high"
     LOW_COLUMN: str = "low"
     CLOSE_COLUMN: str = "close"
@@ -18,6 +19,7 @@ class MarketHistory:
             self,
             market: Market,
             date: List[str],
+            open: List[float],
             high: List[float],
             low: List[float],
             close: List[float],
@@ -27,6 +29,7 @@ class MarketHistory:
         self.dataframe = pandas.DataFrame(
             {
                 self.DATE_COLUMN: date,
+                self.OPEN_COLUMN: open,
                 self.HIGH_COLUMN: high,
                 self.LOW_COLUMN: low,
                 self.CLOSE_COLUMN: close,

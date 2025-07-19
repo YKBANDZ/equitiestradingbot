@@ -26,7 +26,13 @@ class TimeProvider:
         logging.debug("TimeProvider __init__")
         # Initialize NYSE calendar
         self.nyse = mcal.get_calendar('NYSE')
-        self.gold = mcal.get_calendar('CMEGlobex_Gold')
+        # Gold futures use custom trading hours, not a specific calendar
+        self.gold_trading_hours = {
+            'sunday_open': 23,    # 23:00 UK time
+            'friday_close': 22,   # 22:00 UK time
+            'daily_break_start': 22,  # 22:00 UK time
+            'daily_break_end': 23     # 23:00 UK time
+        }
 
     def is_market_open(self, timezone: str, epic: str) -> bool:
         """
@@ -38,11 +44,14 @@ class TimeProvider:
         if 'USD' in epic or 'EUR' in epic:
             return True
             
-        tz = pytz.timezone('Europe/London') if 'USCGC' in epic else pytz.timezone(timezone)
+        # Gold futures use custom trading hours
+        if 'USCGC' in epic:
+            return self._is_gold_market_open()
+            
+        # Use standard calendar for other instruments
+        tz = pytz.timezone(timezone)
         now = datetime.now(tz)
-
-        # Choose calender based on instrument
-        calender = self.gold if 'USCGC' in epic else self.nyse
+        calender = self.nyse
         
         # Check if today is a trading day
         schedule = calender.schedule(start_date=now.date(), end_date=now.date())
@@ -54,6 +63,40 @@ class TimeProvider:
         market_close = schedule.iloc[0]['market_close'].tz_convert(tz)
             
         return market_open <= now <= market_close
+    
+    def _is_gold_market_open(self) -> bool:
+        """
+        Check if Gold futures market is open
+        Trading hours: Sunday 23:00 - Friday 22:00 UK time
+        Daily break: 22:00-23:00 UK time (Mon-Thu)
+        Weekend break: Friday 22:00 - Sunday 23:00 UK time
+        """
+        uk_tz = pytz.timezone('Europe/London')
+        now = datetime.now(uk_tz)
+        
+        # Get current day of week (0 = Monday, 6 = Sunday)
+        weekday = now.weekday()
+        current_hour = now.hour
+        
+        # Sunday: Open from 23:00 onwards
+        if weekday == 6:  # Sunday
+            return current_hour >= self.gold_trading_hours['sunday_open']
+        
+        # Saturday: Always closed
+        elif weekday == 5:  # Saturday
+            return False
+        
+        # Friday: Open until 22:00
+        elif weekday == 4:  # Friday
+            return current_hour < self.gold_trading_hours['friday_close']
+        
+        # Monday-Thursday: Open except for daily break 22:00-23:00
+        else:  # Monday-Thursday (0-3)
+            # Check if we're in the daily break period
+            if (current_hour >= self.gold_trading_hours['daily_break_start'] and 
+                current_hour < self.gold_trading_hours['daily_break_end']):
+                return False
+            return True
     
     def get_seconds_to_market_opening(self, current_time: datetime) -> int:
         """

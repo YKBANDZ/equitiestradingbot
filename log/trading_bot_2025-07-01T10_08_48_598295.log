@@ -1,0 +1,2726 @@
+[2025-07-01 10:08:48,599] INFO: Initialising IGInterface...
+[2025-07-01 10:08:48,600] INFO: Attempting authentication to URL: https://demo-api.ig.com/gateway/deal/session
+[2025-07-01 10:08:48,600] INFO: Using API Key: 43c58bfd6f5ead3ac4d803d18f883db5857c9631
+[2025-07-01 10:08:48,600] INFO: Using Account ID: Z5YISO
+[2025-07-01 10:08:48,611] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:08:48,867] DEBUG: https://demo-api.ig.com:443 "POST /gateway/deal/session HTTP/1.1" 200 625
+[2025-07-01 10:08:48,868] INFO: Successfully obtained authentication tokens
+[2025-07-01 10:08:48,870] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:08:48,974] DEBUG: https://demo-api.ig.com:443 "PUT /gateway/deal/session HTTP/1.1" 412 56
+[2025-07-01 10:08:48,976] INFO: Account is already set as default
+[2025-07-01 10:08:48,976] INFO: Using stock interface: IGInterface
+[2025-07-01 10:08:48,977] INFO: Advanced Momentum Strategy initialised
+[2025-07-01 10:08:48,978] INFO: Advanced Momentum Strategy created
+[2025-07-01 10:08:52,002] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:08:52,117] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 667
+[2025-07-01 10:08:52,118] DEBUG: Raw positions response: {
+  "positions": [
+    {
+      "position": {
+        "contractSize": 1.0,
+        "createdDate": "2025/07/01 06:03:34:000",
+        "dealId": "DIAAAAT8LT25UAM",
+        "dealSize": 10.0,
+        "direction": "SELL",
+        "limitLevel": 3280.0,
+        "openLevel": 3325.0,
+        "currency": "GBP",
+        "controlledRisk": false,
+        "stopLevel": 3345.0,
+        "trailingStep": null,
+        "trailingStopDistance": null,
+        "limitedRiskPremium": null
+      },
+      "market": {
+        "instrumentName": "Spot Gold",
+        "expiry": "DFB",
+        "epic": "CS.D.USCGC.TODAY.IP",
+        "instrumentType": "CURRENCIES",
+        "lotSize": 1.0,
+        "high": 3342.68,
+        "low": 3302.15,
+        "percentageChange": 1.09,
+        "netChange": 36.03,
+        "bid": 3338.73,
+        "offer": 3339.03,
+        "updateTime": "10:08:50",
+        "delayTime": 0,
+        "streamingPricesAvailable": true,
+        "marketStatus": "TRADEABLE",
+        "scalingFactor": 1
+      }
+    }
+  ]
+}
+[2025-07-01 10:08:55,144] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:08:55,630] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.USCGC.TODAY.IP HTTP/1.1" 200 2029
+[2025-07-01 10:08:58,153] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:08:58,339] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/accounts HTTP/1.1" 200 558
+[2025-07-01 10:08:58,588] INFO: Processing GC
+[2025-07-01 10:08:58,588] CRITICAL: CRITICAL: get_prices method called
+[2025-07-01 10:08:58,588] INFO: Fetching price data from URL: https://demo-api.ig.com/gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52
+[2025-07-01 10:09:01,625] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:09:01,812] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52 HTTP/1.1" 200 15855
+[2025-07-01 10:09:01,817] DEBUG: Raw price data: {
+  "prices": [
+    {
+      "snapshotTime": "2025:06:30-20:15:00",
+      "openPrice": {
+        "bid": 3303.13,
+        "ask": 3303.43,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3305.93,
+        "ask": 3306.43,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3306.98,
+        "ask": 3307.35,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3302.91,
+        "ask": 3303.25,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 1285
+    },
+    {
+      "snapshotTime": "2025:06:30-20:30:00",
+      "openPrice": {
+        "bid": 3305.89,
+        "ask": 3306.39,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3305.65,
+        "ask": 3306.15,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3307.85,
+        "ask": 3308.15,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3305.58,
+        "ask": 3305.94,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 967
+    },
+    {
+      "snapshotTime": "2025:06:30-20:45:00",
+      "openPrice": {
+        "bid": 3305.88,
+        "ask": 3306.18,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3308.68,
+        "ask": 3308.98,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3309.48,
+        "ask": 3309.78,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3305.23,
+        "ask": 3305.53,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 1664
+    },
+    {
+      "snapshotTime": "2025:06:30-21:00:00",
+      "openPrice": {
+        "bid": 3308.57,
+        "ask": 3308.87,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3307.32,
+        "ask": 3307.62,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3308.88,
+        "ask": 3309.18,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3307.09,
+        "ask": 3307.39,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 661
+    },
+    {
+      "snapshotTime": "2025:06:30-21:15:00",
+      "openPrice": {
+        "bid": 3307.3,
+        "ask": 3307.6,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3306.7,
+        "ask": 3307.0,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3309.23,
+        "ask": 3309.53,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3306.64,
+        "ask": 3306.94,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 562
+    },
+    {
+      "snapshotTime": "2025:06:30-21:30:00",
+      "openPrice": {
+        "bid": 3306.73,
+        "ask": 3307.03,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3303.9,
+        "ask": 3304.4,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3307.17,
+        "ask": 3307.47,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3303.59,
+        "ask": 3303.89,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 590
+    },
+    {
+      "snapshotTime": "2025:06:30-21:45:00",
+      "openPrice": {
+        "bid": 3303.92,
+        "ask": 3304.42,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3302.6,
+        "ask": 3303.1,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3304.47,
+        "ask": 3304.77,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3302.16,
+        "ask": 3302.55,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 683
+    },
+    {
+      "snapshotTime": "2025:06:30-23:00:00",
+      "openPrice": {
+        "bid": 3302.41,
+        "ask": 3302.91,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3304.0,
+        "ask": 3304.5,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3304.85,
+        "ask": 3305.35,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3302.15,
+        "ask": 3302.55,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 300
+    },
+    {
+      "snapshotTime": "2025:06:30-23:15:00",
+      "openPrice": {
+        "bid": 3303.95,
+        "ask": 3304.25,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3307.1,
+        "ask": 3307.4,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3307.65,
+        "ask": 3308.0,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3303.75,
+        "ask": 3304.25,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 353
+    },
+    {
+      "snapshotTime": "2025:06:30-23:30:00",
+      "openPrice": {
+        "bid": 3307.15,
+        "ask": 3307.45,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3308.88,
+        "ask": 3309.18,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3309.08,
+        "ask": 3309.43,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3305.73,
+        "ask": 3306.23,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 461
+    },
+    {
+      "snapshotTime": "2025:06:30-23:45:00",
+      "openPrice": {
+        "bid": 3308.73,
+        "ask": 3309.23,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3311.23,
+        "ask": 3311.73,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3314.58,
+        "ask": 3314.88,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3307.25,
+        "ask": 3307.73,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 967
+    },
+    {
+      "snapshotTime": "2025:07:01-00:00:00",
+      "openPrice": {
+        "bid": 3311.38,
+        "ask": 3311.68,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3311.88,
+        "ask": 3312.18,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3312.13,
+        "ask": 3312.63,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3309.73,
+        "ask": 3310.18,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 572
+    },
+    {
+      "snapshotTime": "2025:07:01-00:15:00",
+      "openPrice": {
+        "bid": 3311.83,
+        "ask": 3312.33,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3309.48,
+        "ask": 3309.78,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3312.13,
+        "ask": 3312.53,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3308.43,
+        "ask": 3308.78,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 492
+    },
+    {
+      "snapshotTime": "2025:07:01-00:30:00",
+      "openPrice": {
+        "bid": 3309.13,
+        "ask": 3309.63,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3310.58,
+        "ask": 3311.08,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3311.06,
+        "ask": 3311.5,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3308.68,
+        "ask": 3309.13,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 437
+    },
+    {
+      "snapshotTime": "2025:07:01-00:45:00",
+      "openPrice": {
+        "bid": 3310.73,
+        "ask": 3311.23,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3312.43,
+        "ask": 3312.73,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3312.43,
+        "ask": 3312.83,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3310.03,
+        "ask": 3310.53,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 403
+    },
+    {
+      "snapshotTime": "2025:07:01-01:00:00",
+      "openPrice": {
+        "bid": 3312.38,
+        "ask": 3312.68,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3312.23,
+        "ask": 3312.53,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3313.23,
+        "ask": 3313.53,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3309.83,
+        "ask": 3310.18,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 985
+    },
+    {
+      "snapshotTime": "2025:07:01-01:15:00",
+      "openPrice": {
+        "bid": 3312.22,
+        "ask": 3312.52,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3310.7,
+        "ask": 3311.2,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3312.6,
+        "ask": 3313.1,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3310.28,
+        "ask": 3310.59,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 661
+    },
+    {
+      "snapshotTime": "2025:07:01-01:30:00",
+      "openPrice": {
+        "bid": 3310.75,
+        "ask": 3311.25,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3311.35,
+        "ask": 3311.85,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3313.18,
+        "ask": 3313.58,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3310.7,
+        "ask": 3311.13,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 606
+    },
+    {
+      "snapshotTime": "2025:07:01-01:45:00",
+      "openPrice": {
+        "bid": 3311.37,
+        "ask": 3311.87,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3314.73,
+        "ask": 3315.03,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3314.83,
+        "ask": 3315.18,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3311.15,
+        "ask": 3311.5,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 821
+    },
+    {
+      "snapshotTime": "2025:07:01-02:00:00",
+      "openPrice": {
+        "bid": 3314.63,
+        "ask": 3314.93,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3318.63,
+        "ask": 3319.13,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3318.88,
+        "ask": 3319.28,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3313.91,
+        "ask": 3314.21,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 1504
+    },
+    {
+      "snapshotTime": "2025:07:01-02:15:00",
+      "openPrice": {
+        "bid": 3318.53,
+        "ask": 3319.03,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3320.19,
+        "ask": 3320.49,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3320.85,
+        "ask": 3321.15,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3317.93,
+        "ask": 3318.38,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 1372
+    },
+    {
+      "snapshotTime": "2025:07:01-02:30:00",
+      "openPrice": {
+        "bid": 3320.23,
+        "ask": 3320.53,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3319.73,
+        "ask": 3320.03,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3320.94,
+        "ask": 3321.33,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3315.93,
+        "ask": 3316.31,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 1648
+    },
+    {
+      "snapshotTime": "2025:07:01-02:45:00",
+      "openPrice": {
+        "bid": 3319.43,
+        "ask": 3319.93,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3317.77,
+        "ask": 3318.07,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3320.53,
+        "ask": 3320.93,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3315.62,
+        "ask": 3316.04,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 1157
+    },
+    {
+      "snapshotTime": "2025:07:01-03:00:00",
+      "openPrice": {
+        "bid": 3317.68,
+        "ask": 3317.98,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3315.93,
+        "ask": 3316.43,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3317.83,
+        "ask": 3318.28,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3315.43,
+        "ask": 3315.83,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 1022
+    },
+    {
+      "snapshotTime": "2025:07:01-03:15:00",
+      "openPrice": {
+        "bid": 3315.98,
+        "ask": 3316.28,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3315.98,
+        "ask": 3316.28,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3317.33,
+        "ask": 3317.73,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3314.28,
+        "ask": 3314.63,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 764
+    },
+    {
+      "snapshotTime": "2025:07:01-03:30:00",
+      "openPrice": {
+        "bid": 3316.08,
+        "ask": 3316.38,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3317.93,
+        "ask": 3318.43,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3319.12,
+        "ask": 3319.46,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3315.13,
+        "ask": 3315.43,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 1203
+    },
+    {
+      "snapshotTime": "2025:07:01-03:45:00",
+      "openPrice": {
+        "bid": 3317.98,
+        "ask": 3318.28,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3316.0,
+        "ask": 3316.3,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3319.23,
+        "ask": 3319.73,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3315.95,
+        "ask": 3316.3,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 778
+    },
+    {
+      "snapshotTime": "2025:07:01-04:00:00",
+      "openPrice": {
+        "bid": 3315.9,
+        "ask": 3316.2,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3317.15,
+        "ask": 3317.65,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3318.15,
+        "ask": 3318.65,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3315.65,
+        "ask": 3315.95,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 750
+    },
+    {
+      "snapshotTime": "2025:07:01-04:15:00",
+      "openPrice": {
+        "bid": 3317.14,
+        "ask": 3317.44,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3321.1,
+        "ask": 3321.4,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3322.05,
+        "ask": 3322.35,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3316.75,
+        "ask": 3317.05,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 875
+    },
+    {
+      "snapshotTime": "2025:07:01-04:30:00",
+      "openPrice": {
+        "bid": 3321.15,
+        "ask": 3321.45,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3321.63,
+        "ask": 3321.93,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3321.73,
+        "ask": 3322.08,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3317.93,
+        "ask": 3318.28,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 752
+    },
+    {
+      "snapshotTime": "2025:07:01-04:45:00",
+      "openPrice": {
+        "bid": 3321.52,
+        "ask": 3321.82,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3321.1,
+        "ask": 3321.4,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3322.56,
+        "ask": 3322.98,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3319.75,
+        "ask": 3320.15,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 627
+    },
+    {
+      "snapshotTime": "2025:07:01-05:00:00",
+      "openPrice": {
+        "bid": 3321.05,
+        "ask": 3321.35,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3321.23,
+        "ask": 3321.73,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3322.43,
+        "ask": 3322.93,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3318.83,
+        "ask": 3319.13,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 868
+    },
+    {
+      "snapshotTime": "2025:07:01-05:15:00",
+      "openPrice": {
+        "bid": 3321.38,
+        "ask": 3321.68,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3322.58,
+        "ask": 3323.08,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3323.03,
+        "ask": 3323.43,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3321.03,
+        "ask": 3321.38,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 696
+    },
+    {
+      "snapshotTime": "2025:07:01-05:30:00",
+      "openPrice": {
+        "bid": 3322.63,
+        "ask": 3323.13,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3322.83,
+        "ask": 3323.13,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3322.98,
+        "ask": 3323.3,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3321.88,
+        "ask": 3322.18,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 485
+    },
+    {
+      "snapshotTime": "2025:07:01-05:45:00",
+      "openPrice": {
+        "bid": 3322.88,
+        "ask": 3323.18,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3322.95,
+        "ask": 3323.25,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3323.03,
+        "ask": 3323.43,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3321.83,
+        "ask": 3322.28,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 355
+    },
+    {
+      "snapshotTime": "2025:07:01-06:00:00",
+      "openPrice": {
+        "bid": 3323.01,
+        "ask": 3323.31,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3328.3,
+        "ask": 3328.6,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3328.6,
+        "ask": 3329.05,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3323.0,
+        "ask": 3323.3,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 923
+    },
+    {
+      "snapshotTime": "2025:07:01-06:15:00",
+      "openPrice": {
+        "bid": 3328.2,
+        "ask": 3328.5,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3329.35,
+        "ask": 3329.85,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3329.99,
+        "ask": 3330.35,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3327.53,
+        "ask": 3327.98,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 643
+    },
+    {
+      "snapshotTime": "2025:07:01-06:30:00",
+      "openPrice": {
+        "bid": 3329.71,
+        "ask": 3330.01,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3329.98,
+        "ask": 3330.28,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3332.18,
+        "ask": 3332.63,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3328.48,
+        "ask": 3328.78,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 1323
+    },
+    {
+      "snapshotTime": "2025:07:01-06:45:00",
+      "openPrice": {
+        "bid": 3329.93,
+        "ask": 3330.23,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3328.68,
+        "ask": 3328.98,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3331.23,
+        "ask": 3331.58,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3328.15,
+        "ask": 3328.53,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 1250
+    },
+    {
+      "snapshotTime": "2025:07:01-07:00:00",
+      "openPrice": {
+        "bid": 3328.58,
+        "ask": 3329.18,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3327.93,
+        "ask": 3328.23,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3330.6,
+        "ask": 3330.9,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3326.58,
+        "ask": 3326.98,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 1268
+    },
+    {
+      "snapshotTime": "2025:07:01-07:15:00",
+      "openPrice": {
+        "bid": 3327.96,
+        "ask": 3328.26,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3328.08,
+        "ask": 3328.38,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3329.45,
+        "ask": 3329.85,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3324.93,
+        "ask": 3325.23,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 1351
+    },
+    {
+      "snapshotTime": "2025:07:01-07:30:00",
+      "openPrice": {
+        "bid": 3327.98,
+        "ask": 3328.48,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3331.98,
+        "ask": 3332.48,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3332.48,
+        "ask": 3332.98,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3327.28,
+        "ask": 3327.58,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 1287
+    },
+    {
+      "snapshotTime": "2025:07:01-07:45:00",
+      "openPrice": {
+        "bid": 3332.13,
+        "ask": 3332.43,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3331.33,
+        "ask": 3331.63,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3334.5,
+        "ask": 3334.85,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3330.51,
+        "ask": 3330.87,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 1301
+    },
+    {
+      "snapshotTime": "2025:07:01-08:00:00",
+      "openPrice": {
+        "bid": 3331.48,
+        "ask": 3331.78,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3336.06,
+        "ask": 3336.56,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3337.15,
+        "ask": 3337.45,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3330.65,
+        "ask": 3331.0,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 1290
+    },
+    {
+      "snapshotTime": "2025:07:01-08:15:00",
+      "openPrice": {
+        "bid": 3336.12,
+        "ask": 3336.62,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3338.58,
+        "ask": 3338.88,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3338.78,
+        "ask": 3339.14,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3335.45,
+        "ask": 3335.75,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 1405
+    },
+    {
+      "snapshotTime": "2025:07:01-08:30:00",
+      "openPrice": {
+        "bid": 3338.63,
+        "ask": 3338.93,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3337.63,
+        "ask": 3337.93,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3339.82,
+        "ask": 3340.15,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3333.33,
+        "ask": 3333.73,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 1858
+    },
+    {
+      "snapshotTime": "2025:07:01-08:45:00",
+      "openPrice": {
+        "bid": 3337.58,
+        "ask": 3337.88,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3339.5,
+        "ask": 3339.8,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3339.81,
+        "ask": 3340.19,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3336.58,
+        "ask": 3336.88,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 1062
+    },
+    {
+      "snapshotTime": "2025:07:01-09:00:00",
+      "openPrice": {
+        "bid": 3339.4,
+        "ask": 3339.7,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3337.83,
+        "ask": 3338.13,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3342.03,
+        "ask": 3342.43,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3337.68,
+        "ask": 3337.98,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 1093
+    },
+    {
+      "snapshotTime": "2025:07:01-09:15:00",
+      "openPrice": {
+        "bid": 3337.78,
+        "ask": 3338.08,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3339.58,
+        "ask": 3340.08,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3340.3,
+        "ask": 3340.6,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3336.68,
+        "ask": 3337.08,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 888
+    },
+    {
+      "snapshotTime": "2025:07:01-09:30:00",
+      "openPrice": {
+        "bid": 3339.73,
+        "ask": 3340.03,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3338.86,
+        "ask": 3339.16,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3342.38,
+        "ask": 3342.68,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3338.31,
+        "ask": 3338.73,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 1035
+    },
+    {
+      "snapshotTime": "2025:07:01-09:45:00",
+      "openPrice": {
+        "bid": 3338.72,
+        "ask": 3339.22,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3339.39,
+        "ask": 3339.89,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3340.59,
+        "ask": 3340.89,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3337.25,
+        "ask": 3337.75,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 1069
+    },
+    {
+      "snapshotTime": "2025:07:01-10:00:00",
+      "openPrice": {
+        "bid": 3339.43,
+        "ask": 3339.93,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3338.83,
+        "ask": 3339.33,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3339.44,
+        "ask": 3339.93,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3338.08,
+        "ask": 3338.48,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 634
+    }
+  ],
+  "instrumentType": "CURRENCIES",
+  "allowance": {
+    "remainingAllowance": 7244,
+    "totalAllowance": 10000,
+    "allowanceExpiry": 519251
+  }
+}
+[2025-07-01 10:09:01,818] INFO: Processing price data for GC
+[2025-07-01 10:09:01,818] INFO: Processed 52 price points for GC
+[2025-07-01 10:09:01,847] DEBUG: Strategy datapoints: <equitiestradingbot.interfaces.market_history.MarketHistory object at 0x1093c9fd0>
+[2025-07-01 10:09:01,857] INFO: MACD Calculation Details:
+[2025-07-01 10:09:01,857] INFO:   Fast EMA (12): 3336.17654
+[2025-07-01 10:09:01,858] INFO:   Slow EMA (26): 3330.65778
+[2025-07-01 10:09:01,858] INFO:   MACD Line: 5.51876
+[2025-07-01 10:09:01,858] INFO:   Signal Line: 5.43765
+[2025-07-01 10:09:01,858] INFO:   Histogram: 0.08111
+[2025-07-01 10:09:01,858] INFO:   Previous MACD: 5.69009
+[2025-07-01 10:09:01,858] INFO:   Previous Signal: 5.41737
+[2025-07-01 10:09:01,858] INFO:   MACD Cross Status: No Cross
+[2025-07-01 10:09:01,858] INFO:   MACD Zero Line Status: Above Zero
+[2025-07-01 10:09:01,866] INFO: Trade Analysis for CS.D.USCGC.TODAY.IP:
+[2025-07-01 10:09:01,866] INFO: Latest Price: 3338.83000
+[2025-07-01 10:09:01,866] INFO: 50 EMA: 3324.10909
+[2025-07-01 10:09:01,866] INFO: 200 EMA: 3312.45696
+[2025-07-01 10:09:01,866] INFO: MACD: 5.51876 (Signal: 5.43765)
+[2025-07-01 10:09:01,866] INFO: RSI: 70.07
+[2025-07-01 10:09:01,866] INFO: ADX: 34.98
+[2025-07-01 10:09:01,866] INFO: Volume: 634 (MA: 1044)
+[2025-07-01 10:09:01,866] INFO: Checking for LONG signal...
+[2025-07-01 10:09:01,866] INFO:   - EMA trend structure met
+[2025-07-01 10:09:01,866] INFO:   - MACD conditions not met (required: above signal line by 60%, current diff: 1.49%)
+[2025-07-01 10:09:01,867] INFO: Checking for SHORT signal...
+[2025-07-01 10:09:01,867] INFO:   - EMA trend structure not met
+[2025-07-01 10:09:01,867] INFO: No trade signal generated. Conditions not met:
+[2025-07-01 10:09:01,867] INFO:   - EMA trend structure not met (required for short)
+[2025-07-01 10:09:01,867] INFO: Starting to process market source
+[2025-07-01 10:09:04,905] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:09:05,005] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 667
+[2025-07-01 10:09:05,008] DEBUG: Raw positions response: {
+  "positions": [
+    {
+      "position": {
+        "contractSize": 1.0,
+        "createdDate": "2025/07/01 06:03:34:000",
+        "dealId": "DIAAAAT8LT25UAM",
+        "dealSize": 10.0,
+        "direction": "SELL",
+        "limitLevel": 3280.0,
+        "openLevel": 3325.0,
+        "currency": "GBP",
+        "controlledRisk": false,
+        "stopLevel": 3345.0,
+        "trailingStep": null,
+        "trailingStopDistance": null,
+        "limitedRiskPremium": null
+      },
+      "market": {
+        "instrumentName": "Spot Gold",
+        "expiry": "DFB",
+        "epic": "CS.D.USCGC.TODAY.IP",
+        "instrumentType": "CURRENCIES",
+        "lotSize": 1.0,
+        "high": 3342.68,
+        "low": 3302.15,
+        "percentageChange": 1.09,
+        "netChange": 36.03,
+        "bid": 3338.73,
+        "offer": 3339.03,
+        "updateTime": "10:09:04",
+        "delayTime": 0,
+        "streamingPricesAvailable": true,
+        "marketStatus": "TRADEABLE",
+        "scalingFactor": 1
+      }
+    }
+  ]
+}
+[2025-07-01 10:09:05,009] INFO: Open positions exist. Skipping new trade search.
+[2025-07-01 10:09:05,009] INFO: Wait for 0.08 hours...
+[2025-07-01 10:14:05,064] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:14:05,182] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 667
+[2025-07-01 10:14:05,186] DEBUG: Raw positions response: {
+  "positions": [
+    {
+      "position": {
+        "contractSize": 1.0,
+        "createdDate": "2025/07/01 06:03:34:000",
+        "dealId": "DIAAAAT8LT25UAM",
+        "dealSize": 10.0,
+        "direction": "SELL",
+        "limitLevel": 3280.0,
+        "openLevel": 3325.0,
+        "currency": "GBP",
+        "controlledRisk": false,
+        "stopLevel": 3345.0,
+        "trailingStep": null,
+        "trailingStopDistance": null,
+        "limitedRiskPremium": null
+      },
+      "market": {
+        "instrumentName": "Spot Gold",
+        "expiry": "DFB",
+        "epic": "CS.D.USCGC.TODAY.IP",
+        "instrumentType": "CURRENCIES",
+        "lotSize": 1.0,
+        "high": 3342.68,
+        "low": 3302.15,
+        "percentageChange": 1.12,
+        "netChange": 36.83,
+        "bid": 3339.43,
+        "offer": 3339.93,
+        "updateTime": "10:14:05",
+        "delayTime": 0,
+        "streamingPricesAvailable": true,
+        "marketStatus": "TRADEABLE",
+        "scalingFactor": 1
+      }
+    }
+  ]
+}
+[2025-07-01 10:14:08,211] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:14:08,304] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.USCGC.TODAY.IP HTTP/1.1" 200 2028
+[2025-07-01 10:14:11,344] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:14:11,559] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/accounts HTTP/1.1" 200 557
+[2025-07-01 10:14:11,679] INFO: Processing GC
+[2025-07-01 10:14:11,679] CRITICAL: CRITICAL: get_prices method called
+[2025-07-01 10:14:11,679] INFO: Fetching price data from URL: https://demo-api.ig.com/gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52
+[2025-07-01 10:14:14,704] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:14:14,800] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52 HTTP/1.1" 200 15855
+[2025-07-01 10:14:14,802] DEBUG: Raw price data received (not logged to avoid repetition)
+[2025-07-01 10:14:14,802] INFO: Processing price data for GC
+[2025-07-01 10:14:14,802] INFO: Processed 52 price points for GC
+[2025-07-01 10:14:14,806] DEBUG: Strategy datapoints: <equitiestradingbot.interfaces.market_history.MarketHistory object at 0x10937b4d0>
+[2025-07-01 10:14:14,813] INFO: MACD Calculation Details:
+[2025-07-01 10:14:14,814] INFO:   Fast EMA (12): 3336.30269
+[2025-07-01 10:14:14,814] INFO:   Slow EMA (26): 3330.71852
+[2025-07-01 10:14:14,814] INFO:   MACD Line: 5.58417
+[2025-07-01 10:14:14,814] INFO:   Signal Line: 5.45073
+[2025-07-01 10:14:14,814] INFO:   Histogram: 0.13344
+[2025-07-01 10:14:14,814] INFO:   Previous MACD: 5.69009
+[2025-07-01 10:14:14,814] INFO:   Previous Signal: 5.41737
+[2025-07-01 10:14:14,814] INFO:   MACD Cross Status: No Cross
+[2025-07-01 10:14:14,814] INFO:   MACD Zero Line Status: Above Zero
+[2025-07-01 10:14:14,822] INFO: Trade Analysis for CS.D.USCGC.TODAY.IP:
+[2025-07-01 10:14:14,822] INFO: Latest Price: 3339.65000
+[2025-07-01 10:14:14,822] INFO: 50 EMA: 3324.14125
+[2025-07-01 10:14:14,822] INFO: 200 EMA: 3312.46512
+[2025-07-01 10:14:14,822] INFO: MACD: 5.58417 (Signal: 5.45073)
+[2025-07-01 10:14:14,822] INFO: RSI: 72.23
+[2025-07-01 10:14:14,822] INFO: ADX: 34.98
+[2025-07-01 10:14:14,822] INFO: Volume: 932 (MA: 1099)
+[2025-07-01 10:14:14,822] INFO: Checking for LONG signal...
+[2025-07-01 10:14:14,822] INFO:   - EMA trend structure met
+[2025-07-01 10:14:14,822] INFO:   - MACD conditions not met (required: above signal line by 60%, current diff: 2.45%)
+[2025-07-01 10:14:14,822] INFO: Checking for SHORT signal...
+[2025-07-01 10:14:14,822] INFO:   - EMA trend structure not met
+[2025-07-01 10:14:14,822] INFO: No trade signal generated. Conditions not met:
+[2025-07-01 10:14:14,822] INFO:   - EMA trend structure not met (required for short)
+[2025-07-01 10:14:14,822] INFO: Starting to process market source
+[2025-07-01 10:14:17,852] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:14:17,933] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 667
+[2025-07-01 10:14:17,935] DEBUG: Raw positions response: {
+  "positions": [
+    {
+      "position": {
+        "contractSize": 1.0,
+        "createdDate": "2025/07/01 06:03:34:000",
+        "dealId": "DIAAAAT8LT25UAM",
+        "dealSize": 10.0,
+        "direction": "SELL",
+        "limitLevel": 3280.0,
+        "openLevel": 3325.0,
+        "currency": "GBP",
+        "controlledRisk": false,
+        "stopLevel": 3345.0,
+        "trailingStep": null,
+        "trailingStopDistance": null,
+        "limitedRiskPremium": null
+      },
+      "market": {
+        "instrumentName": "Spot Gold",
+        "expiry": "DFB",
+        "epic": "CS.D.USCGC.TODAY.IP",
+        "instrumentType": "CURRENCIES",
+        "lotSize": 1.0,
+        "high": 3342.68,
+        "low": 3302.15,
+        "percentageChange": 1.12,
+        "netChange": 36.95,
+        "bid": 3339.65,
+        "offer": 3339.95,
+        "updateTime": "10:14:13",
+        "delayTime": 0,
+        "streamingPricesAvailable": true,
+        "marketStatus": "TRADEABLE",
+        "scalingFactor": 1
+      }
+    }
+  ]
+}
+[2025-07-01 10:14:17,935] INFO: Open positions exist. Skipping new trade search.
+[2025-07-01 10:14:17,935] INFO: Wait for 0.08 hours...
+[2025-07-01 10:19:17,994] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:19:18,145] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 10:19:18,147] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 10:19:18,147] INFO: Starting to process market source
+[2025-07-01 10:19:21,206] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:19:21,307] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 10:19:21,308] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 10:19:24,340] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:19:24,439] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.USCGC.TODAY.IP HTTP/1.1" 200 2027
+[2025-07-01 10:19:27,466] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:19:27,623] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/accounts HTTP/1.1" 200 552
+[2025-07-01 10:19:27,703] INFO: Processing GC
+[2025-07-01 10:19:27,704] CRITICAL: CRITICAL: get_prices method called
+[2025-07-01 10:19:27,704] INFO: Fetching price data from URL: https://demo-api.ig.com/gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52
+[2025-07-01 10:19:30,730] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:19:30,827] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52 HTTP/1.1" 200 15854
+[2025-07-01 10:19:30,834] DEBUG: Raw price data received (not logged to avoid repetition)
+[2025-07-01 10:19:30,834] INFO: Processing price data for GC
+[2025-07-01 10:19:30,834] INFO: Processed 52 price points for GC
+[2025-07-01 10:19:30,856] DEBUG: Strategy datapoints: <equitiestradingbot.interfaces.market_history.MarketHistory object at 0x10937b610>
+[2025-07-01 10:19:30,864] INFO: MACD Calculation Details:
+[2025-07-01 10:19:30,864] INFO:   Fast EMA (12): 3336.86058
+[2025-07-01 10:19:30,865] INFO:   Slow EMA (26): 3331.39917
+[2025-07-01 10:19:30,865] INFO:   MACD Line: 5.46141
+[2025-07-01 10:19:30,865] INFO:   Signal Line: 5.46674
+[2025-07-01 10:19:30,865] INFO:   Histogram: -0.00533
+[2025-07-01 10:19:30,865] INFO:   Previous MACD: 5.63671
+[2025-07-01 10:19:30,865] INFO:   Previous Signal: 5.46808
+[2025-07-01 10:19:30,865] INFO:   MACD Cross Status: Crossed Down
+[2025-07-01 10:19:30,865] INFO:   MACD Zero Line Status: Above Zero
+[2025-07-01 10:19:30,883] INFO: Trade Analysis for CS.D.USCGC.TODAY.IP:
+[2025-07-01 10:19:30,883] INFO: Latest Price: 3339.43000
+[2025-07-01 10:19:30,883] INFO: 50 EMA: 3324.72807
+[2025-07-01 10:19:30,883] INFO: 200 EMA: 3312.57277
+[2025-07-01 10:19:30,883] INFO: MACD: 5.46141 (Signal: 5.46674)
+[2025-07-01 10:19:30,883] INFO: RSI: 74.60
+[2025-07-01 10:19:30,883] INFO: ADX: 25.76
+[2025-07-01 10:19:30,883] INFO: Volume: 268 (MA: 952)
+[2025-07-01 10:19:30,883] INFO: Checking for LONG signal...
+[2025-07-01 10:19:30,884] INFO:   - EMA trend structure met
+[2025-07-01 10:19:30,884] INFO:   - MACD conditions not met (required: above signal line by 60%, current diff: -0.10%)
+[2025-07-01 10:19:30,884] INFO: Checking for SHORT signal...
+[2025-07-01 10:19:30,884] INFO:   - EMA trend structure not met
+[2025-07-01 10:19:30,884] INFO: No trade signal generated. Conditions not met:
+[2025-07-01 10:19:30,884] INFO:   - EMA trend structure not met (required for short)
+[2025-07-01 10:19:33,906] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:19:33,998] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/ HTTP/1.1" 500 77
+[2025-07-01 10:19:33,998] ERROR: HTTP request returned 500
+[2025-07-01 10:19:33,998] INFO: Finished processing all markets in the source
+[2025-07-01 10:19:33,998] INFO: Resetting MarketProvider
+[2025-07-01 10:19:34,001] INFO: Wait for 0.08 hours...
+[2025-07-01 10:24:34,035] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:24:34,153] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 10:24:34,156] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 10:24:34,156] INFO: Starting to process market source
+[2025-07-01 10:24:37,176] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:24:37,275] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 10:24:37,277] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 10:24:40,304] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:24:40,418] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.USCGC.TODAY.IP HTTP/1.1" 200 2027
+[2025-07-01 10:24:43,436] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:24:43,594] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/accounts HTTP/1.1" 200 552
+[2025-07-01 10:24:43,662] INFO: Processing GC
+[2025-07-01 10:24:43,662] CRITICAL: CRITICAL: get_prices method called
+[2025-07-01 10:24:43,662] INFO: Fetching price data from URL: https://demo-api.ig.com/gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52
+[2025-07-01 10:24:46,718] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:24:46,843] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52 HTTP/1.1" 200 15854
+[2025-07-01 10:24:46,848] DEBUG: Raw price data received (not logged to avoid repetition)
+[2025-07-01 10:24:46,848] INFO: Processing price data for GC
+[2025-07-01 10:24:46,848] INFO: Processed 52 price points for GC
+[2025-07-01 10:24:46,855] DEBUG: Strategy datapoints: <equitiestradingbot.interfaces.market_history.MarketHistory object at 0x1093b3230>
+[2025-07-01 10:24:46,862] INFO: MACD Calculation Details:
+[2025-07-01 10:24:46,863] INFO:   Fast EMA (12): 3337.35134
+[2025-07-01 10:24:46,863] INFO:   Slow EMA (26): 3331.63546
+[2025-07-01 10:24:46,863] INFO:   MACD Line: 5.71588
+[2025-07-01 10:24:46,863] INFO:   Signal Line: 5.51764
+[2025-07-01 10:24:46,863] INFO:   Histogram: 0.19825
+[2025-07-01 10:24:46,863] INFO:   Previous MACD: 5.63671
+[2025-07-01 10:24:46,863] INFO:   Previous Signal: 5.46808
+[2025-07-01 10:24:46,863] INFO:   MACD Cross Status: No Cross
+[2025-07-01 10:24:46,863] INFO:   MACD Zero Line Status: Above Zero
+[2025-07-01 10:24:46,873] INFO: Trade Analysis for CS.D.USCGC.TODAY.IP:
+[2025-07-01 10:24:46,874] INFO: Latest Price: 3342.62000
+[2025-07-01 10:24:46,874] INFO: 50 EMA: 3324.85316
+[2025-07-01 10:24:46,874] INFO: 200 EMA: 3312.60451
+[2025-07-01 10:24:46,874] INFO: MACD: 5.71588 (Signal: 5.51764)
+[2025-07-01 10:24:46,874] INFO: RSI: 79.76
+[2025-07-01 10:24:46,874] INFO: ADX: 31.51
+[2025-07-01 10:24:46,874] INFO: Volume: 704 (MA: 1031)
+[2025-07-01 10:24:46,874] INFO: Checking for LONG signal...
+[2025-07-01 10:24:46,874] INFO:   - EMA trend structure met
+[2025-07-01 10:24:46,874] INFO:   - MACD conditions not met (required: above signal line by 60%, current diff: 3.59%)
+[2025-07-01 10:24:46,874] INFO: Checking for SHORT signal...
+[2025-07-01 10:24:46,874] INFO:   - EMA trend structure not met
+[2025-07-01 10:24:46,874] INFO: No trade signal generated. Conditions not met:
+[2025-07-01 10:24:46,874] INFO:   - EMA trend structure not met (required for short)
+[2025-07-01 10:24:49,930] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:24:50,005] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/ HTTP/1.1" 500 77
+[2025-07-01 10:24:50,006] ERROR: HTTP request returned 500
+[2025-07-01 10:24:50,006] INFO: Finished processing all markets in the source
+[2025-07-01 10:24:50,006] INFO: Resetting MarketProvider
+[2025-07-01 10:24:50,007] INFO: Wait for 0.08 hours...
+[2025-07-01 10:29:50,034] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:29:50,198] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 10:29:50,200] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 10:29:50,200] INFO: Starting to process market source
+[2025-07-01 10:29:53,251] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:29:53,330] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 10:29:53,332] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 10:29:56,358] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:29:56,506] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.USCGC.TODAY.IP HTTP/1.1" 200 2026
+[2025-07-01 10:29:59,550] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:29:59,744] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/accounts HTTP/1.1" 200 552
+[2025-07-01 10:29:59,814] INFO: Processing GC
+[2025-07-01 10:29:59,814] CRITICAL: CRITICAL: get_prices method called
+[2025-07-01 10:29:59,814] INFO: Fetching price data from URL: https://demo-api.ig.com/gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52
+[2025-07-01 10:30:02,845] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:30:02,971] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52 HTTP/1.1" 200 15854
+[2025-07-01 10:30:02,973] DEBUG: Raw price data received (not logged to avoid repetition)
+[2025-07-01 10:30:02,973] INFO: Processing price data for GC
+[2025-07-01 10:30:02,973] INFO: Processed 52 price points for GC
+[2025-07-01 10:30:02,976] DEBUG: Strategy datapoints: <equitiestradingbot.interfaces.market_history.MarketHistory object at 0x1093b3230>
+[2025-07-01 10:30:02,981] INFO: MACD Calculation Details:
+[2025-07-01 10:30:02,982] INFO:   Fast EMA (12): 3338.22668
+[2025-07-01 10:30:02,982] INFO:   Slow EMA (26): 3332.53747
+[2025-07-01 10:30:02,982] INFO:   MACD Line: 5.68921
+[2025-07-01 10:30:02,983] INFO:   Signal Line: 5.48763
+[2025-07-01 10:30:02,983] INFO:   Histogram: 0.20158
+[2025-07-01 10:30:02,983] INFO:   Previous MACD: 5.68379
+[2025-07-01 10:30:02,983] INFO:   Previous Signal: 5.43723
+[2025-07-01 10:30:02,983] INFO:   MACD Cross Status: No Cross
+[2025-07-01 10:30:02,983] INFO:   MACD Zero Line Status: Above Zero
+[2025-07-01 10:30:03,003] INFO: Trade Analysis for CS.D.USCGC.TODAY.IP:
+[2025-07-01 10:30:03,003] INFO: Latest Price: 3342.75000
+[2025-07-01 10:30:03,003] INFO: 50 EMA: 3325.94625
+[2025-07-01 10:30:03,004] INFO: 200 EMA: 3314.70921
+[2025-07-01 10:30:03,004] INFO: MACD: 5.68921 (Signal: 5.48763)
+[2025-07-01 10:30:03,004] INFO: RSI: 81.91
+[2025-07-01 10:30:03,004] INFO: ADX: 44.59
+[2025-07-01 10:30:03,004] INFO: Volume: 12 (MA: 953)
+[2025-07-01 10:30:03,004] INFO: Checking for LONG signal...
+[2025-07-01 10:30:03,004] INFO:   - EMA trend structure met
+[2025-07-01 10:30:03,004] INFO:   - MACD conditions not met (required: above signal line by 60%, current diff: 3.67%)
+[2025-07-01 10:30:03,004] INFO: Checking for SHORT signal...
+[2025-07-01 10:30:03,004] INFO:   - EMA trend structure not met
+[2025-07-01 10:30:03,004] INFO: No trade signal generated. Conditions not met:
+[2025-07-01 10:30:03,004] INFO:   - EMA trend structure not met (required for short)
+[2025-07-01 10:30:06,054] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:30:06,155] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/ HTTP/1.1" 500 77
+[2025-07-01 10:30:06,156] ERROR: HTTP request returned 500
+[2025-07-01 10:30:06,156] INFO: Finished processing all markets in the source
+[2025-07-01 10:30:06,156] INFO: Resetting MarketProvider
+[2025-07-01 10:30:06,157] INFO: Wait for 0.08 hours...
+[2025-07-01 10:35:06,203] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:35:06,348] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 10:35:06,354] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 10:35:06,354] INFO: Starting to process market source
+[2025-07-01 10:35:09,414] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:35:09,502] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 10:35:09,505] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 10:35:12,540] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:35:12,634] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.USCGC.TODAY.IP HTTP/1.1" 200 2027
+[2025-07-01 10:35:15,676] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:35:15,846] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/accounts HTTP/1.1" 200 552
+[2025-07-01 10:35:15,902] INFO: Processing GC
+[2025-07-01 10:35:15,903] CRITICAL: CRITICAL: get_prices method called
+[2025-07-01 10:35:15,903] INFO: Fetching price data from URL: https://demo-api.ig.com/gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52
+[2025-07-01 10:35:18,953] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:35:19,090] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52 HTTP/1.1" 200 15855
+[2025-07-01 10:35:19,110] DEBUG: Raw price data received (not logged to avoid repetition)
+[2025-07-01 10:35:19,110] INFO: Processing price data for GC
+[2025-07-01 10:35:19,111] INFO: Processed 52 price points for GC
+[2025-07-01 10:35:19,113] DEBUG: Strategy datapoints: <equitiestradingbot.interfaces.market_history.MarketHistory object at 0x109446e70>
+[2025-07-01 10:35:19,119] INFO: MACD Calculation Details:
+[2025-07-01 10:35:19,119] INFO:   Fast EMA (12): 3338.44668
+[2025-07-01 10:35:19,119] INFO:   Slow EMA (26): 3332.64339
+[2025-07-01 10:35:19,119] INFO:   MACD Line: 5.80329
+[2025-07-01 10:35:19,119] INFO:   Signal Line: 5.51044
+[2025-07-01 10:35:19,119] INFO:   Histogram: 0.29284
+[2025-07-01 10:35:19,119] INFO:   Previous MACD: 5.68379
+[2025-07-01 10:35:19,119] INFO:   Previous Signal: 5.43723
+[2025-07-01 10:35:19,119] INFO:   MACD Cross Status: No Cross
+[2025-07-01 10:35:19,119] INFO:   MACD Zero Line Status: Above Zero
+[2025-07-01 10:35:19,132] INFO: Trade Analysis for CS.D.USCGC.TODAY.IP:
+[2025-07-01 10:35:19,132] INFO: Latest Price: 3344.18000
+[2025-07-01 10:35:19,132] INFO: 50 EMA: 3326.00232
+[2025-07-01 10:35:19,132] INFO: 200 EMA: 3314.72343
+[2025-07-01 10:35:19,132] INFO: MACD: 5.80329 (Signal: 5.51044)
+[2025-07-01 10:35:19,132] INFO: RSI: 83.53
+[2025-07-01 10:35:19,132] INFO: ADX: 44.59
+[2025-07-01 10:35:19,132] INFO: Volume: 581 (MA: 1056)
+[2025-07-01 10:35:19,132] INFO: Checking for LONG signal...
+[2025-07-01 10:35:19,133] INFO:   - EMA trend structure met
+[2025-07-01 10:35:19,133] INFO:   - MACD conditions not met (required: above signal line by 60%, current diff: 5.31%)
+[2025-07-01 10:35:19,133] INFO: Checking for SHORT signal...
+[2025-07-01 10:35:19,133] INFO:   - EMA trend structure not met
+[2025-07-01 10:35:19,133] INFO: No trade signal generated. Conditions not met:
+[2025-07-01 10:35:19,133] INFO:   - EMA trend structure not met (required for short)
+[2025-07-01 10:35:22,180] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:35:22,259] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/ HTTP/1.1" 500 77
+[2025-07-01 10:35:22,260] ERROR: HTTP request returned 500
+[2025-07-01 10:35:22,260] INFO: Finished processing all markets in the source
+[2025-07-01 10:35:22,260] INFO: Resetting MarketProvider
+[2025-07-01 10:35:22,261] INFO: Wait for 0.08 hours...
+[2025-07-01 10:40:22,296] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:40:22,415] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 10:40:22,426] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 10:40:22,426] INFO: Starting to process market source
+[2025-07-01 10:40:25,445] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:40:25,519] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 10:40:25,520] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 10:40:28,533] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:40:28,644] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.USCGC.TODAY.IP HTTP/1.1" 200 2026
+[2025-07-01 10:40:31,668] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:40:31,859] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/accounts HTTP/1.1" 200 552
+[2025-07-01 10:40:31,922] INFO: Processing GC
+[2025-07-01 10:40:31,922] CRITICAL: CRITICAL: get_prices method called
+[2025-07-01 10:40:31,922] INFO: Fetching price data from URL: https://demo-api.ig.com/gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52
+[2025-07-01 10:40:34,952] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:40:35,054] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52 HTTP/1.1" 200 15856
+[2025-07-01 10:40:35,057] DEBUG: Raw price data received (not logged to avoid repetition)
+[2025-07-01 10:40:35,057] INFO: Processing price data for GC
+[2025-07-01 10:40:35,057] INFO: Processed 52 price points for GC
+[2025-07-01 10:40:35,060] DEBUG: Strategy datapoints: <equitiestradingbot.interfaces.market_history.MarketHistory object at 0x1093c59d0>
+[2025-07-01 10:40:35,068] INFO: MACD Calculation Details:
+[2025-07-01 10:40:35,068] INFO:   Fast EMA (12): 3338.62360
+[2025-07-01 10:40:35,069] INFO:   Slow EMA (26): 3332.72858
+[2025-07-01 10:40:35,069] INFO:   MACD Line: 5.89502
+[2025-07-01 10:40:35,069] INFO:   Signal Line: 5.52879
+[2025-07-01 10:40:35,069] INFO:   Histogram: 0.36623
+[2025-07-01 10:40:35,069] INFO:   Previous MACD: 5.68379
+[2025-07-01 10:40:35,069] INFO:   Previous Signal: 5.43723
+[2025-07-01 10:40:35,069] INFO:   MACD Cross Status: No Cross
+[2025-07-01 10:40:35,069] INFO:   MACD Zero Line Status: Above Zero
+[2025-07-01 10:40:35,081] INFO: Trade Analysis for CS.D.USCGC.TODAY.IP:
+[2025-07-01 10:40:35,081] INFO: Latest Price: 3345.33000
+[2025-07-01 10:40:35,081] INFO: 50 EMA: 3326.04742
+[2025-07-01 10:40:35,081] INFO: 200 EMA: 3314.73488
+[2025-07-01 10:40:35,081] INFO: MACD: 5.89502 (Signal: 5.52879)
+[2025-07-01 10:40:35,081] INFO: RSI: 84.28
+[2025-07-01 10:40:35,081] INFO: ADX: 44.91
+[2025-07-01 10:40:35,081] INFO: Volume: 1049 (MA: 1141)
+[2025-07-01 10:40:35,081] INFO: Checking for LONG signal...
+[2025-07-01 10:40:35,081] INFO:   - EMA trend structure met
+[2025-07-01 10:40:35,081] INFO:   - MACD conditions not met (required: above signal line by 60%, current diff: 6.62%)
+[2025-07-01 10:40:35,081] INFO: Checking for SHORT signal...
+[2025-07-01 10:40:35,081] INFO:   - EMA trend structure not met
+[2025-07-01 10:40:35,081] INFO: No trade signal generated. Conditions not met:
+[2025-07-01 10:40:35,081] INFO:   - EMA trend structure not met (required for short)
+[2025-07-01 10:40:38,103] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:40:38,216] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/ HTTP/1.1" 500 77
+[2025-07-01 10:40:38,216] ERROR: HTTP request returned 500
+[2025-07-01 10:40:38,217] INFO: Finished processing all markets in the source
+[2025-07-01 10:40:38,217] INFO: Resetting MarketProvider
+[2025-07-01 10:40:38,218] INFO: Wait for 0.08 hours...
+[2025-07-01 10:45:38,243] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:45:38,372] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 10:45:38,375] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 10:45:38,375] INFO: Starting to process market source
+[2025-07-01 10:45:41,404] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:45:41,481] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 10:45:41,483] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 10:45:44,507] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:45:44,619] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.USCGC.TODAY.IP HTTP/1.1" 200 2028
+[2025-07-01 10:45:47,647] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:45:47,790] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/accounts HTTP/1.1" 200 552
+[2025-07-01 10:45:47,853] INFO: Processing GC
+[2025-07-01 10:45:47,854] CRITICAL: CRITICAL: get_prices method called
+[2025-07-01 10:45:47,854] INFO: Fetching price data from URL: https://demo-api.ig.com/gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52
+[2025-07-01 10:45:50,879] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:45:50,987] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52 HTTP/1.1" 200 15854
+[2025-07-01 10:45:50,989] DEBUG: Raw price data received (not logged to avoid repetition)
+[2025-07-01 10:45:50,989] INFO: Processing price data for GC
+[2025-07-01 10:45:50,990] INFO: Processed 52 price points for GC
+[2025-07-01 10:45:50,994] DEBUG: Strategy datapoints: <equitiestradingbot.interfaces.market_history.MarketHistory object at 0x1093c5ae0>
+[2025-07-01 10:45:50,999] INFO: MACD Calculation Details:
+[2025-07-01 10:45:50,999] INFO:   Fast EMA (12): 3339.76566
+[2025-07-01 10:45:51,000] INFO:   Slow EMA (26): 3333.69274
+[2025-07-01 10:45:51,000] INFO:   MACD Line: 6.07292
+[2025-07-01 10:45:51,000] INFO:   Signal Line: 5.67354
+[2025-07-01 10:45:51,000] INFO:   Histogram: 0.39938
+[2025-07-01 10:45:51,000] INFO:   Previous MACD: 5.95351
+[2025-07-01 10:45:51,000] INFO:   Previous Signal: 5.57370
+[2025-07-01 10:45:51,000] INFO:   MACD Cross Status: No Cross
+[2025-07-01 10:45:51,000] INFO:   MACD Zero Line Status: Above Zero
+[2025-07-01 10:45:51,012] INFO: Trade Analysis for CS.D.USCGC.TODAY.IP:
+[2025-07-01 10:45:51,012] INFO: Latest Price: 3345.71000
+[2025-07-01 10:45:51,012] INFO: 50 EMA: 3326.66372
+[2025-07-01 10:45:51,012] INFO: 200 EMA: 3314.23848
+[2025-07-01 10:45:51,012] INFO: MACD: 6.07292 (Signal: 5.67354)
+[2025-07-01 10:45:51,012] INFO: RSI: 84.37
+[2025-07-01 10:45:51,012] INFO: ADX: 53.89
+[2025-07-01 10:45:51,012] INFO: Volume: 74 (MA: 992)
+[2025-07-01 10:45:51,012] INFO: Checking for LONG signal...
+[2025-07-01 10:45:51,012] INFO:   - EMA trend structure met
+[2025-07-01 10:45:51,013] INFO:   - MACD conditions not met (required: above signal line by 60%, current diff: 7.04%)
+[2025-07-01 10:45:51,013] INFO: Checking for SHORT signal...
+[2025-07-01 10:45:51,013] INFO:   - EMA trend structure not met
+[2025-07-01 10:45:51,013] INFO: No trade signal generated. Conditions not met:
+[2025-07-01 10:45:51,013] INFO:   - EMA trend structure not met (required for short)
+[2025-07-01 10:45:54,039] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:45:54,134] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/ HTTP/1.1" 500 77
+[2025-07-01 10:45:54,136] ERROR: HTTP request returned 500
+[2025-07-01 10:45:54,136] INFO: Finished processing all markets in the source
+[2025-07-01 10:45:54,136] INFO: Resetting MarketProvider
+[2025-07-01 10:45:54,138] INFO: Wait for 0.08 hours...
+[2025-07-01 10:50:54,170] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:50:54,290] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 10:50:54,294] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 10:50:54,294] INFO: Starting to process market source
+[2025-07-01 10:50:57,329] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:50:57,401] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 10:50:57,402] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 10:51:00,441] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:51:00,527] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.USCGC.TODAY.IP HTTP/1.1" 200 2028
+[2025-07-01 10:51:03,573] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:51:03,730] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/accounts HTTP/1.1" 200 552
+[2025-07-01 10:51:03,792] INFO: Processing GC
+[2025-07-01 10:51:03,792] CRITICAL: CRITICAL: get_prices method called
+[2025-07-01 10:51:03,792] INFO: Fetching price data from URL: https://demo-api.ig.com/gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52
+[2025-07-01 10:51:06,843] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:51:06,964] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52 HTTP/1.1" 200 15855
+[2025-07-01 10:51:06,966] DEBUG: Raw price data received (not logged to avoid repetition)
+[2025-07-01 10:51:06,966] INFO: Processing price data for GC
+[2025-07-01 10:51:06,966] INFO: Processed 52 price points for GC
+[2025-07-01 10:51:06,969] DEBUG: Strategy datapoints: <equitiestradingbot.interfaces.market_history.MarketHistory object at 0x109222750>
+[2025-07-01 10:51:06,975] INFO: MACD Calculation Details:
+[2025-07-01 10:51:06,976] INFO:   Fast EMA (12): 3339.75335
+[2025-07-01 10:51:06,976] INFO:   Slow EMA (26): 3333.68681
+[2025-07-01 10:51:06,976] INFO:   MACD Line: 6.06654
+[2025-07-01 10:51:06,976] INFO:   Signal Line: 5.67227
+[2025-07-01 10:51:06,976] INFO:   Histogram: 0.39427
+[2025-07-01 10:51:06,976] INFO:   Previous MACD: 5.95351
+[2025-07-01 10:51:06,976] INFO:   Previous Signal: 5.57370
+[2025-07-01 10:51:06,976] INFO:   MACD Cross Status: No Cross
+[2025-07-01 10:51:06,976] INFO:   MACD Zero Line Status: Above Zero
+[2025-07-01 10:51:06,988] INFO: Trade Analysis for CS.D.USCGC.TODAY.IP:
+[2025-07-01 10:51:06,988] INFO: Latest Price: 3345.63000
+[2025-07-01 10:51:06,988] INFO: 50 EMA: 3326.66058
+[2025-07-01 10:51:06,988] INFO: 200 EMA: 3314.23769
+[2025-07-01 10:51:06,988] INFO: MACD: 6.06654 (Signal: 5.67227)
+[2025-07-01 10:51:06,988] INFO: RSI: 84.10
+[2025-07-01 10:51:06,988] INFO: ADX: 53.89
+[2025-07-01 10:51:06,988] INFO: Volume: 574 (MA: 1083)
+[2025-07-01 10:51:06,988] INFO: Checking for LONG signal...
+[2025-07-01 10:51:06,988] INFO:   - EMA trend structure met
+[2025-07-01 10:51:06,988] INFO:   - MACD conditions not met (required: above signal line by 60%, current diff: 6.95%)
+[2025-07-01 10:51:06,988] INFO: Checking for SHORT signal...
+[2025-07-01 10:51:06,988] INFO:   - EMA trend structure not met
+[2025-07-01 10:51:06,988] INFO: No trade signal generated. Conditions not met:
+[2025-07-01 10:51:06,988] INFO:   - EMA trend structure not met (required for short)
+[2025-07-01 10:51:10,033] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:51:10,116] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/ HTTP/1.1" 500 77
+[2025-07-01 10:51:10,117] ERROR: HTTP request returned 500
+[2025-07-01 10:51:10,117] INFO: Finished processing all markets in the source
+[2025-07-01 10:51:10,118] INFO: Resetting MarketProvider
+[2025-07-01 10:51:10,119] INFO: Wait for 0.08 hours...
+[2025-07-01 10:56:10,159] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:56:11,345] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 10:56:11,350] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 10:56:11,350] INFO: Starting to process market source
+[2025-07-01 10:56:13,388] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:56:13,462] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 10:56:13,464] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 10:56:16,509] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:56:16,597] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.USCGC.TODAY.IP HTTP/1.1" 200 2028
+[2025-07-01 10:56:19,648] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:56:19,803] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/accounts HTTP/1.1" 200 552
+[2025-07-01 10:56:19,888] INFO: Processing GC
+[2025-07-01 10:56:19,888] CRITICAL: CRITICAL: get_prices method called
+[2025-07-01 10:56:19,888] INFO: Fetching price data from URL: https://demo-api.ig.com/gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52
+[2025-07-01 10:56:22,924] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:56:23,012] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52 HTTP/1.1" 200 15856
+[2025-07-01 10:56:23,014] DEBUG: Raw price data received (not logged to avoid repetition)
+[2025-07-01 10:56:23,015] INFO: Processing price data for GC
+[2025-07-01 10:56:23,015] INFO: Processed 52 price points for GC
+[2025-07-01 10:56:23,021] DEBUG: Strategy datapoints: <equitiestradingbot.interfaces.market_history.MarketHistory object at 0x109222750>
+[2025-07-01 10:56:23,034] INFO: MACD Calculation Details:
+[2025-07-01 10:56:23,034] INFO:   Fast EMA (12): 3340.03027
+[2025-07-01 10:56:23,034] INFO:   Slow EMA (26): 3333.82015
+[2025-07-01 10:56:23,034] INFO:   MACD Line: 6.21013
+[2025-07-01 10:56:23,034] INFO:   Signal Line: 5.70098
+[2025-07-01 10:56:23,034] INFO:   Histogram: 0.50914
+[2025-07-01 10:56:23,034] INFO:   Previous MACD: 5.95351
+[2025-07-01 10:56:23,034] INFO:   Previous Signal: 5.57370
+[2025-07-01 10:56:23,034] INFO:   MACD Cross Status: No Cross
+[2025-07-01 10:56:23,035] INFO:   MACD Zero Line Status: Above Zero
+[2025-07-01 10:56:23,057] INFO: Trade Analysis for CS.D.USCGC.TODAY.IP:
+[2025-07-01 10:56:23,057] INFO: Latest Price: 3347.43000
+[2025-07-01 10:56:23,057] INFO: 50 EMA: 3326.73117
+[2025-07-01 10:56:23,057] INFO: 200 EMA: 3314.25560
+[2025-07-01 10:56:23,057] INFO: MACD: 6.21013 (Signal: 5.70098)
+[2025-07-01 10:56:23,057] INFO: RSI: 85.40
+[2025-07-01 10:56:23,057] INFO: ADX: 55.19
+[2025-07-01 10:56:23,057] INFO: Volume: 1041 (MA: 1168)
+[2025-07-01 10:56:23,057] INFO: Checking for LONG signal...
+[2025-07-01 10:56:23,057] INFO:   - EMA trend structure met
+[2025-07-01 10:56:23,057] INFO:   - MACD conditions not met (required: above signal line by 60%, current diff: 8.93%)
+[2025-07-01 10:56:23,057] INFO: Checking for SHORT signal...
+[2025-07-01 10:56:23,057] INFO:   - EMA trend structure not met
+[2025-07-01 10:56:23,057] INFO: No trade signal generated. Conditions not met:
+[2025-07-01 10:56:23,057] INFO:   - EMA trend structure not met (required for short)
+[2025-07-01 10:56:26,095] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 10:56:26,184] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/ HTTP/1.1" 500 77
+[2025-07-01 10:56:26,187] ERROR: HTTP request returned 500
+[2025-07-01 10:56:26,191] INFO: Finished processing all markets in the source
+[2025-07-01 10:56:26,191] INFO: Resetting MarketProvider
+[2025-07-01 10:56:26,193] INFO: Wait for 0.08 hours...
+[2025-07-01 11:01:26,235] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:01:26,514] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 11:01:26,517] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 11:01:26,517] INFO: Starting to process market source
+[2025-07-01 11:01:29,559] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:01:29,712] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 11:01:29,714] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 11:01:32,752] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:01:32,866] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.USCGC.TODAY.IP HTTP/1.1" 200 2027
+[2025-07-01 11:01:35,918] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:01:36,074] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/accounts HTTP/1.1" 200 552
+[2025-07-01 11:01:36,143] INFO: Processing GC
+[2025-07-01 11:01:36,144] CRITICAL: CRITICAL: get_prices method called
+[2025-07-01 11:01:36,144] INFO: Fetching price data from URL: https://demo-api.ig.com/gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52
+[2025-07-01 11:01:39,194] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:01:39,312] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52 HTTP/1.1" 200 15856
+[2025-07-01 11:01:39,314] DEBUG: Raw price data received (not logged to avoid repetition)
+[2025-07-01 11:01:39,314] INFO: Processing price data for GC
+[2025-07-01 11:01:39,315] INFO: Processed 52 price points for GC
+[2025-07-01 11:01:39,324] DEBUG: Strategy datapoints: <equitiestradingbot.interfaces.market_history.MarketHistory object at 0x1093a1b80>
+[2025-07-01 11:01:39,332] INFO: MACD Calculation Details:
+[2025-07-01 11:01:39,332] INFO:   Fast EMA (12): 3340.61924
+[2025-07-01 11:01:39,332] INFO:   Slow EMA (26): 3334.54134
+[2025-07-01 11:01:39,332] INFO:   MACD Line: 6.07790
+[2025-07-01 11:01:39,332] INFO:   Signal Line: 5.76642
+[2025-07-01 11:01:39,332] INFO:   Histogram: 0.31148
+[2025-07-01 11:01:39,332] INFO:   Previous MACD: 6.07227
+[2025-07-01 11:01:39,332] INFO:   Previous Signal: 5.68855
+[2025-07-01 11:01:39,332] INFO:   MACD Cross Status: No Cross
+[2025-07-01 11:01:39,332] INFO:   MACD Zero Line Status: Above Zero
+[2025-07-01 11:01:39,339] INFO: Trade Analysis for CS.D.USCGC.TODAY.IP:
+[2025-07-01 11:01:39,339] INFO: Latest Price: 3345.45000
+[2025-07-01 11:01:39,339] INFO: 50 EMA: 3327.31697
+[2025-07-01 11:01:39,339] INFO: 200 EMA: 3314.17887
+[2025-07-01 11:01:39,339] INFO: MACD: 6.07790 (Signal: 5.76642)
+[2025-07-01 11:01:39,339] INFO: RSI: 80.60
+[2025-07-01 11:01:39,339] INFO: ADX: 68.14
+[2025-07-01 11:01:39,339] INFO: Volume: 127 (MA: 1047)
+[2025-07-01 11:01:39,339] INFO: Checking for LONG signal...
+[2025-07-01 11:01:39,339] INFO:   - EMA trend structure met
+[2025-07-01 11:01:39,339] INFO:   - MACD conditions not met (required: above signal line by 60%, current diff: 5.40%)
+[2025-07-01 11:01:39,339] INFO: Checking for SHORT signal...
+[2025-07-01 11:01:39,340] INFO:   - EMA trend structure not met
+[2025-07-01 11:01:39,340] INFO: No trade signal generated. Conditions not met:
+[2025-07-01 11:01:39,340] INFO:   - EMA trend structure not met (required for short)
+[2025-07-01 11:01:42,379] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:01:42,461] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/ HTTP/1.1" 500 77
+[2025-07-01 11:01:42,462] ERROR: HTTP request returned 500
+[2025-07-01 11:01:42,462] INFO: Finished processing all markets in the source
+[2025-07-01 11:01:42,462] INFO: Resetting MarketProvider
+[2025-07-01 11:01:42,463] INFO: Wait for 0.08 hours...
+[2025-07-01 11:06:42,545] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:06:42,670] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 11:06:42,674] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 11:06:42,674] INFO: Starting to process market source
+[2025-07-01 11:06:45,727] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:06:45,820] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 11:06:45,825] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 11:06:48,879] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:06:49,029] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.USCGC.TODAY.IP HTTP/1.1" 200 2029
+[2025-07-01 11:06:52,074] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:06:52,272] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/accounts HTTP/1.1" 200 552
+[2025-07-01 11:06:52,359] INFO: Processing GC
+[2025-07-01 11:06:52,359] CRITICAL: CRITICAL: get_prices method called
+[2025-07-01 11:06:52,359] INFO: Fetching price data from URL: https://demo-api.ig.com/gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52
+[2025-07-01 11:06:55,410] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:06:55,535] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52 HTTP/1.1" 200 15856
+[2025-07-01 11:06:55,538] DEBUG: Raw price data received (not logged to avoid repetition)
+[2025-07-01 11:06:55,538] INFO: Processing price data for GC
+[2025-07-01 11:06:55,539] INFO: Processed 52 price points for GC
+[2025-07-01 11:06:55,542] DEBUG: Strategy datapoints: <equitiestradingbot.interfaces.market_history.MarketHistory object at 0x1093a34d0>
+[2025-07-01 11:06:55,549] INFO: MACD Calculation Details:
+[2025-07-01 11:06:55,550] INFO:   Fast EMA (12): 3340.68693
+[2025-07-01 11:06:55,550] INFO:   Slow EMA (26): 3334.57393
+[2025-07-01 11:06:55,550] INFO:   MACD Line: 6.11300
+[2025-07-01 11:06:55,550] INFO:   Signal Line: 5.77344
+[2025-07-01 11:06:55,550] INFO:   Histogram: 0.33956
+[2025-07-01 11:06:55,551] INFO:   Previous MACD: 6.07227
+[2025-07-01 11:06:55,551] INFO:   Previous Signal: 5.68855
+[2025-07-01 11:06:55,551] INFO:   MACD Cross Status: No Cross
+[2025-07-01 11:06:55,551] INFO:   MACD Zero Line Status: Above Zero
+[2025-07-01 11:06:55,563] INFO: Trade Analysis for CS.D.USCGC.TODAY.IP:
+[2025-07-01 11:06:55,563] INFO: Latest Price: 3345.89000
+[2025-07-01 11:06:55,563] INFO: 50 EMA: 3327.33422
+[2025-07-01 11:06:55,563] INFO: 200 EMA: 3314.18325
+[2025-07-01 11:06:55,563] INFO: MACD: 6.11300 (Signal: 5.77344)
+[2025-07-01 11:06:55,563] INFO: RSI: 81.26
+[2025-07-01 11:06:55,563] INFO: ADX: 67.38
+[2025-07-01 11:06:55,563] INFO: Volume: 442 (MA: 1104)
+[2025-07-01 11:06:55,563] INFO: Checking for LONG signal...
+[2025-07-01 11:06:55,563] INFO:   - EMA trend structure met
+[2025-07-01 11:06:55,563] INFO:   - MACD conditions not met (required: above signal line by 60%, current diff: 5.88%)
+[2025-07-01 11:06:55,563] INFO: Checking for SHORT signal...
+[2025-07-01 11:06:55,564] INFO:   - EMA trend structure not met
+[2025-07-01 11:06:55,564] INFO: No trade signal generated. Conditions not met:
+[2025-07-01 11:06:55,564] INFO:   - EMA trend structure not met (required for short)
+[2025-07-01 11:06:58,613] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:06:58,722] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/ HTTP/1.1" 500 77
+[2025-07-01 11:06:58,723] ERROR: HTTP request returned 500
+[2025-07-01 11:06:58,723] INFO: Finished processing all markets in the source
+[2025-07-01 11:06:58,723] INFO: Resetting MarketProvider
+[2025-07-01 11:06:58,726] INFO: Wait for 0.08 hours...
+[2025-07-01 11:11:58,784] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:11:58,947] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 11:11:58,952] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 11:11:58,952] INFO: Starting to process market source
+[2025-07-01 11:12:01,998] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:12:02,108] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 11:12:02,110] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 11:12:05,171] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:12:05,262] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.USCGC.TODAY.IP HTTP/1.1" 200 2026
+[2025-07-01 11:12:08,317] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:12:08,504] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/accounts HTTP/1.1" 200 552
+[2025-07-01 11:12:08,576] INFO: Processing GC
+[2025-07-01 11:12:08,577] CRITICAL: CRITICAL: get_prices method called
+[2025-07-01 11:12:08,577] INFO: Fetching price data from URL: https://demo-api.ig.com/gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52
+[2025-07-01 11:12:11,623] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:12:11,742] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52 HTTP/1.1" 200 15856
+[2025-07-01 11:12:11,746] DEBUG: Raw price data received (not logged to avoid repetition)
+[2025-07-01 11:12:11,746] INFO: Processing price data for GC
+[2025-07-01 11:12:11,746] INFO: Processed 52 price points for GC
+[2025-07-01 11:12:11,754] DEBUG: Strategy datapoints: <equitiestradingbot.interfaces.market_history.MarketHistory object at 0x10941b930>
+[2025-07-01 11:12:11,765] INFO: MACD Calculation Details:
+[2025-07-01 11:12:11,765] INFO:   Fast EMA (12): 3340.89309
+[2025-07-01 11:12:11,765] INFO:   Slow EMA (26): 3334.67319
+[2025-07-01 11:12:11,765] INFO:   MACD Line: 6.21989
+[2025-07-01 11:12:11,765] INFO:   Signal Line: 5.79482
+[2025-07-01 11:12:11,765] INFO:   Histogram: 0.42507
+[2025-07-01 11:12:11,765] INFO:   Previous MACD: 6.07227
+[2025-07-01 11:12:11,765] INFO:   Previous Signal: 5.68855
+[2025-07-01 11:12:11,766] INFO:   MACD Cross Status: No Cross
+[2025-07-01 11:12:11,766] INFO:   MACD Zero Line Status: Above Zero
+[2025-07-01 11:12:11,778] INFO: Trade Analysis for CS.D.USCGC.TODAY.IP:
+[2025-07-01 11:12:11,778] INFO: Latest Price: 3347.23000
+[2025-07-01 11:12:11,778] INFO: 50 EMA: 3327.38677
+[2025-07-01 11:12:11,778] INFO: 200 EMA: 3314.19658
+[2025-07-01 11:12:11,778] INFO: MACD: 6.21989 (Signal: 5.79482)
+[2025-07-01 11:12:11,778] INFO: RSI: 82.32
+[2025-07-01 11:12:11,778] INFO: ADX: 66.59
+[2025-07-01 11:12:11,778] INFO: Volume: 823 (MA: 1173)
+[2025-07-01 11:12:11,778] INFO: Checking for LONG signal...
+[2025-07-01 11:12:11,778] INFO:   - EMA trend structure met
+[2025-07-01 11:12:11,778] INFO:   - MACD conditions not met (required: above signal line by 60%, current diff: 7.34%)
+[2025-07-01 11:12:11,778] INFO: Checking for SHORT signal...
+[2025-07-01 11:12:11,778] INFO:   - EMA trend structure not met
+[2025-07-01 11:12:11,778] INFO: No trade signal generated. Conditions not met:
+[2025-07-01 11:12:11,778] INFO:   - EMA trend structure not met (required for short)
+[2025-07-01 11:12:14,832] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:12:14,911] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/ HTTP/1.1" 500 77
+[2025-07-01 11:12:14,913] ERROR: HTTP request returned 500
+[2025-07-01 11:12:14,913] INFO: Finished processing all markets in the source
+[2025-07-01 11:12:14,913] INFO: Resetting MarketProvider
+[2025-07-01 11:12:14,914] INFO: Wait for 0.08 hours...
+[2025-07-01 11:17:14,981] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:17:15,102] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 11:17:15,105] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 11:17:15,105] INFO: Starting to process market source
+[2025-07-01 11:17:18,145] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:17:18,223] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 11:17:18,226] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 11:17:21,267] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:17:21,360] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.USCGC.TODAY.IP HTTP/1.1" 200 2024
+[2025-07-01 11:17:24,406] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:17:24,538] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/accounts HTTP/1.1" 200 552
+[2025-07-01 11:17:24,613] INFO: Processing GC
+[2025-07-01 11:17:24,613] CRITICAL: CRITICAL: get_prices method called
+[2025-07-01 11:17:24,613] INFO: Fetching price data from URL: https://demo-api.ig.com/gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52
+[2025-07-01 11:17:27,676] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:17:27,805] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52 HTTP/1.1" 200 15857
+[2025-07-01 11:17:27,807] DEBUG: Raw price data received (not logged to avoid repetition)
+[2025-07-01 11:17:27,807] INFO: Processing price data for GC
+[2025-07-01 11:17:27,807] INFO: Processed 52 price points for GC
+[2025-07-01 11:17:27,816] DEBUG: Strategy datapoints: <equitiestradingbot.interfaces.market_history.MarketHistory object at 0x10941b930>
+[2025-07-01 11:17:27,823] INFO: MACD Calculation Details:
+[2025-07-01 11:17:27,824] INFO:   Fast EMA (12): 3341.99060
+[2025-07-01 11:17:27,824] INFO:   Slow EMA (26): 3335.61140
+[2025-07-01 11:17:27,824] INFO:   MACD Line: 6.37920
+[2025-07-01 11:17:27,824] INFO:   Signal Line: 5.97514
+[2025-07-01 11:17:27,824] INFO:   Histogram: 0.40405
+[2025-07-01 11:17:27,824] INFO:   Previous MACD: 6.27461
+[2025-07-01 11:17:27,824] INFO:   Previous Signal: 5.87413
+[2025-07-01 11:17:27,824] INFO:   MACD Cross Status: No Cross
+[2025-07-01 11:17:27,824] INFO:   MACD Zero Line Status: Above Zero
+[2025-07-01 11:17:27,832] INFO: Trade Analysis for CS.D.USCGC.TODAY.IP:
+[2025-07-01 11:17:27,832] INFO: Latest Price: 3348.03000
+[2025-07-01 11:17:27,832] INFO: 50 EMA: 3327.84660
+[2025-07-01 11:17:27,832] INFO: 200 EMA: 3312.86858
+[2025-07-01 11:17:27,832] INFO: MACD: 6.37920 (Signal: 5.97514)
+[2025-07-01 11:17:27,832] INFO: RSI: 85.17
+[2025-07-01 11:17:27,832] INFO: ADX: 78.11
+[2025-07-01 11:17:27,832] INFO: Volume: 146 (MA: 1014)
+[2025-07-01 11:17:27,832] INFO: Checking for LONG signal...
+[2025-07-01 11:17:27,832] INFO:   - EMA trend structure met
+[2025-07-01 11:17:27,832] INFO:   - MACD conditions not met (required: above signal line by 60%, current diff: 6.76%)
+[2025-07-01 11:17:27,832] INFO: Checking for SHORT signal...
+[2025-07-01 11:17:27,833] INFO:   - EMA trend structure not met
+[2025-07-01 11:17:27,833] INFO: No trade signal generated. Conditions not met:
+[2025-07-01 11:17:27,833] INFO:   - EMA trend structure not met (required for short)
+[2025-07-01 11:17:30,892] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:17:30,963] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/ HTTP/1.1" 500 77
+[2025-07-01 11:17:30,964] ERROR: HTTP request returned 500
+[2025-07-01 11:17:30,964] INFO: Finished processing all markets in the source
+[2025-07-01 11:17:30,964] INFO: Resetting MarketProvider
+[2025-07-01 11:17:30,966] INFO: Wait for 0.08 hours...
+[2025-07-01 11:22:31,014] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:22:31,296] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 11:22:31,299] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 11:22:31,299] INFO: Starting to process market source
+[2025-07-01 11:22:34,332] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:22:34,413] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 11:22:34,416] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 11:22:37,448] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:22:37,543] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.USCGC.TODAY.IP HTTP/1.1" 200 2027
+[2025-07-01 11:22:40,574] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:22:40,731] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/accounts HTTP/1.1" 200 552
+[2025-07-01 11:22:40,808] INFO: Processing GC
+[2025-07-01 11:22:40,808] CRITICAL: CRITICAL: get_prices method called
+[2025-07-01 11:22:40,809] INFO: Fetching price data from URL: https://demo-api.ig.com/gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52
+[2025-07-01 11:22:43,834] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:22:43,926] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52 HTTP/1.1" 200 15857
+[2025-07-01 11:22:43,928] DEBUG: Raw price data received (not logged to avoid repetition)
+[2025-07-01 11:22:43,929] INFO: Processing price data for GC
+[2025-07-01 11:22:43,929] INFO: Processed 52 price points for GC
+[2025-07-01 11:22:43,933] DEBUG: Strategy datapoints: <equitiestradingbot.interfaces.market_history.MarketHistory object at 0x10942bc70>
+[2025-07-01 11:22:43,941] INFO: MACD Calculation Details:
+[2025-07-01 11:22:43,942] INFO:   Fast EMA (12): 3341.85214
+[2025-07-01 11:22:43,942] INFO:   Slow EMA (26): 3335.54474
+[2025-07-01 11:22:43,942] INFO:   MACD Line: 6.30740
+[2025-07-01 11:22:43,942] INFO:   Signal Line: 5.96079
+[2025-07-01 11:22:43,942] INFO:   Histogram: 0.34662
+[2025-07-01 11:22:43,942] INFO:   Previous MACD: 6.27461
+[2025-07-01 11:22:43,942] INFO:   Previous Signal: 5.87413
+[2025-07-01 11:22:43,942] INFO:   MACD Cross Status: No Cross
+[2025-07-01 11:22:43,942] INFO:   MACD Zero Line Status: Above Zero
+[2025-07-01 11:22:43,955] INFO: Trade Analysis for CS.D.USCGC.TODAY.IP:
+[2025-07-01 11:22:43,955] INFO: Latest Price: 3347.13000
+[2025-07-01 11:22:43,955] INFO: 50 EMA: 3327.81131
+[2025-07-01 11:22:43,955] INFO: 200 EMA: 3312.85963
+[2025-07-01 11:22:43,955] INFO: MACD: 6.30740 (Signal: 5.96079)
+[2025-07-01 11:22:43,955] INFO: RSI: 84.29
+[2025-07-01 11:22:43,955] INFO: ADX: 78.18
+[2025-07-01 11:22:43,955] INFO: Volume: 396 (MA: 1060)
+[2025-07-01 11:22:43,955] INFO: Checking for LONG signal...
+[2025-07-01 11:22:43,956] INFO:   - EMA trend structure met
+[2025-07-01 11:22:43,956] INFO:   - MACD conditions not met (required: above signal line by 60%, current diff: 5.81%)
+[2025-07-01 11:22:43,956] INFO: Checking for SHORT signal...
+[2025-07-01 11:22:43,956] INFO:   - EMA trend structure not met
+[2025-07-01 11:22:43,956] INFO: No trade signal generated. Conditions not met:
+[2025-07-01 11:22:43,956] INFO:   - EMA trend structure not met (required for short)
+[2025-07-01 11:22:46,985] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:22:47,061] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/ HTTP/1.1" 500 77
+[2025-07-01 11:22:47,062] ERROR: HTTP request returned 500
+[2025-07-01 11:22:47,062] INFO: Finished processing all markets in the source
+[2025-07-01 11:22:47,063] INFO: Resetting MarketProvider
+[2025-07-01 11:22:47,064] INFO: Wait for 0.08 hours...
+[2025-07-01 11:27:47,094] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:27:47,246] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 11:27:47,249] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 11:27:47,249] INFO: Starting to process market source
+[2025-07-01 11:27:50,264] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:27:50,402] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 11:27:50,404] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 11:27:53,431] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:27:53,523] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.USCGC.TODAY.IP HTTP/1.1" 200 2028
+[2025-07-01 11:27:56,549] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:27:56,705] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/accounts HTTP/1.1" 200 552
+[2025-07-01 11:27:56,767] INFO: Processing GC
+[2025-07-01 11:27:56,767] CRITICAL: CRITICAL: get_prices method called
+[2025-07-01 11:27:56,767] INFO: Fetching price data from URL: https://demo-api.ig.com/gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52
+[2025-07-01 11:27:59,791] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:27:59,908] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52 HTTP/1.1" 200 15857
+[2025-07-01 11:27:59,912] DEBUG: Raw price data received (not logged to avoid repetition)
+[2025-07-01 11:27:59,912] INFO: Processing price data for GC
+[2025-07-01 11:27:59,912] INFO: Processed 52 price points for GC
+[2025-07-01 11:27:59,915] DEBUG: Strategy datapoints: <equitiestradingbot.interfaces.market_history.MarketHistory object at 0x1092c2d50>
+[2025-07-01 11:27:59,919] INFO: MACD Calculation Details:
+[2025-07-01 11:27:59,920] INFO:   Fast EMA (12): 3341.80598
+[2025-07-01 11:27:59,920] INFO:   Slow EMA (26): 3335.52251
+[2025-07-01 11:27:59,920] INFO:   MACD Line: 6.28347
+[2025-07-01 11:27:59,920] INFO:   Signal Line: 5.95600
+[2025-07-01 11:27:59,920] INFO:   Histogram: 0.32747
+[2025-07-01 11:27:59,920] INFO:   Previous MACD: 6.27461
+[2025-07-01 11:27:59,920] INFO:   Previous Signal: 5.87413
+[2025-07-01 11:27:59,920] INFO:   MACD Cross Status: No Cross
+[2025-07-01 11:27:59,920] INFO:   MACD Zero Line Status: Above Zero
+[2025-07-01 11:27:59,932] INFO: Trade Analysis for CS.D.USCGC.TODAY.IP:
+[2025-07-01 11:27:59,933] INFO: Latest Price: 3346.83000
+[2025-07-01 11:27:59,933] INFO: 50 EMA: 3327.79955
+[2025-07-01 11:27:59,933] INFO: 200 EMA: 3312.85664
+[2025-07-01 11:27:59,933] INFO: MACD: 6.28347 (Signal: 5.95600)
+[2025-07-01 11:27:59,933] INFO: RSI: 83.20
+[2025-07-01 11:27:59,933] INFO: ADX: 78.18
+[2025-07-01 11:27:59,933] INFO: Volume: 692 (MA: 1113)
+[2025-07-01 11:27:59,933] INFO: Checking for LONG signal...
+[2025-07-01 11:27:59,933] INFO:   - EMA trend structure met
+[2025-07-01 11:27:59,933] INFO:   - MACD conditions not met (required: above signal line by 60%, current diff: 5.50%)
+[2025-07-01 11:27:59,933] INFO: Checking for SHORT signal...
+[2025-07-01 11:27:59,933] INFO:   - EMA trend structure not met
+[2025-07-01 11:27:59,933] INFO: No trade signal generated. Conditions not met:
+[2025-07-01 11:27:59,933] INFO:   - EMA trend structure not met (required for short)
+[2025-07-01 11:28:02,962] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:28:03,031] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/ HTTP/1.1" 500 77
+[2025-07-01 11:28:03,033] ERROR: HTTP request returned 500
+[2025-07-01 11:28:03,033] INFO: Finished processing all markets in the source
+[2025-07-01 11:28:03,033] INFO: Resetting MarketProvider
+[2025-07-01 11:28:03,036] INFO: Wait for 0.08 hours...
+[2025-07-01 11:33:03,070] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:33:03,225] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 11:33:03,229] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 11:33:03,229] INFO: Starting to process market source
+[2025-07-01 11:33:06,274] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:33:06,372] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 11:33:06,373] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 11:33:09,412] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:33:09,495] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.USCGC.TODAY.IP HTTP/1.1" 200 2027
+[2025-07-01 11:33:12,541] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:33:12,711] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/accounts HTTP/1.1" 200 552
+[2025-07-01 11:33:12,770] INFO: Processing GC
+[2025-07-01 11:33:12,770] CRITICAL: CRITICAL: get_prices method called
+[2025-07-01 11:33:12,771] INFO: Fetching price data from URL: https://demo-api.ig.com/gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52
+[2025-07-01 11:33:15,823] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:33:15,928] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52 HTTP/1.1" 200 15857
+[2025-07-01 11:33:15,930] DEBUG: Raw price data received (not logged to avoid repetition)
+[2025-07-01 11:33:15,930] INFO: Processing price data for GC
+[2025-07-01 11:33:15,930] INFO: Processed 52 price points for GC
+[2025-07-01 11:33:15,933] DEBUG: Strategy datapoints: <equitiestradingbot.interfaces.market_history.MarketHistory object at 0x1092c3110>
+[2025-07-01 11:33:15,938] INFO: MACD Calculation Details:
+[2025-07-01 11:33:15,938] INFO:   Fast EMA (12): 3342.51869
+[2025-07-01 11:33:15,938] INFO:   Slow EMA (26): 3336.30669
+[2025-07-01 11:33:15,938] INFO:   MACD Line: 6.21201
+[2025-07-01 11:33:15,938] INFO:   Signal Line: 6.03500
+[2025-07-01 11:33:15,939] INFO:   Histogram: 0.17701
+[2025-07-01 11:33:15,939] INFO:   Previous MACD: 6.29851
+[2025-07-01 11:33:15,939] INFO:   Previous Signal: 5.99075
+[2025-07-01 11:33:15,939] INFO:   MACD Cross Status: No Cross
+[2025-07-01 11:33:15,939] INFO:   MACD Zero Line Status: Above Zero
+[2025-07-01 11:33:15,950] INFO: Trade Analysis for CS.D.USCGC.TODAY.IP:
+[2025-07-01 11:33:15,950] INFO: Latest Price: 3346.55000
+[2025-07-01 11:33:15,950] INFO: 50 EMA: 3328.36759
+[2025-07-01 11:33:15,950] INFO: 200 EMA: 3312.41774
+[2025-07-01 11:33:15,950] INFO: MACD: 6.21201 (Signal: 6.03500)
+[2025-07-01 11:33:15,950] INFO: RSI: 77.77
+[2025-07-01 11:33:15,950] INFO: ADX: 84.42
+[2025-07-01 11:33:15,950] INFO: Volume: 100 (MA: 937)
+[2025-07-01 11:33:15,950] INFO: Checking for LONG signal...
+[2025-07-01 11:33:15,950] INFO:   - EMA trend structure met
+[2025-07-01 11:33:15,950] INFO:   - MACD conditions not met (required: above signal line by 60%, current diff: 2.93%)
+[2025-07-01 11:33:15,950] INFO: Checking for SHORT signal...
+[2025-07-01 11:33:15,951] INFO:   - EMA trend structure not met
+[2025-07-01 11:33:15,951] INFO: No trade signal generated. Conditions not met:
+[2025-07-01 11:33:15,951] INFO:   - EMA trend structure not met (required for short)
+[2025-07-01 11:33:19,002] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:33:19,103] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/ HTTP/1.1" 500 77
+[2025-07-01 11:33:19,105] ERROR: HTTP request returned 500
+[2025-07-01 11:33:19,105] INFO: Finished processing all markets in the source
+[2025-07-01 11:33:19,105] INFO: Resetting MarketProvider
+[2025-07-01 11:33:19,107] INFO: Wait for 0.08 hours...
+[2025-07-01 11:38:19,112] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:38:19,228] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 11:38:19,237] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 11:38:19,237] INFO: Starting to process market source
+[2025-07-01 11:38:22,259] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:38:22,356] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 11:38:22,358] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 11:38:25,381] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:38:25,484] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.USCGC.TODAY.IP HTTP/1.1" 200 2025
+[2025-07-01 11:38:28,508] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:38:28,677] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/accounts HTTP/1.1" 200 552
+[2025-07-01 11:38:28,738] INFO: Processing GC
+[2025-07-01 11:38:28,738] CRITICAL: CRITICAL: get_prices method called
+[2025-07-01 11:38:28,738] INFO: Fetching price data from URL: https://demo-api.ig.com/gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52
+[2025-07-01 11:38:31,766] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:38:31,856] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52 HTTP/1.1" 200 15857
+[2025-07-01 11:38:31,858] DEBUG: Raw price data received (not logged to avoid repetition)
+[2025-07-01 11:38:31,858] INFO: Processing price data for GC
+[2025-07-01 11:38:31,858] INFO: Processed 52 price points for GC
+[2025-07-01 11:38:31,861] DEBUG: Strategy datapoints: <equitiestradingbot.interfaces.market_history.MarketHistory object at 0x109414b50>
+[2025-07-01 11:38:31,867] INFO: MACD Calculation Details:
+[2025-07-01 11:38:31,867] INFO:   Fast EMA (12): 3342.43869
+[2025-07-01 11:38:31,867] INFO:   Slow EMA (26): 3336.26817
+[2025-07-01 11:38:31,867] INFO:   MACD Line: 6.17052
+[2025-07-01 11:38:31,867] INFO:   Signal Line: 6.02670
+[2025-07-01 11:38:31,867] INFO:   Histogram: 0.14382
+[2025-07-01 11:38:31,867] INFO:   Previous MACD: 6.29851
+[2025-07-01 11:38:31,867] INFO:   Previous Signal: 5.99075
+[2025-07-01 11:38:31,867] INFO:   MACD Cross Status: No Cross
+[2025-07-01 11:38:31,868] INFO:   MACD Zero Line Status: Above Zero
+[2025-07-01 11:38:31,880] INFO: Trade Analysis for CS.D.USCGC.TODAY.IP:
+[2025-07-01 11:38:31,880] INFO: Latest Price: 3346.03000
+[2025-07-01 11:38:31,880] INFO: 50 EMA: 3328.34720
+[2025-07-01 11:38:31,880] INFO: 200 EMA: 3312.41257
+[2025-07-01 11:38:31,880] INFO: MACD: 6.17052 (Signal: 6.02670)
+[2025-07-01 11:38:31,880] INFO: RSI: 75.68
+[2025-07-01 11:38:31,880] INFO: ADX: 79.07
+[2025-07-01 11:38:31,880] INFO: Volume: 275 (MA: 969)
+[2025-07-01 11:38:31,880] INFO: Checking for LONG signal...
+[2025-07-01 11:38:31,881] INFO:   - EMA trend structure met
+[2025-07-01 11:38:31,881] INFO:   - MACD conditions not met (required: above signal line by 60%, current diff: 2.39%)
+[2025-07-01 11:38:31,881] INFO: Checking for SHORT signal...
+[2025-07-01 11:38:31,881] INFO:   - EMA trend structure not met
+[2025-07-01 11:38:31,881] INFO: No trade signal generated. Conditions not met:
+[2025-07-01 11:38:31,881] INFO:   - EMA trend structure not met (required for short)
+[2025-07-01 11:38:34,904] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:38:34,984] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/ HTTP/1.1" 500 77
+[2025-07-01 11:38:34,985] ERROR: HTTP request returned 500
+[2025-07-01 11:38:34,985] INFO: Finished processing all markets in the source
+[2025-07-01 11:38:34,985] INFO: Resetting MarketProvider
+[2025-07-01 11:38:34,986] INFO: Wait for 0.08 hours...
+[2025-07-01 11:43:35,011] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:43:35,166] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 11:43:35,168] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 11:43:35,168] INFO: Starting to process market source
+[2025-07-01 11:43:38,193] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:43:38,269] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 11:43:38,271] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 11:43:41,297] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:43:41,396] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.USCGC.TODAY.IP HTTP/1.1" 200 2027
+[2025-07-01 11:43:44,422] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:43:44,801] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/accounts HTTP/1.1" 200 552
+[2025-07-01 11:43:44,864] INFO: Processing GC
+[2025-07-01 11:43:44,864] CRITICAL: CRITICAL: get_prices method called
+[2025-07-01 11:43:44,864] INFO: Fetching price data from URL: https://demo-api.ig.com/gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52
+[2025-07-01 11:43:47,884] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:43:48,013] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52 HTTP/1.1" 200 15857
+[2025-07-01 11:43:48,015] DEBUG: Raw price data received (not logged to avoid repetition)
+[2025-07-01 11:43:48,015] INFO: Processing price data for GC
+[2025-07-01 11:43:48,015] INFO: Processed 52 price points for GC
+[2025-07-01 11:43:48,021] DEBUG: Strategy datapoints: <equitiestradingbot.interfaces.market_history.MarketHistory object at 0x109414b50>
+[2025-07-01 11:43:48,036] INFO: MACD Calculation Details:
+[2025-07-01 11:43:48,037] INFO:   Fast EMA (12): 3342.53254
+[2025-07-01 11:43:48,037] INFO:   Slow EMA (26): 3336.31335
+[2025-07-01 11:43:48,037] INFO:   MACD Line: 6.21918
+[2025-07-01 11:43:48,037] INFO:   Signal Line: 6.03644
+[2025-07-01 11:43:48,037] INFO:   Histogram: 0.18275
+[2025-07-01 11:43:48,037] INFO:   Previous MACD: 6.29851
+[2025-07-01 11:43:48,037] INFO:   Previous Signal: 5.99075
+[2025-07-01 11:43:48,037] INFO:   MACD Cross Status: No Cross
+[2025-07-01 11:43:48,037] INFO:   MACD Zero Line Status: Above Zero
+[2025-07-01 11:43:48,047] INFO: Trade Analysis for CS.D.USCGC.TODAY.IP:
+[2025-07-01 11:43:48,047] INFO: Latest Price: 3346.64000
+[2025-07-01 11:43:48,047] INFO: 50 EMA: 3328.37112
+[2025-07-01 11:43:48,047] INFO: 200 EMA: 3312.41864
+[2025-07-01 11:43:48,047] INFO: MACD: 6.21918 (Signal: 6.03644)
+[2025-07-01 11:43:48,047] INFO: RSI: 78.14
+[2025-07-01 11:43:48,047] INFO: ADX: 74.87
+[2025-07-01 11:43:48,047] INFO: Volume: 593 (MA: 1027)
+[2025-07-01 11:43:48,047] INFO: Checking for LONG signal...
+[2025-07-01 11:43:48,047] INFO:   - EMA trend structure met
+[2025-07-01 11:43:48,047] INFO:   - MACD conditions not met (required: above signal line by 60%, current diff: 3.03%)
+[2025-07-01 11:43:48,047] INFO: Checking for SHORT signal...
+[2025-07-01 11:43:48,047] INFO:   - EMA trend structure not met
+[2025-07-01 11:43:48,047] INFO: No trade signal generated. Conditions not met:
+[2025-07-01 11:43:48,047] INFO:   - EMA trend structure not met (required for short)
+[2025-07-01 11:43:51,075] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:43:51,154] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/ HTTP/1.1" 500 77
+[2025-07-01 11:43:51,155] ERROR: HTTP request returned 500
+[2025-07-01 11:43:51,155] INFO: Finished processing all markets in the source
+[2025-07-01 11:43:51,155] INFO: Resetting MarketProvider
+[2025-07-01 11:43:51,157] INFO: Wait for 0.08 hours...
+[2025-07-01 11:48:51,196] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:48:51,324] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 11:48:51,327] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 11:48:51,327] INFO: Starting to process market source
+[2025-07-01 11:48:54,371] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:48:54,493] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 11:48:54,495] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 11:48:57,523] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:48:57,635] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.USCGC.TODAY.IP HTTP/1.1" 200 2027
+[2025-07-01 11:49:00,675] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:49:00,857] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/accounts HTTP/1.1" 200 552
+[2025-07-01 11:49:00,921] INFO: Processing GC
+[2025-07-01 11:49:00,921] CRITICAL: CRITICAL: get_prices method called
+[2025-07-01 11:49:00,921] INFO: Fetching price data from URL: https://demo-api.ig.com/gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52
+[2025-07-01 11:49:03,949] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:49:04,057] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52 HTTP/1.1" 200 15857
+[2025-07-01 11:49:04,058] DEBUG: Raw price data received (not logged to avoid repetition)
+[2025-07-01 11:49:04,058] INFO: Processing price data for GC
+[2025-07-01 11:49:04,058] INFO: Processed 52 price points for GC
+[2025-07-01 11:49:04,064] DEBUG: Strategy datapoints: <equitiestradingbot.interfaces.market_history.MarketHistory object at 0x1003cfb10>
+[2025-07-01 11:49:04,071] INFO: MACD Calculation Details:
+[2025-07-01 11:49:04,071] INFO:   Fast EMA (12): 3343.65013
+[2025-07-01 11:49:04,071] INFO:   Slow EMA (26): 3337.34317
+[2025-07-01 11:49:04,071] INFO:   MACD Line: 6.30697
+[2025-07-01 11:49:04,071] INFO:   Signal Line: 6.07082
+[2025-07-01 11:49:04,071] INFO:   Histogram: 0.23615
+[2025-07-01 11:49:04,071] INFO:   Previous MACD: 6.26681
+[2025-07-01 11:49:04,071] INFO:   Previous Signal: 6.01178
+[2025-07-01 11:49:04,071] INFO:   MACD Cross Status: No Cross
+[2025-07-01 11:49:04,071] INFO:   MACD Zero Line Status: Above Zero
+[2025-07-01 11:49:04,087] INFO: Trade Analysis for CS.D.USCGC.TODAY.IP:
+[2025-07-01 11:49:04,087] INFO: Latest Price: 3349.00000
+[2025-07-01 11:49:04,087] INFO: 50 EMA: 3329.39037
+[2025-07-01 11:49:04,087] INFO: 200 EMA: 3313.62422
+[2025-07-01 11:49:04,087] INFO: MACD: 6.30697 (Signal: 6.07082)
+[2025-07-01 11:49:04,087] INFO: RSI: 78.13
+[2025-07-01 11:49:04,087] INFO: ADX: 67.57
+[2025-07-01 11:49:04,087] INFO: Volume: 247 (MA: 902)
+[2025-07-01 11:49:04,087] INFO: Checking for LONG signal...
+[2025-07-01 11:49:04,087] INFO:   - EMA trend structure met
+[2025-07-01 11:49:04,087] INFO:   - MACD conditions not met (required: above signal line by 60%, current diff: 3.89%)
+[2025-07-01 11:49:04,087] INFO: Checking for SHORT signal...
+[2025-07-01 11:49:04,087] INFO:   - EMA trend structure not met
+[2025-07-01 11:49:04,087] INFO: No trade signal generated. Conditions not met:
+[2025-07-01 11:49:04,087] INFO:   - EMA trend structure not met (required for short)
+[2025-07-01 11:49:07,117] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:49:07,206] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/ HTTP/1.1" 500 77
+[2025-07-01 11:49:07,207] ERROR: HTTP request returned 500
+[2025-07-01 11:49:07,207] INFO: Finished processing all markets in the source
+[2025-07-01 11:49:07,207] INFO: Resetting MarketProvider
+[2025-07-01 11:49:07,208] INFO: Wait for 0.08 hours...
+[2025-07-01 11:54:07,235] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:54:07,457] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 11:54:07,461] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 11:54:07,461] INFO: Starting to process market source
+[2025-07-01 11:54:10,495] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:54:10,586] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 11:54:10,587] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 11:54:13,615] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:54:13,723] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.USCGC.TODAY.IP HTTP/1.1" 200 2027
+[2025-07-01 11:54:16,752] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:54:16,897] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/accounts HTTP/1.1" 200 552
+[2025-07-01 11:54:16,958] INFO: Processing GC
+[2025-07-01 11:54:16,958] CRITICAL: CRITICAL: get_prices method called
+[2025-07-01 11:54:16,958] INFO: Fetching price data from URL: https://demo-api.ig.com/gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52
+[2025-07-01 11:54:19,983] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:54:20,155] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52 HTTP/1.1" 200 15857
+[2025-07-01 11:54:20,158] DEBUG: Raw price data received (not logged to avoid repetition)
+[2025-07-01 11:54:20,158] INFO: Processing price data for GC
+[2025-07-01 11:54:20,158] INFO: Processed 52 price points for GC
+[2025-07-01 11:54:20,162] DEBUG: Strategy datapoints: <equitiestradingbot.interfaces.market_history.MarketHistory object at 0x108f08370>
+[2025-07-01 11:54:20,168] INFO: MACD Calculation Details:
+[2025-07-01 11:54:20,168] INFO:   Fast EMA (12): 3343.66244
+[2025-07-01 11:54:20,169] INFO:   Slow EMA (26): 3337.34909
+[2025-07-01 11:54:20,169] INFO:   MACD Line: 6.31335
+[2025-07-01 11:54:20,169] INFO:   Signal Line: 6.07209
+[2025-07-01 11:54:20,169] INFO:   Histogram: 0.24126
+[2025-07-01 11:54:20,169] INFO:   Previous MACD: 6.26681
+[2025-07-01 11:54:20,169] INFO:   Previous Signal: 6.01178
+[2025-07-01 11:54:20,169] INFO:   MACD Cross Status: No Cross
+[2025-07-01 11:54:20,169] INFO:   MACD Zero Line Status: Above Zero
+[2025-07-01 11:54:20,182] INFO: Trade Analysis for CS.D.USCGC.TODAY.IP:
+[2025-07-01 11:54:20,182] INFO: Latest Price: 3349.08000
+[2025-07-01 11:54:20,182] INFO: 50 EMA: 3329.39351
+[2025-07-01 11:54:20,182] INFO: 200 EMA: 3313.62501
+[2025-07-01 11:54:20,182] INFO: MACD: 6.31335 (Signal: 6.07209)
+[2025-07-01 11:54:20,182] INFO: RSI: 78.23
+[2025-07-01 11:54:20,182] INFO: ADX: 67.82
+[2025-07-01 11:54:20,182] INFO: Volume: 548 (MA: 956)
+[2025-07-01 11:54:20,182] INFO: Checking for LONG signal...
+[2025-07-01 11:54:20,183] INFO:   - EMA trend structure met
+[2025-07-01 11:54:20,183] INFO:   - MACD conditions not met (required: above signal line by 60%, current diff: 3.97%)
+[2025-07-01 11:54:20,183] INFO: Checking for SHORT signal...
+[2025-07-01 11:54:20,183] INFO:   - EMA trend structure not met
+[2025-07-01 11:54:20,183] INFO: No trade signal generated. Conditions not met:
+[2025-07-01 11:54:20,183] INFO:   - EMA trend structure not met (required for short)
+[2025-07-01 11:54:23,208] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:54:23,303] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/ HTTP/1.1" 500 77
+[2025-07-01 11:54:23,304] ERROR: HTTP request returned 500
+[2025-07-01 11:54:23,304] INFO: Finished processing all markets in the source
+[2025-07-01 11:54:23,304] INFO: Resetting MarketProvider
+[2025-07-01 11:54:23,305] INFO: Wait for 0.08 hours...
+[2025-07-01 11:59:23,357] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:59:23,530] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 11:59:23,534] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 11:59:23,534] INFO: Starting to process market source
+[2025-07-01 11:59:26,586] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:59:26,681] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 11:59:26,683] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 11:59:29,708] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:59:29,813] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.USCGC.TODAY.IP HTTP/1.1" 200 2025
+[2025-07-01 11:59:32,842] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:59:33,004] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/accounts HTTP/1.1" 200 552
+[2025-07-01 11:59:33,086] INFO: Processing GC
+[2025-07-01 11:59:33,087] CRITICAL: CRITICAL: get_prices method called
+[2025-07-01 11:59:33,087] INFO: Fetching price data from URL: https://demo-api.ig.com/gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52
+[2025-07-01 11:59:36,104] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:59:36,259] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52 HTTP/1.1" 200 15857
+[2025-07-01 11:59:36,262] DEBUG: Raw price data received (not logged to avoid repetition)
+[2025-07-01 11:59:36,262] INFO: Processing price data for GC
+[2025-07-01 11:59:36,262] INFO: Processed 52 price points for GC
+[2025-07-01 11:59:36,266] DEBUG: Strategy datapoints: <equitiestradingbot.interfaces.market_history.MarketHistory object at 0x1093b4e60>
+[2025-07-01 11:59:36,275] INFO: MACD Calculation Details:
+[2025-07-01 11:59:36,276] INFO:   Fast EMA (12): 3343.62398
+[2025-07-01 11:59:36,276] INFO:   Slow EMA (26): 3337.33057
+[2025-07-01 11:59:36,276] INFO:   MACD Line: 6.29341
+[2025-07-01 11:59:36,276] INFO:   Signal Line: 6.06810
+[2025-07-01 11:59:36,276] INFO:   Histogram: 0.22530
+[2025-07-01 11:59:36,276] INFO:   Previous MACD: 6.26681
+[2025-07-01 11:59:36,276] INFO:   Previous Signal: 6.01178
+[2025-07-01 11:59:36,276] INFO:   MACD Cross Status: No Cross
+[2025-07-01 11:59:36,276] INFO:   MACD Zero Line Status: Above Zero
+[2025-07-01 11:59:36,285] INFO: Trade Analysis for CS.D.USCGC.TODAY.IP:
+[2025-07-01 11:59:36,285] INFO: Latest Price: 3348.83000
+[2025-07-01 11:59:36,285] INFO: 50 EMA: 3329.38370
+[2025-07-01 11:59:36,285] INFO: 200 EMA: 3313.62253
+[2025-07-01 11:59:36,285] INFO: MACD: 6.29341 (Signal: 6.06810)
+[2025-07-01 11:59:36,285] INFO: RSI: 77.93
+[2025-07-01 11:59:36,285] INFO: ADX: 68.47
+[2025-07-01 11:59:36,285] INFO: Volume: 851 (MA: 1012)
+[2025-07-01 11:59:36,285] INFO: Checking for LONG signal...
+[2025-07-01 11:59:36,285] INFO:   - EMA trend structure met
+[2025-07-01 11:59:36,285] INFO:   - MACD conditions not met (required: above signal line by 60%, current diff: 3.71%)
+[2025-07-01 11:59:36,285] INFO: Checking for SHORT signal...
+[2025-07-01 11:59:36,285] INFO:   - EMA trend structure not met
+[2025-07-01 11:59:36,285] INFO: No trade signal generated. Conditions not met:
+[2025-07-01 11:59:36,285] INFO:   - EMA trend structure not met (required for short)
+[2025-07-01 11:59:39,315] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 11:59:39,398] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/ HTTP/1.1" 500 77
+[2025-07-01 11:59:39,400] ERROR: HTTP request returned 500
+[2025-07-01 11:59:39,400] INFO: Finished processing all markets in the source
+[2025-07-01 11:59:39,400] INFO: Resetting MarketProvider
+[2025-07-01 11:59:39,401] INFO: Wait for 0.08 hours...
+[2025-07-01 12:04:39,446] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 12:04:39,573] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 12:04:39,576] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 12:04:39,576] INFO: Starting to process market source
+[2025-07-01 12:04:42,622] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 12:04:42,697] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 12:04:42,699] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 12:04:45,731] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 12:04:45,843] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.USCGC.TODAY.IP HTTP/1.1" 200 2025
+[2025-07-01 12:04:48,890] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 12:04:49,114] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/accounts HTTP/1.1" 200 552
+[2025-07-01 12:04:49,193] INFO: Processing GC
+[2025-07-01 12:04:49,193] CRITICAL: CRITICAL: get_prices method called
+[2025-07-01 12:04:49,193] INFO: Fetching price data from URL: https://demo-api.ig.com/gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52
+[2025-07-01 12:04:52,244] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 12:04:52,333] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52 HTTP/1.1" 200 15857
+[2025-07-01 12:04:52,334] DEBUG: Raw price data received (not logged to avoid repetition)
+[2025-07-01 12:04:52,335] INFO: Processing price data for GC
+[2025-07-01 12:04:52,335] INFO: Processed 52 price points for GC
+[2025-07-01 12:04:52,356] DEBUG: Strategy datapoints: <equitiestradingbot.interfaces.market_history.MarketHistory object at 0x1094035d0>
+[2025-07-01 12:04:52,364] INFO: MACD Calculation Details:
+[2025-07-01 12:04:52,365] INFO:   Fast EMA (12): 3344.86638
+[2025-07-01 12:04:52,365] INFO:   Slow EMA (26): 3338.44959
+[2025-07-01 12:04:52,365] INFO:   MACD Line: 6.41679
+[2025-07-01 12:04:52,365] INFO:   Signal Line: 6.06376
+[2025-07-01 12:04:52,365] INFO:   Histogram: 0.35303
+[2025-07-01 12:04:52,365] INFO:   Previous MACD: 6.20889
+[2025-07-01 12:04:52,365] INFO:   Previous Signal: 5.97551
+[2025-07-01 12:04:52,365] INFO:   MACD Cross Status: No Cross
+[2025-07-01 12:04:52,365] INFO:   MACD Zero Line Status: Above Zero
+[2025-07-01 12:04:52,373] INFO: Trade Analysis for CS.D.USCGC.TODAY.IP:
+[2025-07-01 12:04:52,374] INFO: Latest Price: 3351.95000
+[2025-07-01 12:04:52,374] INFO: 50 EMA: 3330.64453
+[2025-07-01 12:04:52,374] INFO: 200 EMA: 3315.84394
+[2025-07-01 12:04:52,374] INFO: MACD: 6.41679 (Signal: 6.06376)
+[2025-07-01 12:04:52,374] INFO: RSI: 84.89
+[2025-07-01 12:04:52,374] INFO: ADX: 63.46
+[2025-07-01 12:04:52,374] INFO: Volume: 426 (MA: 911)
+[2025-07-01 12:04:52,374] INFO: Checking for LONG signal...
+[2025-07-01 12:04:52,374] INFO:   - EMA trend structure met
+[2025-07-01 12:04:52,374] INFO:   - MACD conditions not met (required: above signal line by 60%, current diff: 5.82%)
+[2025-07-01 12:04:52,374] INFO: Checking for SHORT signal...
+[2025-07-01 12:04:52,374] INFO:   - EMA trend structure not met
+[2025-07-01 12:04:52,374] INFO: No trade signal generated. Conditions not met:
+[2025-07-01 12:04:52,374] INFO:   - EMA trend structure not met (required for short)
+[2025-07-01 12:04:55,402] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 12:04:55,468] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/ HTTP/1.1" 500 77
+[2025-07-01 12:04:55,469] ERROR: HTTP request returned 500
+[2025-07-01 12:04:55,469] INFO: Finished processing all markets in the source
+[2025-07-01 12:04:55,469] INFO: Resetting MarketProvider
+[2025-07-01 12:04:55,470] INFO: Wait for 0.08 hours...
+[2025-07-01 12:09:55,541] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 12:09:55,635] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 12:09:55,638] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 12:09:55,638] INFO: Starting to process market source
+[2025-07-01 12:09:58,665] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 12:09:58,756] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-01 12:09:58,758] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-01 12:10:01,797] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 12:10:01,901] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.USCGC.TODAY.IP HTTP/1.1" 200 2026
+[2025-07-01 12:10:04,934] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 12:10:05,184] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/accounts HTTP/1.1" 200 552
+[2025-07-01 12:10:05,233] INFO: Processing GC
+[2025-07-01 12:10:05,234] CRITICAL: CRITICAL: get_prices method called
+[2025-07-01 12:10:05,234] INFO: Fetching price data from URL: https://demo-api.ig.com/gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52
+[2025-07-01 12:10:08,258] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 12:10:08,345] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_15/52 HTTP/1.1" 200 15858
+[2025-07-01 12:10:08,350] DEBUG: Raw price data received (not logged to avoid repetition)
+[2025-07-01 12:10:08,350] INFO: Processing price data for GC
+[2025-07-01 12:10:08,351] INFO: Processed 52 price points for GC
+[2025-07-01 12:10:08,356] DEBUG: Strategy datapoints: <equitiestradingbot.interfaces.market_history.MarketHistory object at 0x1092beed0>
+[2025-07-01 12:10:08,361] INFO: MACD Calculation Details:
+[2025-07-01 12:10:08,361] INFO:   Fast EMA (12): 3344.60176
+[2025-07-01 12:10:08,361] INFO:   Slow EMA (26): 3338.32218
+[2025-07-01 12:10:08,361] INFO:   MACD Line: 6.27958
+[2025-07-01 12:10:08,361] INFO:   Signal Line: 6.03632
+[2025-07-01 12:10:08,361] INFO:   Histogram: 0.24326
+[2025-07-01 12:10:08,361] INFO:   Previous MACD: 6.20889
+[2025-07-01 12:10:08,361] INFO:   Previous Signal: 5.97551
+[2025-07-01 12:10:08,361] INFO:   MACD Cross Status: No Cross
+[2025-07-01 12:10:08,362] INFO:   MACD Zero Line Status: Above Zero
+[2025-07-01 12:10:08,370] INFO: Trade Analysis for CS.D.USCGC.TODAY.IP:
+[2025-07-01 12:10:08,370] INFO: Latest Price: 3350.23000
+[2025-07-01 12:10:08,370] INFO: 50 EMA: 3330.57708
+[2025-07-01 12:10:08,370] INFO: 200 EMA: 3315.82683
+[2025-07-01 12:10:08,370] INFO: MACD: 6.27958 (Signal: 6.03632)
+[2025-07-01 12:10:08,370] INFO: RSI: 83.51
+[2025-07-01 12:10:08,370] INFO: ADX: 63.56
+[2025-07-01 12:10:08,370] INFO: Volume: 1139 (MA: 1040)
+[2025-07-01 12:10:08,370] INFO: Checking for LONG signal...
+[2025-07-01 12:10:08,370] INFO:   - EMA trend structure met
+[2025-07-01 12:10:08,370] INFO:   - MACD conditions not met (required: above signal line by 60%, current diff: 4.03%)
+[2025-07-01 12:10:08,370] INFO: Checking for SHORT signal...
+[2025-07-01 12:10:08,370] INFO:   - EMA trend structure not met
+[2025-07-01 12:10:08,370] INFO: No trade signal generated. Conditions not met:
+[2025-07-01 12:10:08,370] INFO:   - EMA trend structure not met (required for short)
+[2025-07-01 12:10:11,405] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-01 12:10:11,526] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/ HTTP/1.1" 500 77
+[2025-07-01 12:10:11,528] ERROR: HTTP request returned 500
+[2025-07-01 12:10:11,528] INFO: Finished processing all markets in the source
+[2025-07-01 12:10:11,529] INFO: Resetting MarketProvider
+[2025-07-01 12:10:11,530] INFO: Wait for 0.08 hours...

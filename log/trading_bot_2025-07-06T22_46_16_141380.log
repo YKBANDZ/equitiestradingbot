@@ -1,0 +1,31 @@
+[2025-07-06 22:46:16,141] INFO: Initialising IGInterface...
+[2025-07-06 22:46:16,141] INFO: Attempting authentication to URL: https://demo-api.ig.com/gateway/deal/session
+[2025-07-06 22:46:16,141] INFO: Using API Key: 43c58bfd6f5ead3ac4d803d18f883db5857c9631
+[2025-07-06 22:46:16,142] INFO: Using Account ID: Z5YISO
+[2025-07-06 22:46:16,150] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-06 22:46:16,332] DEBUG: https://demo-api.ig.com:443 "POST /gateway/deal/session HTTP/1.1" 200 619
+[2025-07-06 22:46:16,333] INFO: Successfully obtained authentication tokens
+[2025-07-06 22:46:16,334] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-06 22:46:16,433] DEBUG: https://demo-api.ig.com:443 "PUT /gateway/deal/session HTTP/1.1" 412 56
+[2025-07-06 22:46:16,435] INFO: Account is already set as default
+[2025-07-06 22:46:16,435] INFO: Using stock interface: IGInterface
+[2025-07-06 22:46:16,436] INFO: Intraday Gold Strategy configuration loaded successfully
+[2025-07-06 22:46:16,436] INFO: Intraday Gold Strategy initialised
+[2025-07-06 22:46:16,439] INFO: Intraday Gold Strategy configuration loaded successfully
+[2025-07-06 22:46:16,439] INFO: Performing a single iteration of the market source
+[2025-07-06 22:46:19,468] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-06 22:46:19,541] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-06 22:46:19,541] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-06 22:46:19,541] INFO: Starting to process market source
+[2025-07-06 22:46:22,572] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-06 22:46:22,661] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-07-06 22:46:22,663] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-07-06 22:46:25,689] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-06 22:46:25,791] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.USCGC.TODAY.IP HTTP/1.1" 200 2023
+[2025-07-06 22:46:28,810] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-07-06 22:46:28,985] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/accounts HTTP/1.1" 200 552
+[2025-07-06 22:46:29,018] WARNING: Market is closed: stop processing

@@ -8,8 +8,11 @@ from .simple_macd import SimpleMACD
 from .weighted_avg_peak import WeightedAvgPeak
 from .smart_sentiment_strategy import SmartSentimentStrategy
 from .advanced_momentum_strategy import AdvancedMomentumStrategy
+from .simplicity import SimplicityStrategy
+from .intraday_gold_strategy import IntradayGoldStrategy
+from .strategy_manager import StrategyManager
 
-StrategyImp1 = Union[SimpleMACD, WeightedAvgPeak, SimpleBollingerBands, SmartSentimentStrategy, AdvancedMomentumStrategy]
+StrategyImp1 = Union[SimpleMACD, WeightedAvgPeak, SimpleBollingerBands, SmartSentimentStrategy, AdvancedMomentumStrategy, SimplicityStrategy, IntradayGoldStrategy, StrategyManager]
 
 
 class StrategyNames(Enum):
@@ -18,6 +21,9 @@ class StrategyNames(Enum):
     SIMPLE_BOLL_BANDS = "simple_boll_bands"
     SMART_SENTIMENT = "smart_sentiment"
     ADVANCED_MOMENTUM = "advanced_momentum"
+    SIMPLICITY = "simplicity"
+    INTRADAY_GOLD = "intraday_gold"
+    STRATEGY_MANAGER = "strategy_manager"
 
 
 class StrategyFactory:
@@ -58,6 +64,12 @@ class StrategyFactory:
             return SmartSentimentStrategy(self.config, self.broker)
         elif strategy_name == StrategyNames.ADVANCED_MOMENTUM.value:
             return AdvancedMomentumStrategy(self.config, self.broker)
+        elif strategy_name == StrategyNames.SIMPLICITY.value:
+            return SimplicityStrategy(self.config, self.broker)
+        elif strategy_name == StrategyNames.INTRADAY_GOLD.value:
+            return IntradayGoldStrategy(self.config, self.broker)
+        elif strategy_name == StrategyNames.STRATEGY_MANAGER.value:
+            return StrategyManager(self.config, self.broker)
         else: 
             raise ValueError("Strategy {} does not exist".format(strategy_name))
     

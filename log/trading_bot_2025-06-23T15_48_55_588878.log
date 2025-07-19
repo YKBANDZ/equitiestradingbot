@@ -1,0 +1,300 @@
+[2025-06-23 15:48:55,589] INFO: Initialising IGInterface...
+[2025-06-23 15:48:55,589] INFO: Attempting authentication to URL: https://demo-api.ig.com/gateway/deal/session
+[2025-06-23 15:48:55,589] INFO: Using API Key: 43c58bfd6f5ead3ac4d803d18f883db5857c9631
+[2025-06-23 15:48:55,589] INFO: Using Account ID: Z5YISO
+[2025-06-23 15:48:55,594] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-06-23 15:48:55,775] DEBUG: https://demo-api.ig.com:443 "POST /gateway/deal/session HTTP/1.1" 200 619
+[2025-06-23 15:48:55,776] INFO: Successfully obtained authentication tokens
+[2025-06-23 15:48:55,776] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-06-23 15:48:55,871] DEBUG: https://demo-api.ig.com:443 "PUT /gateway/deal/session HTTP/1.1" 412 56
+[2025-06-23 15:48:55,872] INFO: Account is already set as default
+[2025-06-23 15:48:55,872] INFO: Using stock interface: IGInterface
+[2025-06-23 15:48:55,872] INFO: Simplicity Strategy initialised
+[2025-06-23 15:48:55,873] INFO: Simplicity Strategy created
+[2025-06-23 15:48:58,901] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-06-23 15:48:58,993] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-06-23 15:48:58,993] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-06-23 15:48:58,993] INFO: Starting to process market source
+[2025-06-23 15:49:02,016] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-06-23 15:49:02,100] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/positions HTTP/1.1" 200 16
+[2025-06-23 15:49:02,101] DEBUG: Raw positions response: {
+  "positions": []
+}
+[2025-06-23 15:49:05,123] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-06-23 15:49:05,229] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/CS.D.USCGC.TODAY.IP HTTP/1.1" 200 2026
+[2025-06-23 15:49:08,241] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-06-23 15:49:08,382] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/accounts HTTP/1.1" 200 552
+[2025-06-23 15:49:08,419] INFO: Processing GC
+[2025-06-23 15:49:08,419] CRITICAL: CRITICAL: get_prices method called
+[2025-06-23 15:49:08,419] INFO: Fetching price data from URL: https://demo-api.ig.com/gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_30/10
+[2025-06-23 15:49:11,434] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-06-23 15:49:11,547] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_30/10 HTTP/1.1" 200 3160
+[2025-06-23 15:49:11,550] DEBUG: Raw price data: {
+  "prices": [
+    {
+      "snapshotTime": "2025:06:23-11:00:00",
+      "openPrice": {
+        "bid": 3366.55,
+        "ask": 3366.85,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3366.85,
+        "ask": 3367.35,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3368.2,
+        "ask": 3368.54,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3363.82,
+        "ask": 3364.25,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 1717
+    },
+    {
+      "snapshotTime": "2025:06:23-11:30:00",
+      "openPrice": {
+        "bid": 3367.0,
+        "ask": 3367.3,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3367.7,
+        "ask": 3368.0,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3368.0,
+        "ask": 3368.35,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3364.65,
+        "ask": 3365.0,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 1263
+    },
+    {
+      "snapshotTime": "2025:06:23-12:00:00",
+      "openPrice": {
+        "bid": 3367.85,
+        "ask": 3368.15,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3377.93,
+        "ask": 3378.23,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3381.95,
+        "ask": 3382.3,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3367.85,
+        "ask": 3368.15,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 3621
+    },
+    {
+      "snapshotTime": "2025:06:23-12:30:00",
+      "openPrice": {
+        "bid": 3377.98,
+        "ask": 3378.28,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3380.61,
+        "ask": 3381.11,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3381.24,
+        "ask": 3381.61,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3375.78,
+        "ask": 3376.08,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 2322
+    },
+    {
+      "snapshotTime": "2025:06:23-13:00:00",
+      "openPrice": {
+        "bid": 3380.68,
+        "ask": 3381.18,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3362.26,
+        "ask": 3362.76,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3381.03,
+        "ask": 3381.33,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3359.82,
+        "ask": 3360.13,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 3679
+    },
+    {
+      "snapshotTime": "2025:06:23-13:30:00",
+      "openPrice": {
+        "bid": 3362.6,
+        "ask": 3362.9,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3360.33,
+        "ask": 3360.63,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3363.87,
+        "ask": 3364.17,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3355.75,
+        "ask": 3356.18,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 2973
+    },
+    {
+      "snapshotTime": "2025:06:23-14:00:00",
+      "openPrice": {
+        "bid": 3359.99,
+        "ask": 3360.49,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3368.35,
+        "ask": 3368.85,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3369.13,
+        "ask": 3369.56,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3359.74,
+        "ask": 3360.04,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 3432
+    },
+    {
+      "snapshotTime": "2025:06:23-14:30:00",
+      "openPrice": {
+        "bid": 3368.41,
+        "ask": 3368.91,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3380.49,
+        "ask": 3380.99,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3387.71,
+        "ask": 3388.01,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3368.25,
+        "ask": 3368.55,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 6199
+    },
+    {
+      "snapshotTime": "2025:06:23-15:00:00",
+      "openPrice": {
+        "bid": 3380.53,
+        "ask": 3381.03,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3378.73,
+        "ask": 3379.23,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3384.66,
+        "ask": 3384.96,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3369.93,
+        "ask": 3370.43,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 5915
+    },
+    {
+      "snapshotTime": "2025:06:23-15:30:00",
+      "openPrice": {
+        "bid": 3378.68,
+        "ask": 3379.18,
+        "lastTraded": null
+      },
+      "closePrice": {
+        "bid": 3383.25,
+        "ask": 3383.75,
+        "lastTraded": null
+      },
+      "highPrice": {
+        "bid": 3384.33,
+        "ask": 3384.78,
+        "lastTraded": null
+      },
+      "lowPrice": {
+        "bid": 3377.43,
+        "ask": 3377.88,
+        "lastTraded": null
+      },
+      "lastTradedVolume": 2284
+    }
+  ],
+  "instrumentType": "CURRENCIES",
+  "allowance": {
+    "remainingAllowance": 7112,
+    "totalAllowance": 10000,
+    "allowanceExpiry": 585049
+  }
+}
+[2025-06-23 15:49:11,550] INFO: Processing price data for GC
+[2025-06-23 15:49:11,550] INFO: Processed 10 price points for GC
+[2025-06-23 15:49:11,553] CRITICAL: CRITICAL: get_prices method called
+[2025-06-23 15:49:11,553] INFO: Fetching price data from URL: https://demo-api.ig.com/gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_5/20
+[2025-06-23 15:49:14,582] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-06-23 15:49:14,670] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/prices/CS.D.USCGC.TODAY.IP/MINUTE_5/20 HTTP/1.1" 200 6176
+[2025-06-23 15:49:14,672] DEBUG: Raw price data received (not logged to avoid repetition)
+[2025-06-23 15:49:14,672] INFO: Processing price data for GC
+[2025-06-23 15:49:14,672] INFO: Processed 20 price points for GC
+[2025-06-23 15:49:14,673] DEBUG: Strategy datapoints: <equitiestradingbot.interfaces.market_history.MarketHistory object at 0x10ecce0d0>
+[2025-06-23 15:49:14,673] ERROR: Error in find_trade_signal: 'MarketHistory' object has no attribute 'interval'
+[2025-06-23 15:49:17,687] DEBUG: Starting new HTTPS connection (1): demo-api.ig.com:443
+[2025-06-23 15:49:17,797] DEBUG: https://demo-api.ig.com:443 "GET /gateway/deal/markets/ HTTP/1.1" 500 77
+[2025-06-23 15:49:17,798] ERROR: HTTP request returned 500
+[2025-06-23 15:49:17,798] INFO: Finished processing all markets in the source
+[2025-06-23 15:49:17,798] INFO: Resetting MarketProvider
+[2025-06-23 15:49:17,799] INFO: Wait for 0.08 hours...
