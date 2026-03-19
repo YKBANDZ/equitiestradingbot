@@ -1,0 +1,41 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Platform Sender (Test Script)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/test_platform_integration.py",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "stopOnEntry": false
+        },
+        {
+            "name": "Debug Trading Bot (Single Pass)",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "equitiestradingbot",
+            "args": [
+                "--config",
+                "config/live_trading_bot.toml",
+                "--single-pass"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "stopOnEntry": false
+        },
+        {
+            "name": "Debug Trading Bot (Full)",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "equitiestradingbot",
+            "args": [
+                "--config",
+                "config/live_trading_bot.toml"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "stopOnEntry": false
+        }
+    ]
+}

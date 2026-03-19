@@ -98,7 +98,20 @@ class TimeProvider:
                 return False
             return True
     
-    def get_seconds_to_market_opening(self, current_time: datetime) -> int:
+    def get_seconds_to_market_opening(self, current_time: datetime, epic: str = None) -> int:
+        """
+        Calculate the number of seconds until the next market opening
+        - **current_time**: current datetime
+        - **epic**: string representing the epic (optional, defaults to Gold futures logic)
+        """
+        # If no epic provided or it's Gold futures, use Gold logic
+        if not epic or 'USCGC' in epic:
+            return self._get_seconds_to_gold_market_opening(current_time)
+        
+        # For other instruments, use NYSE calendar
+        return self._get_seconds_to_nyse_market_opening(current_time)
+    
+    def _get_seconds_to_gold_market_opening(self, current_time: datetime) -> int:
         """
         Calculate the number of seconds until the next market opening for Gold futures
         Trading hours:
@@ -155,12 +168,48 @@ class TimeProvider:
         
         return int(seconds_until_open)
     
-    def wait_for(self, time_amount_type: TimeAmount, amount: float = -1.0) -> None:
+    def _get_seconds_to_nyse_market_opening(self, current_time: datetime) -> int:
+        """
+        Calculate the number of seconds until the next NYSE market opening
+        """
+        # Convert to NY timezone
+        ny_tz = pytz.timezone('America/New_York')
+        current_ny = current_time.astimezone(ny_tz)
+        
+        # Get today's schedule
+        schedule = self.nyse.schedule(start_date=current_ny.date(), end_date=current_ny.date())
+        
+        if not schedule.empty:
+            # Market is open today, check if it's currently open
+            market_open = schedule.iloc[0]['market_open']
+            market_close = schedule.iloc[0]['market_close']
+            
+            if market_open <= current_ny <= market_close:
+                # Market is currently open
+                return 0
+            elif current_ny < market_open:
+                # Market opens later today
+                seconds_until_open = (market_open - current_ny).total_seconds()
+                logging.info(f"NYSE opens today at {market_open}")
+                return int(seconds_until_open)
+        
+        # Market is closed today, find next trading day
+        next_trading_day = current_ny.date() + timedelta(days=1)
+        while True:
+            schedule = self.nyse.schedule(start_date=next_trading_day, end_date=next_trading_day)
+            if not schedule.empty:
+                market_open = schedule.iloc[0]['market_open']
+                seconds_until_open = (market_open - current_ny).total_seconds()
+                logging.info(f"NYSE opens next trading day at {market_open}")
+                return int(seconds_until_open)
+            next_trading_day += timedelta(days=1)
+    
+    def wait_for(self, time_amount_type: TimeAmount, amount: float = -1.0, epic: str = None) -> None:
         """Wait for the specified amount of time.
         An TimeAmount type can be specified
         """
         if time_amount_type is TimeAmount.NEXT_MARKET_OPENING:
-            amount = self.get_seconds_to_market_opening(datetime.now())
+            amount = self.get_seconds_to_market_opening(datetime.now(), epic)
         elif time_amount_type is TimeAmount.SECONDS:
             if amount < 0:
                 raise ValueError("Invalid amount of time to wait for")

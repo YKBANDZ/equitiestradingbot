@@ -10,6 +10,7 @@ from ..components.configuration import Configuration
 from ..components.broker.broker import Broker
 from ..interfaces import Market, MarketHistory
 from ..components.telegram.telegram_bot import TelegramBot
+from ..components.platform.platform_sender import PlatformSender
 from .signal_confidence import SignalConfidenceScorer
 
 
@@ -17,6 +18,7 @@ class IntradayGoldStrategy(Strategy):
     def __init__(self, config: Configuration, broker: Broker) -> None:
         super().__init__(config, broker)
         self.telegram_bot = TelegramBot(config)
+        self.platform_sender = PlatformSender(config)
         self.confidence_scorer = SignalConfidenceScorer()
         
         # Strategy state
@@ -130,6 +132,17 @@ class IntradayGoldStrategy(Strategy):
                         take_profit=signal[1],
                         stop_loss=signal[2],
                         conditions=conditions
+                    )
+                    
+                    # Send platform signal
+                    self.platform_sender.send_trade_signal(
+                        market=market.epic,
+                        direction=direction_text,
+                        entry_price=latest['close'],
+                        take_profit=signal[1],
+                        stop_loss=signal[2],
+                        conditions=conditions,
+                        strategy="intraday_gold"
                     )
                 
                 # Log signal details

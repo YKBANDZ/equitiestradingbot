@@ -115,7 +115,9 @@ class TradingBot:
                 logging.warning("Market is closed: stop processing")
                 if single_pass:
                     break
-                self.time_provider.wait_for(TimeAmount.NEXT_MARKET_OPENING)
+                # Get the current epic to determine market opening time
+                current_epic = self._get_current_epic()
+                self.time_provider.wait_for(TimeAmount.NEXT_MARKET_OPENING, epic=current_epic)
             except NotSafeToTradeException:
                 if single_pass:
                     break
@@ -290,4 +292,15 @@ class TradingBot:
         bt.print_results()
 
     
+    def _get_current_epic(self) -> str:
+        """Get the current epic being traded"""
+        try:
+            # Try to get epic from the market source
+            with open(self.config.get_epic_ids_filepath(), 'r') as f:
+                epic = f.readline().strip()
+                return epic
+        except Exception:
+            # Default to Gold futures if we can't read the file
+            return "CS.D.USCGC.TODAY.IP"
+        
         

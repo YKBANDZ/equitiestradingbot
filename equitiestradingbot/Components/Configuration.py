@@ -180,6 +180,16 @@ class Configuration:
     def get_telegram_signal_history_filepath(self) -> Property:
         return self._find_property(["telegram", "signal_history_filepath"])
     
+    # Platform integration methods
+    def get_platform_config(self) -> Property:
+        return self._find_property(["platform"])
+    
+    def get_platform_signal_window(self) -> Property:
+        return self._find_property(["platform", "signal_window_hours"])
+    
+    def get_platform_signal_history_filepath(self) -> Property:
+        return self._find_property(["platform", "signal_history_filepath"])
+    
 
 
 

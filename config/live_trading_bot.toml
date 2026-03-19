@@ -14,6 +14,12 @@ telegram_credentials_filepath = "/Users/e1/Documents/equitiestradingbot/config/c
 signal_window_hours = 1.0
 signal_history_filepath = "/Users/e1/Documents/equitiestradingbot/config/telegram/signal_history.json"
 
+[platform]
+api_base_url = "http://localhost:3001/api"
+api_key = "30edd2b64faae692f91cdca51af876b92bea7db9e607e188e45e2554548e24f4"
+signal_window_hours = 1.0
+signal_history_filepath = "/Users/e1/Documents/equitiestradingbot/config/platform/signal_history.json"
+
 [logging]
 enable = true
 log_filepath = "/Users/e1/Documents/equitiestradingbot/log/trading_bot_{timestamp}.log"
