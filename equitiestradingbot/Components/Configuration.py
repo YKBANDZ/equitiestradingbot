@@ -189,6 +189,79 @@ class Configuration:
     
     def get_platform_signal_history_filepath(self) -> Property:
         return self._find_property(["platform", "signal_history_filepath"])
+
+    # ── Agent / reflection settings ───────────────────────────────────────────
+
+    def get_anthropic_api_key(self) -> Optional[str]:
+        """
+        Returns the Anthropic API key from the credentials file defined in
+        [agent] anthropic_credentials_filepath, or None if not configured.
+        """
+        try:
+            filepath = self._find_property(["agent", "anthropic_credentials_filepath"])
+            with Path(filepath).open(mode="r") as f:
+                return json.load(f).get("api_key")
+        except Exception:
+            return None
+
+    def get_post_trade_reflection_n(self) -> int:
+        """Reflect every N closed trades (0 = disabled)."""
+        try:
+            return int(self._find_property(["agent", "post_trade_reflection_every_n"]))
+        except Exception:
+            return 0
+
+    def get_daily_reflection_hour_utc(self) -> int:
+        """UTC hour for daily reflection trigger (-1 = disabled)."""
+        try:
+            return int(self._find_property(["agent", "daily_reflection_hour_utc"]))
+        except Exception:
+            return -1
+
+    def get_weekly_reflection_day(self) -> int:
+        """Day of week for weekly reflection (0=Mon … 6=Sun, -1 = disabled)."""
+        try:
+            return int(self._find_property(["agent", "weekly_reflection_day"]))
+        except Exception:
+            return -1
+
+    def get_weekly_reflection_hour_utc(self) -> int:
+        """UTC hour for weekly reflection trigger."""
+        try:
+            return int(self._find_property(["agent", "weekly_reflection_hour_utc"]))
+        except Exception:
+            return 20
+
+    # ── Instrument universe settings ──────────────────────────────────────────
+
+    def get_universe_filepath(self) -> str:
+        """Path to instrument_universe.json (used when market_source.active = 'universe')."""
+        try:
+            return self._find_property(["market_source", "universe", "filepath"])
+        except Exception:
+            from pathlib import Path
+            return str(Path.home() / "Documents" / "equitiestradingbot" / "data" / "instrument_universe.json")
+
+    def get_scheduler_intervals(self) -> dict:
+        """Return per-session spin intervals as a dict (falls back to BotScheduler defaults)."""
+        try:
+            raw = self._find_property(["scheduler"])
+            return {
+                "OVERLAP": int(raw.get("interval_overlap", 60)),
+                "LONDON":  int(raw.get("interval_london",  120)),
+                "NY":      int(raw.get("interval_ny",      120)),
+                "ASIAN":   int(raw.get("interval_asian",   300)),
+                "OFF":     int(raw.get("interval_off",     1800)),
+            }
+        except Exception:
+            return {}
+
+    def get_universe_news_filter(self) -> bool:
+        """Whether to skip instruments during active high-impact news (default True)."""
+        try:
+            return bool(self._find_property(["market_source", "universe", "news_filter"]))
+        except Exception:
+            return True
     
 
 

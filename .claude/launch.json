@@ -1,0 +1,35 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "trading-bot-live",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "equitiestradingbot", "-f", "config/live_trading_bot.toml"],
+      "port": 0
+    },
+    {
+      "name": "trading-bot-demo",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "equitiestradingbot", "-f", "test/test_data/demo_trading_bot.toml"],
+      "port": 0
+    },
+    {
+      "name": "trading-bot-single-pass",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "equitiestradingbot", "-f", "config/live_trading_bot.toml", "--single-pass"],
+      "port": 0
+    },
+    {
+      "name": "platform-api",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "equitiestradingbot", "-f", "config/live_trading_bot.toml"],
+      "port": 3001
+    },
+    {
+      "name": "pytest",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "pytest", "test/", "-v"],
+      "port": 0
+    }
+  ]
+}

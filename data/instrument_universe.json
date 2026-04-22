@@ -1,0 +1,176 @@
+{
+  "_comment": "Instrument universe for the AI trading bot. Verify IG epic IDs in your account before enabling instruments.",
+  "_epic_format": "IG CFD epics. Find yours via: broker.search_market('FTSE') or IG platform. TODAY.IP = daily rolling, MONTH1.IP = front month.",
+  "instruments": [
+
+    {
+      "epic": "CS.D.USCGC.TODAY.IP",
+      "name": "Gold (Spot)",
+      "asset_class": "commodity",
+      "sessions": ["LONDON", "OVERLAP", "NY"],
+      "currency": "USD",
+      "typical_spread_pts": 0.4,
+      "min_stop_distance": 1.0,
+      "priority": 1,
+      "enabled": true,
+      "notes": "Core instrument. Most liquid during London open and NY overlap. Heavily affected by USD news."
+    },
+
+    {
+      "epic": "IX.D.FTSE.DAILY.IP",
+      "name": "FTSE 100",
+      "asset_class": "index",
+      "sessions": ["LONDON"],
+      "currency": "GBP",
+      "typical_spread_pts": 1.0,
+      "min_stop_distance": 4.0,
+      "priority": 2,
+      "enabled": true,
+      "notes": "UK equities index. Active 08:00–16:30 UTC. Sensitive to BOE decisions and UK macro data."
+    },
+
+    {
+      "epic": "IX.D.SPDUST.DAILY.IP",
+      "name": "S&P 500",
+      "asset_class": "index",
+      "sessions": ["OVERLAP", "NY"],
+      "currency": "USD",
+      "typical_spread_pts": 0.4,
+      "min_stop_distance": 2.0,
+      "priority": 1,
+      "enabled": true,
+      "notes": "US large-cap index. Highest volume 13:30–16:00 UTC. Reacts strongly to NFP, CPI, FOMC."
+    },
+
+    {
+      "epic": "IX.D.NASDAQ.DAILY.IP",
+      "name": "NASDAQ 100",
+      "asset_class": "index",
+      "sessions": ["OVERLAP", "NY"],
+      "currency": "USD",
+      "typical_spread_pts": 1.0,
+      "min_stop_distance": 4.0,
+      "priority": 2,
+      "enabled": true,
+      "notes": "Tech-heavy index. Higher beta than S&P. Avoid earnings season gaps."
+    },
+
+    {
+      "epic": "IX.D.DAX.DAILY.IP",
+      "name": "DAX 40",
+      "asset_class": "index",
+      "sessions": ["LONDON"],
+      "currency": "EUR",
+      "typical_spread_pts": 1.5,
+      "min_stop_distance": 4.0,
+      "priority": 3,
+      "enabled": true,
+      "notes": "German equities index. Sensitive to ECB decisions and EU macro. Gaps on Monday open."
+    },
+
+    {
+      "epic": "CS.D.EURUSD.TODAY.IP",
+      "name": "EUR/USD",
+      "asset_class": "forex",
+      "sessions": ["LONDON", "OVERLAP", "NY"],
+      "currency": "USD",
+      "typical_spread_pts": 0.0006,
+      "min_stop_distance": 0.001,
+      "priority": 2,
+      "enabled": true,
+      "notes": "Most liquid forex pair. Sensitive to ECB and Fed divergence. Low spread."
+    },
+
+    {
+      "epic": "CS.D.GBPUSD.TODAY.IP",
+      "name": "GBP/USD",
+      "asset_class": "forex",
+      "sessions": ["LONDON", "OVERLAP"],
+      "currency": "USD",
+      "typical_spread_pts": 0.0008,
+      "min_stop_distance": 0.001,
+      "priority": 3,
+      "enabled": true,
+      "notes": "Volatile during UK data releases. Avoid around BOE decisions without wide stops."
+    },
+
+    {
+      "epic": "CS.D.USDJPY.TODAY.IP",
+      "name": "USD/JPY",
+      "asset_class": "forex",
+      "sessions": ["ASIAN", "LONDON", "NY"],
+      "currency": "JPY",
+      "typical_spread_pts": 0.0007,
+      "min_stop_distance": 0.01,
+      "priority": 1,
+      "enabled": true,
+      "notes": "Primary Asian session pair. BOJ intervention risk. Trending market — suits trend strategies."
+    },
+
+    {
+      "epic": "CS.D.AUDUSD.TODAY.IP",
+      "name": "AUD/USD",
+      "asset_class": "forex",
+      "sessions": ["ASIAN"],
+      "currency": "USD",
+      "typical_spread_pts": 0.0009,
+      "min_stop_distance": 0.001,
+      "priority": 2,
+      "enabled": true,
+      "notes": "Australian dollar. Active during Asian session. Sensitive to China data and commodity prices."
+    },
+
+    {
+      "epic": "CS.D.NZDUSD.TODAY.IP",
+      "name": "NZD/USD",
+      "asset_class": "forex",
+      "sessions": ["ASIAN"],
+      "currency": "USD",
+      "typical_spread_pts": 0.001,
+      "min_stop_distance": 0.001,
+      "priority": 3,
+      "enabled": false,
+      "notes": "Thinner liquidity than AUD. Enable if Asian session performance warrants."
+    },
+
+    {
+      "epic": "CC.D.LCO.USS.IP",
+      "name": "Brent Crude Oil",
+      "asset_class": "commodity",
+      "sessions": ["LONDON", "OVERLAP"],
+      "currency": "USD",
+      "typical_spread_pts": 0.06,
+      "min_stop_distance": 0.3,
+      "priority": 3,
+      "enabled": true,
+      "notes": "European crude benchmark. Sensitive to OPEC decisions and geopolitical events. Wide intraday swings."
+    },
+
+    {
+      "epic": "CC.D.CL.USS.IP",
+      "name": "WTI Crude Oil",
+      "asset_class": "commodity",
+      "sessions": ["OVERLAP", "NY"],
+      "currency": "USD",
+      "typical_spread_pts": 0.05,
+      "min_stop_distance": 0.3,
+      "priority": 3,
+      "enabled": false,
+      "notes": "US crude benchmark. EIA inventory Wednesday 15:30 UTC causes sharp moves. Enable cautiously."
+    },
+
+    {
+      "epic": "IX.D.NIKKEI.DAILY.IP",
+      "name": "Nikkei 225",
+      "asset_class": "index",
+      "sessions": ["ASIAN"],
+      "currency": "JPY",
+      "typical_spread_pts": 6.0,
+      "min_stop_distance": 15.0,
+      "priority": 2,
+      "enabled": false,
+      "notes": "Japanese equity index. Correlated with USD/JPY. Enable once Asian session strategy is validated."
+    }
+
+  ]
+}

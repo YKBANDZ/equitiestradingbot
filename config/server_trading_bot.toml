@@ -1,0 +1,167 @@
+# ── Server config — DigitalOcean Droplet ──────────────────────────────────────
+# Use this with: poetry run equitiestradingbot -c config/server_trading_bot.toml
+# {home} resolves to /home/<username> on Linux automatically.
+# All paths assume the project lives at {home}/equitiestradingbot
+
+# Percentage of account value to use
+max_account_usable = 50
+
+# These must remain at the top level — configuration getters read them directly
+time_zone = "Europe/London"
+paper_trading = false
+spin_interval = 300
+
+# Path to the IG credentials file
+credentials_filepath = "{home}/equitiestradingbot/config/credentials/live_credentials.json"
+
+# Path to Telegram credentials file
+telegram_credentials_filepath = "{home}/equitiestradingbot/config/credentials/telegrambot_credentials.json"
+
+# ── Scheduler (24/7 operation) ────────────────────────────────────────────────
+[scheduler]
+interval_overlap = 60
+interval_london  = 120
+interval_ny      = 120
+interval_asian   = 300
+interval_off     = 1800
+
+# ── AI Agent ──────────────────────────────────────────────────────────────────
+[agent]
+anthropic_credentials_filepath = "{home}/equitiestradingbot/config/credentials/anthropic_credentials.json"
+post_trade_reflection_every_n = 1
+daily_reflection_hour_utc = 21
+weekly_reflection_day = 6
+weekly_reflection_hour_utc = 20
+
+[telegram]
+signal_window_hours = 1.0
+signal_history_filepath = "{home}/equitiestradingbot/config/telegram/signal_history.json"
+
+[platform]
+api_base_url = "http://localhost:3001/api"
+api_key = "4f92ba33455f6601ee3c33402ba048cfb96d5537fbba1490891029044b10f53e"
+signal_window_hours = 1.0
+signal_history_filepath = "{home}/equitiestradingbot/config/platform/signal_history.json"
+
+[logging]
+enable = true
+log_filepath = "{home}/equitiestradingbot/log/trading_bot_{timestamp}.log"
+debug = true
+
+[market_source]
+active = "universe"
+values = ["universe", "list", "api", "watchlist"]
+
+[market_source.epic_id_list]
+filepath = "{home}/equitiestradingbot/data/epics_ids.txt"
+
+[market_source.universe]
+filepath = "{home}/equitiestradingbot/data/instrument_universe.json"
+news_filter = true
+
+[stocks_interface]
+active = "ig_interface"
+values = ["yfinance", "alpha_vantage", "ig_interface"]
+
+[stocks_interface.yfinance]
+api_timeout = 0.5
+
+[stocks_interface.alpha_vantage]
+api_timeout = 12
+
+[stocks_interface.ig_interface]
+order_type = "MARKET"
+order_size = 10
+order_expiry = "DFB"
+order_currency = "GBP"
+order_force_open = true
+use_g_stop = false
+use_demo_account = true
+controlled_risk = false
+api_timeout = 3
+
+[account_interface]
+active = "ig_interface"
+values = ["yfinance", "alpha_vantage", "ig_interface"]
+
+[strategies]
+active = "intraday_gold"
+values = ["simple_macd", "weighted_avg_peak", "simple_boll_bands", "smart_sentiment", "advanced_momentum", "simplicity", "intraday_gold", "strategy_manager"]
+
+[strategies.strategy_manager]
+switch_to_simplicity_time = "14:30"
+switch_back_time = "16:00"
+
+[strategies.simplicity]
+first_candle_start_time = "14:30"
+first_candle_end_time = "15:00"
+risk_reward_ratio = 2.0
+min_volume_threshold = 1000
+fvg_confirmation_candles = 3
+stop_loss_buffer = 0.5
+lookback_candles = 10
+
+[strategies.simple_macd]
+max_spread_perc = 5
+limit_perc = 10
+stop_perc = 5
+
+[strategies.weighted_avg_peak]
+max_spread = 3
+limit_perc = 10
+stop_perc = 5
+
+[strategies.simple_boll_bands]
+window = 60
+limit_perc = 10
+stop_perc = 5
+
+[strategies.smart_sentiment]
+window = 30
+limit_perc = 1.2
+stop_perc = 0.8
+
+[strategies.advanced_momentum]
+fast_length = 12
+slow_length = 26
+signal_smoothing = 9
+atr_length = 14
+base_risk_multiplier = 1.5
+risk_reward_ratio = 2.5
+force_exit_squeeze = true
+use_long_trend = true
+use_short_trend = true
+ma_length = 100
+rsi_length = 14
+rsi_long_boundary = 50
+rsi_short_boundary = 50
+use_adx_limiter = true
+adx_length = 5
+di_length = 5
+adx_high_boundary = 50
+adx_low_boundary = 20
+use_volume_filter = false
+volume_ma_length = 10
+bb_length = 20
+bb_mult_factor = 1.0
+kc_length = 20
+kc_mult_factor = 1.5
+use_true_range = true
+
+[strategies.intraday_gold]
+engulfing_min_body_ratio = 0.6
+pin_bar_min_tail_ratio = 0.7
+pin_bar_max_body_ratio = 0.3
+breakout_min_distance = 0.1
+false_breakout_max_distance = 0.05
+ema_period = 50
+ema_period2 = 200
+swing_lookback = 20
+pivot_lookback = 1
+risk_reward_ratio = 2.5
+atr_period = 14
+trailing_stop_atr_multiplier = 1.5
+use_volume_filter = true
+volume_multiplier = 1.2
+trading_start_hour = 8
+trading_end_hour = 16
